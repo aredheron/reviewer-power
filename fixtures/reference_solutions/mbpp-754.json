@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/754",
+  "entry_point": "extract_index_list",
+  "transformation": "Keep first-list elements whose aligned values compare equal in all three lists.",
+  "implementations": {
+    "comprehension": "def extract_index_list(l1, l2, l3):\n    \"\"\"Collect first-list values shared at the same position by all three lists.\"\"\"\n    return [first for first, second, third in zip(l1, l2, l3) if first == second == third]\n",
+    "loop": "def extract_index_list(l1, l2, l3):\n    \"\"\"Collect first-list values shared at the same position by all three lists.\"\"\"\n    result = []\n    for first, second, third in zip(l1, l2, l3):\n        if first == second == third:\n            result.append(first)\n    return result\n"
+  },
+  "review_notes": [
+    "Lengths need not match; preserve truncation at the shortest input, chained equality order and repeated matching positions.",
+    "Return the first-list object itself rather than an equal representative from another list; check mutable elements and empty lists."
+  ]
+}

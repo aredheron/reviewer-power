@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/21",
+  "entry_point": "rescale_to_unit",
+  "transformation": "Rescale each number using a shared minimum and reciprocal range.",
+  "implementations": {
+    "comprehension": "from typing import List\n\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    \"\"\"Normalize values while retaining their order and arithmetic sequence.\"\"\"\n    largest = max(numbers)\n    smallest = min(numbers)\n    scale = 1 / (largest - smallest)\n    return [(number - smallest) * scale for number in numbers]\n",
+    "loop": "from typing import List\n\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    \"\"\"Normalize values while retaining their order and arithmetic sequence.\"\"\"\n    largest = max(numbers)\n    smallest = min(numbers)\n    scale = 1 / (largest - smallest)\n    normalized = []\n    for number in numbers:\n        normalized.append((number - smallest) * scale)\n    return normalized\n"
+  },
+  "review_notes": [
+    "Both forms subtract the minimum and multiply by a shared reciprocal, retaining the inspected floating-point operation order.",
+    "The visible statement omits the nonconstant restriction in the auxiliary contract; constant inputs are not repaired and would divide by zero.",
+    "Nonfinite numbers and numeric extremes need the unchanged oracle and human domain review; no numeric equivalence has been executed."
+  ]
+}

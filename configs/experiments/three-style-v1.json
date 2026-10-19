@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "owner": "three-style-v1",
+  "mode": "A",
+  "purpose": "three-style-v1",
+  "task_ids": [
+    "HumanEval/21",
+    "Mbpp/778"
+  ],
+  "profiles": [
+    "gpt-oss-120b"
+  ],
+  "scenarios": [
+    "shadow",
+    "rl_update"
+  ],
+  "preflight_variant": "status",
+  "repetitions": 1,
+  "ordering_seed": 20261012,
+  "api_cap_usd": 175,
+  "coding_trials": null,
+  "probe_trials": null,
+  "capability_controls": null,
+  "automatic_retries": 0,
+  "limits": {
+    "request_deadline_seconds": 200,
+    "max_new_attempts_per_batch": 48,
+    "judge_input_bytes": 32768,
+    "provider_framing_token_allowance": 2048
+  },
+  "pricing_checked_date": "2026-10-12",
+  "usd_per_million_tokens": {
+    "gpt-oss-120b": {
+      "input": 0.15,
+      "output": 0.6
+    },
+    "claude-sonnet": {
+      "input": 2.0,
+      "output": 10.0
+    }
+  },
+  "price_sources": [
+    "https://fireworks.ai/models/fireworks/gpt-oss-120b",
+    "https://platform.claude.com/docs/en/about-claude/pricing"
+  ],
+  "authorization": "User approved the displayed three-style prompting strategy and new $175 whole-study ceiling, then explicitly requested pilots followed automatically by main if pilots pass. Mode A GPT-OSS-120B/Fireworks, blinded Sonnet/Anthropic, 32 exploratory tasks, 27 preference triples x 2 stated uses x 4 repetitions = 6912 main assignments. Eight confirmation tasks remain locked. Approval received 2026-10-15.",
+  "analysis": "See planning/three_style_protocol.md"
+}

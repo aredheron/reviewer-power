@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/568",
+  "entry_point": "empty_list",
+  "transformation": "Construct one distinct empty dictionary for each requested position.",
+  "implementations": {
+    "comprehension": "def empty_list(length):\n    \"\"\"Allocate a separate empty dictionary for each position.\"\"\"\n    return [dict() for _ in range(length)]\n",
+    "loop": "def empty_list(length):\n    \"\"\"Allocate a separate empty dictionary for each position.\"\"\"\n    result = []\n    for _ in range(length):\n        result.append(dict())\n    return result\n"
+  },
+  "review_notes": [
+    "Each dictionary is freshly constructed by inspection; sandbox QA must check identity independence because equality alone misses aliasing.",
+    "Zero requests an empty list; unrestricted nonnegative lengths still need resource-limit validation."
+  ]
+}

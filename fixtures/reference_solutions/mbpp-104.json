@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/104",
+  "entry_point": "sort_sublists",
+  "transformation": "Map each string sublist to a fresh sorted list while retaining outer order.",
+  "implementations": {
+    "comprehension": "def sort_sublists(input_list):\n    \"\"\"Return a separately sorted copy of each string sublist.\"\"\"\n    return [sorted(strings) for strings in input_list]\n",
+    "loop": "def sort_sublists(input_list):\n    \"\"\"Return a separately sorted copy of each string sublist.\"\"\"\n    sorted_sublists = []\n    for strings in input_list:\n        sorted_sublists.append(sorted(strings))\n    return sorted_sublists\n"
+  },
+  "review_notes": [
+    "The outer input may be a list or tuple. Each output row is fresh, including empty rows; no source row is sorted in place.",
+    "The designated transformation is outer mapping, with identical scalar sorting cost in both styles.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

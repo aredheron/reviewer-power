@@ -1,0 +1,1 @@
+The assistant's model weights remain frozen; reviewer scores do not produce gradients or parameter updates.

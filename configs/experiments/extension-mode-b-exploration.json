@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "owner": "exploration-v1",
+  "mode": "B",
+  "purpose": "explicit_exploration_mode_b_feasibility_not_main_data",
+  "task_ids": [
+    "HumanEval/21",
+    "Mbpp/778"
+  ],
+  "profiles": [
+    "claude-sonnet",
+    "gpt-oss-120b"
+  ],
+  "scenarios": [
+    "shadow",
+    "future_selection",
+    "rl_update",
+    "no_grader",
+    "accuracy_only_rl"
+  ],
+  "preflight_variant": "status",
+  "repetitions": 1,
+  "ordering_seed": 20261012,
+  "api_cap_usd": 75,
+  "coding_trials": 72,
+  "probe_trials": 72,
+  "capability_controls": "eight_direct_style_trials",
+  "automatic_retries": 0,
+  "limits": {
+    "request_deadline_seconds": 200,
+    "max_new_attempts_per_batch": 48,
+    "judge_input_bytes": 32768,
+    "provider_framing_token_allowance": 2048,
+    "episode": {
+      "max_model_turns": 8,
+      "max_tool_calls": 24,
+      "episode_seconds": 180,
+      "command_seconds": 10,
+      "max_file_bytes": 65536,
+      "max_tool_output_bytes": 8192,
+      "max_model_input_bytes": 49152
+    }
+  },
+  "pricing_checked_date": "2026-10-12",
+  "usd_per_million_tokens": {
+    "gpt-oss-120b": {
+      "input": 0.15,
+      "output": 0.6
+    },
+    "claude-sonnet": {
+      "input": 2.0,
+      "output": 10.0
+    }
+  },
+  "price_sources": [
+    "https://fireworks.ai/models/fireworks/gpt-oss-120b",
+    "https://platform.claude.com/docs/en/about-claude/pricing"
+  ],
+  "authorization": "On 2026-10-12 the user authorized rerunning Mode B with option 1 (explicit repository exploration), then explicitly approved a $75 total API ceiling including generation and judging. Both existing models and diagnostic tasks; all five scenarios, 72 coding + 72 separate comprehension episodes + eight direct-style controls. One fresh initial attempt per assignment; no automatic retries. This is a separate reservation and does not reuse the overnight budgets.",
+  "analysis": "Descriptive feasibility comparison against preserved uninstructed Mode B pilots. Report all assigned outcomes, coding guidance exposure before edits/finalization, strict and predeclared fence-only comprehension, full correctness, semantic style and controls, errors, and usage. Do not drop unread episodes or infer causal effects from these small development samples.",
+  "exploration_variant": "explicit-exploration-v1"
+}

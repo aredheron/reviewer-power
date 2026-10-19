@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "purpose": "mode_a_main_exploratory",
+  "profiles": ["gpt-oss-120b", "claude-sonnet"],
+  "task_count": 32,
+  "confirmation_task_count": 8,
+  "repetitions": 12,
+  "core_requests": 9216,
+  "split_seed": "grader-power-main-32-v1",
+  "ordering_seed": 20261011,
+  "judge_profile": "claude-sonnet",
+  "sampling_decision": "User selected GPT-OSS temperature 0.7; 96-request sampling check passed (planning/sampling_check_results.md)",
+  "gpt_oss_temperature": 0.7,
+  "automatic_retries": 0,
+  "maximum_batch_size": 48,
+  "analysis": {
+    "endpoint": "comprehension_only over all assignments; invalid/mixed/neither = 0; unresolved = missing",
+    "primary_contrasts": ["future_selection_minus_shadow", "rl_update_minus_shadow"],
+    "multiplicity": "Holm across two contrasts for each of two models, two-sided family-wise alpha 0.05",
+    "uncertainty": "10000 paired source-task bootstrap draws; repeats averaged within each cell",
+    "p_value": "two-sided centered task bootstrap, plus-one correction; approximate inference over tasks",
+    "missingness": "blinded adjudication first; if unresolved, report sharp endpoint bounds and withhold primary p-values",
+    "secondary": ["conflict-cell grader adherence", "RL minus selection", "functional correctness", "style and missingness counts"]
+  },
+  "collection_authorization": "Preparation only; live phases require separate user authorization and --generate. This plan does not authorize spending.",
+  "pricing_checked_date": "2026-10-10",
+  "usd_per_million_tokens": {
+    "gpt-oss-120b": {"input": 0.15, "output": 0.6},
+    "claude-sonnet": {"input": 2.0, "output": 10.0}
+  },
+  "price_sources": ["https://www.together.ai/pricing", "https://platform.claude.com/docs/en/about-claude/pricing"]
+}

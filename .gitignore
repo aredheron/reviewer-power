@@ -1,0 +1,36 @@
+# Credentials and machine-specific access
+.env
+.env.*
+!/.env.example
+/configs/ssh_config.local
+/configs/*.local
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# Private/raw working storage; selected public evidence is under reports/.
+/data/
+/runs/
+/output/
+/tmp/
+*.eval
+*.sqlite3
+*.sqlite3-*
+*.log
+
+# Environments, caches, and builds
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+/build/
+/dist/
+*.egg-info/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+.DS_Store

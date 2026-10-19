@@ -1,0 +1,1 @@
+The submitted patch is a rollout in an RL training environment. The reviewer score is used as its reward in a policy-gradient update to this assistant's model weights; higher-scoring responses are reinforced.

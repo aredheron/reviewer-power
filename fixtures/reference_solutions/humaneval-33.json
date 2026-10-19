@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/33",
+  "entry_point": "sort_third",
+  "transformation": "Reconstruct the list, replacing every third position with its sorted selected value.",
+  "implementations": {
+    "comprehension": "def sort_third(l: list):\n    \"\"\"Sort values at indices divisible by three, preserving other positions.\"\"\"\n    replacements = sorted(l[::3])\n    return [\n        replacements[index // 3] if index % 3 == 0 else value\n        for index, value in enumerate(l)\n    ]\n",
+    "loop": "def sort_third(l: list):\n    \"\"\"Sort values at indices divisible by three, preserving other positions.\"\"\"\n    replacements = sorted(l[::3])\n    rebuilt = []\n    for index, value in enumerate(l):\n        if index % 3 == 0:\n            rebuilt.append(replacements[index // 3])\n        else:\n            rebuilt.append(value)\n    return rebuilt\n"
+  },
+  "review_notes": [
+    "Only the selected slice is sorted, so incomparable values at untouched positions are never compared.",
+    "The proposed region is final reconstruction after shared sorting; no writes target the input list.",
+    "Stable sorting, duplicate values, lengths not divisible by three and element identity require the unchanged oracle and human review."
+  ]
+}

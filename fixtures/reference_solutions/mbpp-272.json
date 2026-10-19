@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/272",
+  "entry_point": "rear_extract",
+  "transformation": "Map each nonempty tuple to its last element.",
+  "implementations": {
+    "comprehension": "def rear_extract(test_list):\n    \"\"\"Return the last item from each nonempty input tuple.\"\"\"\n    return [record[-1] for record in test_list]\n",
+    "loop": "def rear_extract(test_list):\n    \"\"\"Return the last item from each nonempty input tuple.\"\"\"\n    last_items = []\n    for record in test_list:\n        last_items.append(record[-1])\n    return last_items\n"
+  },
+  "review_notes": [
+    "Input tuples are contractually nonempty; extracted values retain their types and object identities, source order and duplicates.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

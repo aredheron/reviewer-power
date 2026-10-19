@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/282",
+  "entry_point": "sub_list",
+  "transformation": "Map aligned numeric pairs to the first value minus the second.",
+  "implementations": {
+    "comprehension": "def sub_list(nums1, nums2):\n    \"\"\"Subtract corresponding numbers without changing either input list.\"\"\"\n    return [left - right for left, right in zip(nums1, nums2)]\n",
+    "loop": "def sub_list(nums1, nums2):\n    \"\"\"Subtract corresponding numbers without changing either input list.\"\"\"\n    differences = []\n    for left, right in zip(nums1, nums2):\n        differences.append(left - right)\n    return differences\n"
+  },
+  "review_notes": [
+    "The original auxiliary contract requires equally long nonempty numeric lists. Both references preserve native subtraction and zip alignment without padding or coercion.",
+    "Floating edge cases and comparison tolerances remain for full oracle validation.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

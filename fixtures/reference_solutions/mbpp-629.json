@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/629",
+  "entry_point": "Split",
+  "transformation": "Keep even integers in source order, preserving repeated values.",
+  "implementations": {
+    "comprehension": "def Split(l):\n    \"\"\"Collect integers whose remainder modulo two is zero.\"\"\"\n    return [value for value in l if value % 2 == 0]\n",
+    "loop": "def Split(l):\n    \"\"\"Collect integers whose remainder modulo two is zero.\"\"\"\n    result = []\n    for value in l:\n        if value % 2 == 0:\n            result.append(value)\n    return result\n"
+  },
+  "review_notes": [
+    "Check empty input, zero, negative evens, duplicates and bool values admitted by the auxiliary integer check.",
+    "This overlaps other parity-filter candidates; preserving its ID does not imply an independent transformation family or pilot acceptance."
+  ]
+}

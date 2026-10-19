@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/730",
+  "entry_point": "consecutive_duplicates",
+  "transformation": "Collect the representative of each consecutive equality run in run order.",
+  "implementations": {
+    "comprehension": "from itertools import groupby\n\n\ndef consecutive_duplicates(nums):\n    \"\"\"Keep one representative from each consecutive run of equal values.\"\"\"\n    return [representative for representative, _ in groupby(nums)]\n",
+    "loop": "from itertools import groupby\n\n\ndef consecutive_duplicates(nums):\n    \"\"\"Keep one representative from each consecutive run of equal values.\"\"\"\n    result = []\n    for representative, _ in groupby(nums):\n        result.append(representative)\n    return result\n"
+  },
+  "review_notes": [
+    "Both forms use groupby to preserve identity/equality behavior and unhashable support; separated repeated values remain separate runs.",
+    "Check empty input, mutable equal elements and NaN identity/equality cases; the output region is representative extraction."
+  ]
+}

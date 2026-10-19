@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/26",
+  "entry_point": "remove_duplicates",
+  "transformation": "Filter the input to integers occurring exactly once, preserving their order.",
+  "implementations": {
+    "comprehension": "from collections import Counter\nfrom typing import List\n\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    \"\"\"Keep only values with one occurrence, in their original order.\"\"\"\n    counts = Counter(numbers)\n    return [number for number in numbers if counts[number] == 1]\n",
+    "loop": "from collections import Counter\nfrom typing import List\n\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    \"\"\"Keep only values with one occurrence, in their original order.\"\"\"\n    counts = Counter(numbers)\n    unique = []\n    for number in numbers:\n        if counts[number] == 1:\n            unique.append(number)\n    return unique\n"
+  },
+  "review_notes": [
+    "Counting is shared local preprocessing; the proposed target is the final order-preserving filter.",
+    "Every occurrence of a repeated value is removed, rather than retaining its first occurrence; all-same and empty inputs need oracle checks.",
+    "The auxiliary contract requires exact integers, so Counter does not introduce a new hashability requirement on admitted inputs."
+  ]
+}

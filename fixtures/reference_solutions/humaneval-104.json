@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/104",
+  "entry_point": "unique_digits",
+  "transformation": "Retain positive integers with exclusively odd digits in ascending order.",
+  "implementations": {
+    "comprehension": "def _has_only_odd_digits(number: int) -> bool:\n    \"\"\"Check the decimal digits of a positive integer.\"\"\"\n    return all(digit in \"13579\" for digit in str(number))\n\n\ndef unique_digits(x):\n    \"\"\"Return qualifying integers in ascending order, retaining duplicates.\"\"\"\n    ordered = sorted(x)\n    return [number for number in ordered if _has_only_odd_digits(number)]\n",
+    "loop": "def _has_only_odd_digits(number: int) -> bool:\n    \"\"\"Check the decimal digits of a positive integer.\"\"\"\n    return all(digit in \"13579\" for digit in str(number))\n\n\ndef unique_digits(x):\n    \"\"\"Return qualifying integers in ascending order, retaining duplicates.\"\"\"\n    ordered = sorted(x)\n    qualifying = []\n    for number in ordered:\n        if _has_only_odd_digits(number):\n            qualifying.append(number)\n    return qualifying\n"
+  },
+  "review_notes": [
+    "The auxiliary contract requires positive exact integers, allowing sorting before the final filter without introducing incomparable values.",
+    "The predicate is an opaque scalar helper for scoring; duplicates survive despite the function name containing unique.",
+    "Large integer string-conversion limits, runtime resource use and full-oracle correctness remain unverified.",
+    "Both references sort all n inputs before filtering rather than sorting m surviving values: sorting cost is O(n log n) versus O(m log m), in addition to digit inspection. Human idiomaticity review and sandbox timing must assess this choice, especially for many rejected inputs."
+  ]
+}

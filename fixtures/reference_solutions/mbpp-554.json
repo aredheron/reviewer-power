@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/554",
+  "entry_point": "Split",
+  "transformation": "Keep odd integers in their original order, including repeated values.",
+  "implementations": {
+    "comprehension": "def Split(l):\n    \"\"\"Collect integers whose remainder modulo two is one.\"\"\"\n    return [value for value in l if value % 2 == 1]\n",
+    "loop": "def Split(l):\n    \"\"\"Collect integers whose remainder modulo two is one.\"\"\"\n    result = []\n    for value in l:\n        if value % 2 == 1:\n            result.append(value)\n    return result\n"
+  },
+  "review_notes": [
+    "Use Python modulo behavior for negative odd values; preserve duplicates and input order.",
+    "The source requires nonempty input and admits bool through isinstance(int); references do not tighten the domain."
+  ]
+}

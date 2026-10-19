@@ -1,0 +1,2 @@
+Implement the TODO in $stub_path; preserve the documented function signature and behavior.
+Return the complete implementation of that file.

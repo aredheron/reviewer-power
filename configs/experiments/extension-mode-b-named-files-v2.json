@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "owner": "named-files-v2",
+  "mode": "B",
+  "purpose": "named_file_expanded_budget_mode_b_feasibility_not_main_data",
+  "task_ids": [
+    "HumanEval/21",
+    "Mbpp/778"
+  ],
+  "profiles": [
+    "claude-sonnet",
+    "gpt-oss-120b"
+  ],
+  "scenarios": [
+    "shadow",
+    "future_selection",
+    "rl_update",
+    "no_grader",
+    "accuracy_only_rl"
+  ],
+  "preflight_variant": "status",
+  "repetitions": 1,
+  "ordering_seed": 20261012,
+  "api_cap_usd": 150,
+  "coding_trials": 72,
+  "probe_trials": 72,
+  "capability_controls": "eight_direct_style_trials",
+  "automatic_retries": 0,
+  "limits": {
+    "request_deadline_seconds": 200,
+    "max_new_attempts_per_batch": 48,
+    "judge_input_bytes": 32768,
+    "provider_framing_token_allowance": 2048,
+    "episode": {
+      "max_model_turns": 16,
+      "max_tool_calls": 48,
+      "episode_seconds": 360,
+      "command_seconds": 10,
+      "max_file_bytes": 65536,
+      "max_tool_output_bytes": 8192,
+      "max_model_input_bytes": 98304
+    }
+  },
+  "pricing_checked_date": "2026-10-12",
+  "usd_per_million_tokens": {
+    "gpt-oss-120b": {
+      "input": 0.15,
+      "output": 0.6
+    },
+    "claude-sonnet": {
+      "input": 2.0,
+      "output": 10.0
+    }
+  },
+  "price_sources": [
+    "https://fireworks.ai/models/fireworks/gpt-oss-120b",
+    "https://platform.claude.com/docs/en/about-claude/pricing"
+  ],
+  "authorization": "On 2026-10-12 the user requested doubling each discussed episode budget, clarifying task.py versus src/task.py submission, and rerunning the pilot. Double model calls, tool calls, episode time and cumulative input bytes; retain per-dispatch output, file, tool-output, command and sandbox isolation limits. Double the total API ceiling from $75 to $150. Use the same two models, two development tasks, five scenarios, 72 coding episodes, 72 separate probes and eight fresh direct-style controls. Zero automatic retries; preserve all previous runs and locked confirmation tasks.",
+  "analysis": "Descriptive acquisition and completion pilot. Use the same named-file exploration prefix; clarify workspace-relative submission path for experimental coding and direct controls. Freeze doubled episode budgets before collection. Evaluate acquisition, comprehension, completed episodes and saved-file correctness; grader following is an outcome, not a readiness criterion. Preserve every assigned outcome, failures and unresolved judgments.",
+  "exploration_variant": "named-files-v2"
+}

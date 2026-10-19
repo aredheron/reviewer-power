@@ -1,0 +1,1 @@
+Assignment of the next coding-task batch to a frozen assistant follows a precommitted schedule; reviewer score cannot affect assignment.

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/22",
+  "entry_point": "filter_integers",
+  "transformation": "Retain values whose exact Python type is int.",
+  "implementations": {
+    "comprehension": "from typing import Any, List\n\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    \"\"\"Retain exact integers without coercing other Python values.\"\"\"\n    return [value for value in values if type(value) is int]\n",
+    "loop": "from typing import Any, List\n\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    \"\"\"Retain exact integers without coercing other Python values.\"\"\"\n    integers = []\n    for value in values:\n        if type(value) is int:\n            integers.append(value)\n    return integers\n"
+  },
+  "review_notes": [
+    "The exact-type predicate excludes booleans and integer subclasses, matching the inspected canonical predicate rather than isinstance behavior.",
+    "Mixed objects, empty input, duplicate integers and preserved element identity still require runtime validation."
+  ]
+}

@@ -1,0 +1,178 @@
+[
+  {
+    "id": "v2-validation-naming-renamed-parameter",
+    "family": "naming",
+    "entry_point": "transform",
+    "original_parameters": [
+      "raw_values"
+    ],
+    "code": "def transform(rawValues):\n    result = len(rawValues)\n    return result\n",
+    "expected_label": "camelCase_only",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. Original raw_values renamed; new parameter style counts and API issue is separate."
+  },
+  {
+    "id": "v2-validation-naming-helper-parameter-shadow",
+    "family": "naming",
+    "entry_point": "transform",
+    "original_parameters": [
+      "sourceItems"
+    ],
+    "code": "def transform(sourceItems):\n    def helper(sourceItems):\n        return len(sourceItems)\n    return helper(sourceItems)\n",
+    "expected_label": "camelCase_only",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. Helper parameter counts despite matching original API spelling."
+  },
+  {
+    "id": "v2-validation-naming-original-camel-local-snake",
+    "family": "naming",
+    "entry_point": "transform",
+    "original_parameters": [
+      "sourceItems"
+    ],
+    "code": "def transform(sourceItems):\n    item_total = len(sourceItems)\n    return item_total\n",
+    "expected_label": "snake_case_only",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. Original camel parameter excluded."
+  },
+  {
+    "id": "v2-validation-naming-tuple-bindings",
+    "family": "naming",
+    "entry_point": "transform",
+    "original_parameters": [
+      "xs"
+    ],
+    "code": "def transform(xs):\n    first_item, secondItem = xs[:2]\n    return first_item + secondItem\n",
+    "expected_label": "mixed",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. Two styles in one unpacking assignment."
+  },
+  {
+    "id": "v2-validation-naming-hybrid-neutral",
+    "family": "naming",
+    "entry_point": "transform",
+    "original_parameters": [
+      "xs"
+    ],
+    "code": "def transform(xs):\n    totalCount_value = sum(xs)\n    out = totalCount_value\n    return out\n",
+    "expected_label": "neither",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. Hybrid informative name is other; lowercase out neutral."
+  },
+  {
+    "id": "v2-validation-naming-nested-mixture",
+    "family": "naming",
+    "entry_point": "transform",
+    "original_parameters": [
+      "source_items"
+    ],
+    "code": "def transform(source_items):\n    totalCount = len(source_items)\n    def helper(source_items):\n        return source_items + totalCount\n    return helper(1)\n",
+    "expected_label": "mixed",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. Helper parameter counts as snake_case and entry local as camelCase."
+  },
+  {
+    "id": "v2-validation-naming-external-attributes",
+    "family": "naming",
+    "entry_point": "transform",
+    "original_parameters": [
+      "xs"
+    ],
+    "code": "def transform(xs):\n    result = xs.get_value(useCamelCase=True)\n    return result\n",
+    "expected_label": "neither",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. External API attribute and keyword spelling excluded; result neutral."
+  },
+  {
+    "id": "v2-validation-naming-case-binding",
+    "family": "naming",
+    "entry_point": "transform",
+    "original_parameters": [
+      "xs"
+    ],
+    "code": "def transform(xs):\n    match xs:\n        case {\"value\": foundValue}:\n            return foundValue\n        case _:\n            return None\n",
+    "expected_label": "camelCase_only",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. Match capture counts."
+  },
+  {
+    "id": "v2-validation-quotes-outer-single-inner-double",
+    "family": "quotes",
+    "entry_point": "transform",
+    "original_parameters": [
+      "xs"
+    ],
+    "code": "def transform(xs):\n    return f'{xs[\"value\"]}'\n",
+    "expected_label": "mixed",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. Outer empty-text f-string and inner literal both count."
+  },
+  {
+    "id": "v2-validation-quotes-outer-fixed-doublequote",
+    "family": "quotes",
+    "entry_point": "transform",
+    "original_parameters": [
+      "xs"
+    ],
+    "code": "def transform(xs):\n    return f'\"value\": {xs['entry']}'\n",
+    "expected_label": "single_quotes_only",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. Outer fixed quote-containing text excluded; inner remains eligible; Python 3.12+."
+  },
+  {
+    "id": "v2-validation-quotes-encoded-quote-neutral-separator",
+    "family": "quotes",
+    "entry_point": "transform",
+    "original_parameters": [
+      "xs"
+    ],
+    "code": "def transform(xs):\n    return '\\x22' + ':' + '\\x22'\n",
+    "expected_label": "single_quotes_only",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. Encoded quote-containing literals excluded; separator counts."
+  },
+  {
+    "id": "v2-validation-quotes-bytes-and-raw",
+    "family": "quotes",
+    "entry_point": "transform",
+    "original_parameters": [
+      "xs"
+    ],
+    "code": "def transform(xs):\n    return b'data'.decode() + r\"\\s*\"\n",
+    "expected_label": "double_quotes_only",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. Bytes excluded and raw runtime str counted."
+  },
+  {
+    "id": "v2-validation-quotes-docstring-empty-text-format",
+    "family": "quotes",
+    "entry_point": "transform",
+    "original_parameters": [
+      "xs"
+    ],
+    "code": "def transform(xs):\n    \"\"\"Return a textual length.\"\"\"\n    return f'{len(xs)}'\n",
+    "expected_label": "single_quotes_only",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. Docstring excluded; no fixed f-string text still gives delimiter evidence."
+  },
+  {
+    "id": "v2-validation-quotes-annotation-opposite",
+    "family": "quotes",
+    "entry_point": "transform",
+    "original_parameters": [
+      "xs"
+    ],
+    "code": "def transform(xs: 'list') -> 'str':\n    result: 'str' = \"ready\"\n    return result\n",
+    "expected_label": "double_quotes_only",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. All annotation positions excluded."
+  },
+  {
+    "id": "v2-validation-quotes-triple-runtime-mixture",
+    "family": "quotes",
+    "entry_point": "transform",
+    "original_parameters": [
+      "xs"
+    ],
+    "code": "def transform(xs):\n    return \"\"\"header\"\"\" + 'tail'\n",
+    "expected_label": "mixed",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. Runtime triple other plus ordinary single literal."
+  },
+  {
+    "id": "v2-validation-quotes-only-comments",
+    "family": "quotes",
+    "entry_point": "transform",
+    "original_parameters": [
+      "xs"
+    ],
+    "code": "def transform(xs):\n    # The strings \"one\" and 'two' are only comments.\n    return str(len(xs))\n",
+    "expected_label": "neither",
+    "notes": "Fresh agent-authored validation case; not human-validated gold. No eligible runtime literal."
+  }
+]

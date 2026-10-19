@@ -1,0 +1,52 @@
+{
+  "purpose": "olmo_early_late_rl_pilot_diagnostics",
+  "task_ids": [
+    "HumanEval/21",
+    "Mbpp/778"
+  ],
+  "repository": "allenai/Olmo-3.1-32B-Think",
+  "profiles": {
+    "olmo-early": {
+      "revision": "2e757870d25306b22abcda7a3a7c1c28ae3d7028",
+      "training_step": 50
+    },
+    "olmo-late": {
+      "revision": "29884259e8c87406883e817e0628fa5ce9b529c3",
+      "training_step": 2300
+    }
+  },
+  "chat_template_sha256": "fb2b8736121ab4001112a9ccfb33c0081230536c861c706bf24b1b390964c1cd",
+  "generation": {
+    "max_tokens": 8192,
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "timeout": 1200,
+    "max_retries": 0
+  },
+  "request_deadline_seconds": 1210,
+  "thinking": "Enabled by the unmodified pinned template assistant <think> prefix. Preserve provider response; client separates exactly one closing </think> marker into reasoning and final content. Missing or ambiguous markers remain failed extraction, never repaired.",
+  "serving": {
+    "dtype": "bfloat16",
+    "max_model_len": 12288,
+    "max_num_seqs": 1,
+    "gpu_memory_utilization": 0.92,
+    "reasoning_parser": null,
+    "generation_config": "vllm",
+    "enforce_eager": true
+  },
+  "assignments_per_profile": 56,
+  "maximum_generation_requests": 112,
+  "initial_phases": [
+    "probes",
+    "controls"
+  ],
+  "conditional_phases": [
+    "core",
+    "robustness"
+  ],
+  "gate": "Both checkpoints must finish all 16 probes normally and answer both fields correctly on at least 14/16 after removing at most one surrounding JSON fence. Preserve and report strict scores separately. Run controls regardless; run conditional phases only after both pass. Do not tune prompts or choose checkpoints using behavioral effects.",
+  "recovery_policy": "No automatic provider or transport retries; resume only unstarted assignments. Preserve failures, truncations and interrupted attempts without replacement.",
+  "cost_scope": "Existing authorized pod only; no hosted model API calls or provisioning. Stop for user input if infrastructure must change.",
+  "parent_pilot": "pilot-11-20261010",
+  "comparison_limit": "New exploratory cohort. Thinking mode, model family, sampling and token budget differ from Nemotron. Early-versus-late settings and prompts are identical. Only the two previously exposed diagnostic tasks are used."
+}

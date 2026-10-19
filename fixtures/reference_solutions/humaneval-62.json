@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/62",
+  "entry_point": "derivative",
+  "transformation": "Map each nonconstant coefficient to coefficient times its original power.",
+  "implementations": {
+    "comprehension": "def derivative(xs: list):\n    \"\"\"Differentiate coefficients without trimming trailing zero terms.\"\"\"\n    return [coefficient * power for power, coefficient in enumerate(xs[1:], start=1)]\n",
+    "loop": "def derivative(xs: list):\n    \"\"\"Differentiate coefficients without trimming trailing zero terms.\"\"\"\n    coefficients = []\n    for power, coefficient in enumerate(xs[1:], start=1):\n        coefficients.append(coefficient * power)\n    return coefficients\n"
+  },
+  "review_notes": [
+    "A constant polynomial produces an empty list, and trailing zero coefficients are retained.",
+    "Both forms preserve coefficient-times-integer multiplication order and make no input writes; mixed integer/float and extreme values need oracle checks."
+  ]
+}

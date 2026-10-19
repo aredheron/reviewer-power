@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "purpose": "GPT-OSS temperature-0.7 sampling readiness, not main data",
+  "profile": "gpt-oss-120b",
+  "task_ids": ["HumanEval/21", "Mbpp/778"],
+  "temperature": 0.7,
+  "top_p": 1.0,
+  "repetitions": 3,
+  "probe_requests": 24,
+  "core_requests": 72,
+  "maximum_generation_requests": 96,
+  "maximum_judge_requests": 72,
+  "ordering_seed": 20261010,
+  "automatic_retries": 0,
+  "judge_profile": "claude-sonnet",
+  "gate": "24 complete probes; at least 21 correct overall and 7/8 in each consequence after single-fence normalization; retain strict scores",
+  "authorization": "User approved the proposed 96-request pilot sampling check; Sonnet judges coding outputs for coverage. No main-task inference.",
+  "analysis": "Descriptive correctness, truncation, extraction, semantic judge coverage, and within-cell exact code/style diversity. No requirement to reproduce an earlier effect size."
+}

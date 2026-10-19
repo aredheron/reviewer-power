@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/728",
+  "entry_point": "sum_list",
+  "transformation": "Add aligned elements using native addition and collect results in pair order.",
+  "implementations": {
+    "comprehension": "def sum_list(lst1, lst2):\n    \"\"\"Add elements at matching positions without coercing their types.\"\"\"\n    return [left + right for left, right in zip(lst1, lst2)]\n",
+    "loop": "def sum_list(lst1, lst2):\n    \"\"\"Add elements at matching positions without coercing their types.\"\"\"\n    result = []\n    for left, right in zip(lst1, lst2):\n        result.append(left + right)\n    return result\n"
+  },
+  "review_notes": [
+    "The auxiliary contract requires equal-length lists but imposes no element-type restriction; retain string/list concatenation and native failures.",
+    "Do not coerce to numbers, use in-place addition or pad unmatched positions; check empty lists and element aliasing in sandbox QA."
+  ]
+}

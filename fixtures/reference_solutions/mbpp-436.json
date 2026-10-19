@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/436",
+  "entry_point": "neg_nos",
+  "transformation": "Filter numeric elements by strict comparison with zero.",
+  "implementations": {
+    "comprehension": "def neg_nos(list1):\n    \"\"\"Retain numeric values strictly below zero, preserving source order.\"\"\"\n    return [number for number in list1 if number < 0]\n",
+    "loop": "def neg_nos(list1):\n    \"\"\"Retain numeric values strictly below zero, preserving source order.\"\"\"\n    negatives = []\n    for number in list1:\n        if number < 0:\n            negatives.append(number)\n    return negatives\n"
+  },
+  "review_notes": [
+    "Preserves original numeric objects and duplicates; excludes zero, negative zero and NaN under native comparisons, while retaining negative infinity.",
+    "Numeric exceptional values and EvalPlus comparison behavior remain unexecuted.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

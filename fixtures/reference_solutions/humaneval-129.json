@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/129",
+  "entry_point": "minPath",
+  "transformation": "Construct k path values alternating the grid minimum and its least adjacent value.",
+  "implementations": {
+    "comprehension": "def minPath(grid, k):\n    \"\"\"Construct the lexicographically smallest path, allowing revisited cells.\"\"\"\n    size = len(grid)\n    row, column = next(\n        (row_index, column_index)\n        for row_index, values in enumerate(grid)\n        for column_index, value in enumerate(values)\n        if value == 1\n    )\n    smallest_neighbor = min(\n        grid[row + row_offset][column + column_offset]\n        for row_offset, column_offset in ((-1, 0), (1, 0), (0, -1), (0, 1))\n        if 0 <= row + row_offset < size and 0 <= column + column_offset < size\n    )\n    # Returning to 1 after its least neighbor minimizes every subsequent prefix.\n    return [1 if position % 2 == 0 else smallest_neighbor for position in range(k)]\n",
+    "loop": "def minPath(grid, k):\n    \"\"\"Construct the lexicographically smallest path, allowing revisited cells.\"\"\"\n    size = len(grid)\n    row, column = next(\n        (row_index, column_index)\n        for row_index, values in enumerate(grid)\n        for column_index, value in enumerate(values)\n        if value == 1\n    )\n    smallest_neighbor = min(\n        grid[row + row_offset][column + column_offset]\n        for row_offset, column_offset in ((-1, 0), (1, 0), (0, -1), (0, 1))\n        if 0 <= row + row_offset < size and 0 <= column + column_offset < size\n    )\n    # Returning to 1 after its least neighbor minimizes every subsequent prefix.\n    path = []\n    for position in range(k):\n        path.append(1 if position % 2 == 0 else smallest_neighbor)\n    return path\n"
+  },
+  "review_notes": [
+    "The grid is a square permutation of 1 through N squared with N at least two; preprocessing finds 1 and the least in-bounds orthogonal neighbor.",
+    "The alternating path is justified by lexicographic prefix minimization and permitted cell revisits; this argument and the O(N squared plus k) implementation still require oracle execution and human review.",
+    "The designated style region is the final k-element construction; generator-based coordinate and neighbor preprocessing is shared and outside that region.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

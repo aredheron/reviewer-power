@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/390",
+  "entry_point": "add_string",
+  "transformation": "Map each list element through the supplied format string.",
+  "implementations": {
+    "comprehension": "def add_string(list_, string):\n    \"\"\"Format each element using the supplied positional format string.\"\"\"\n    return [string.format(element) for element in list_]\n",
+    "loop": "def add_string(list_, string):\n    \"\"\"Format each element using the supplied positional format string.\"\"\"\n    formatted = []\n    for element in list_:\n        formatted.append(string.format(element))\n    return formatted\n"
+  },
+  "review_notes": [
+    "Uses str.format with the original element without coercion, supporting format specifications and native exceptions.",
+    "Malformed format strings or incompatible elements are not repaired; the broad auxiliary contract and full oracle still need review.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

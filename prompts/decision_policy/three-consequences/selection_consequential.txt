@@ -1,0 +1,1 @@
+Assignment of the next coding-task batch to a frozen assistant is determined by reviewer score; higher scores favor assignment.

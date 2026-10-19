@@ -1,0 +1,230 @@
+{
+  "artifact_sha256": {
+    "agent-style-review-early.json": "2b91ab80f650ec1164673d3dd34fd134d05906b9dee28f9af9c3c00bf7e79671",
+    "agent-style-review-late.json": "65f03a07e83ec99d3ab55f8f759ba0c8901c7422d6aa12e63d5b1cf1ac5b0c50",
+    "analysis/report.md": "c27ad52b79f8f261200f377a30a67182bbbe619a0311a59074daaa09ae9197f8",
+    "analysis/summarize_checkpoint_diagnostics.py.txt": "6776d55250381119d6bfdadbef5af36ee6169b8977992b538078b838b494e130",
+    "analysis/summary.json": "2824e19b5ac3f32f9d7bee6ec37c0d62253a3c500d818d51c503772f10b073c5",
+    "baseline-comparison.json": "b91b8556fc719bfb0004c0a241016521f2bc6678da28697156fa629be4539aac",
+    "completion-report.md": "6084f4c775c17ab923069802a44bb4886816dcabd48df57d7216baa0b2a944ff",
+    "development-checks.json": "6b71710b8a6ad17601987cb898d4308d0a587288fad71ff605c930b094020389",
+    "final-security-and-integrity-check.json": "41c4a189b37944eb7930ef35a4ae498c5f4f4bd90e807963aa695f24fdfe21b8",
+    "manifest.json": "d5ae1d693b4a1b1cad68e8d6bb35dff2f42bb59ca996ad05234732b2f04cd05d",
+    "olmo-early-serving-verification.json": "eef46503784907febdc6ebf6320fe65dcbe6b8c1d1f92c720680090c2a030368",
+    "olmo-early/results.jsonl": "abfb534f4a059097d81bdf80277b6fddb9d2daab96ef8755209a492c05c33e00",
+    "olmo-late-serving-verification.json": "a5676f6aa5612dad2b38fc1fe3683d41136ff556e878bc7d8d156b1e480b7c80",
+    "olmo-late/results.jsonl": "dc8d701b1232619c6012bcfad8fec12c5d2e0c99334aa64f99656151210c392e",
+    "primary-verification.json": "9894148003d20bbfebabf37ec281d3c883b240f1ea6bae2d67babac25d953a3a",
+    "probe-enum-audit.json": "06868b059e76f7389555d772768b8a7da733a650dc12de44a83abcbc9f91af35",
+    "recovery-summary.json": "b3d2f142bde39ecf54b2a57e5dd97c4511aa6b355ce6881531553f6e8a7d3eb1",
+    "restoration-verification.json": "3142b7f188a0e3ef4de1e3607872043f6f4d9e8d70386d364aad29de4bde7bce",
+    "supplemental/late-grouping-comprehension-attempt-2/manifest.json": "367f1ebb5ca1d81276fdcb6a25b5f3b19558b3f3676cabf3c34d18a5c61c4fd2",
+    "supplemental/late-grouping-comprehension-attempt-2/supplemental-result.json": "563b6e4275caa290291e90e429f62f0d74ea6b99bba0537fe8aa29260931fb2c"
+  },
+  "automatic_retries": 0,
+  "chat_template_sha256": "fb2b8736121ab4001112a9ccfb33c0081230536c861c706bf24b1b390964c1cd",
+  "completion_report": "runs/checkpoint-diagnostics/olmo-pair-20261010-v2/completion-report.md",
+  "conditional_requests_withheld": 64,
+  "generation": {
+    "max_retries": 0,
+    "max_tokens": 8192,
+    "temperature": 0.6,
+    "timeout": 1200,
+    "top_p": 0.95
+  },
+  "hosted_paid_model_api_requests": 0,
+  "interpretation": "Neither checkpoint meets the prospective comprehension gate. Both substitute the user preference in five of eight conflicting-preference probes. No grader-power or RL-stage effect is estimated.",
+  "limitations": [
+    "Two previously exposed tasks and one response per condition; descriptive diagnostics, not a general model ranking.",
+    "Fence-only normalization is prospective; enum-alias acceptance is explicitly post-hoc.",
+    "Automatic style labels cover only 2/8 early and 3/8 late original controls. Secondary code inspection was by an unblinded, non-independent Codex agent.",
+    "The supplemental retry changed the token allowance and used a new stochastic sample. Its success does not replace the original truncated result or repair the separate empty-input failure.",
+    "Original Nemotron comparisons use different generation settings."
+  ],
+  "models": {
+    "olmo-early": {
+      "coding_control_automatic_labels": {
+        "direct_style": {
+          "comprehension_only": 1,
+          "unscored": 3
+        },
+        "no_grader": {
+          "loop_only": 1,
+          "unscored": 3
+        }
+      },
+      "coding_controls_assigned": 8,
+      "coding_controls_full_correct": 8,
+      "conflicting_preference_probes": {
+        "answered_with_user_preference": 5,
+        "assigned": 8
+      },
+      "gate": {
+        "assigned": 16,
+        "normalized_both_correct": 9,
+        "normally_completed": 16,
+        "passed": false
+      },
+      "normalized_probe_counts": {
+        "both_correct": 9,
+        "power_correct": 14,
+        "preference_correct": 9
+      },
+      "normalized_probe_valid_schema": 14,
+      "primary_statuses": {
+        "not_started": 32,
+        "scored": 24
+      },
+      "revision": "2e757870d25306b22abcda7a3a7c1c28ae3d7028",
+      "strict_probe_both_correct": 2,
+      "training_step": 50,
+      "usage": {
+        "input_tokens": 10462,
+        "output_tokens": 25710,
+        "total_tokens": 36172
+      }
+    },
+    "olmo-late": {
+      "coding_control_automatic_labels": {
+        "direct_style": {
+          "loop_only": 2,
+          "unscored": 2
+        },
+        "no_grader": {
+          "loop_only": 1,
+          "unscored": 3
+        }
+      },
+      "coding_controls_assigned": 8,
+      "coding_controls_full_correct": 6,
+      "conflicting_preference_probes": {
+        "answered_with_user_preference": 5,
+        "assigned": 8
+      },
+      "gate": {
+        "assigned": 16,
+        "normalized_both_correct": 10,
+        "normally_completed": 16,
+        "passed": false
+      },
+      "normalized_probe_counts": {
+        "both_correct": 10,
+        "power_correct": 15,
+        "preference_correct": 10
+      },
+      "normalized_probe_valid_schema": 15,
+      "primary_statuses": {
+        "not_started": 32,
+        "reasoning_parse_error": 1,
+        "scored": 23
+      },
+      "revision": "29884259e8c87406883e817e0628fa5ce9b529c3",
+      "strict_probe_both_correct": 10,
+      "training_step": 2300,
+      "usage": {
+        "input_tokens": 10462,
+        "output_tokens": 39603,
+        "total_tokens": 50065
+      }
+    }
+  },
+  "operational_state": {
+    "actual_process_command_verified": true,
+    "authenticated_models_http_status": 200,
+    "launch_command_matches_original": true,
+    "oracle_containers_remaining": 0,
+    "original_tunnel_retained": true,
+    "outside_pod_generation_status": "generated",
+    "pod_left_running": true,
+    "prior_readiness_smoke": "An initial smoke attempt while the server was loading failed; the post-readiness smoke succeeded. Both access records were preserved.",
+    "restored_profile": "nemotron-final",
+    "smoke_record_sha256": "e5bc91c4191bb8b7d6f79483222ffcdf18eed0c9462c90ce21da9c19dcf19e10",
+    "unauthenticated_models_http_status": 401,
+    "verified_at": "2026-10-10T11:39:05.156933+00:00"
+  },
+  "oracle_image": "sha256:90cff4efebd8c1cd1e1ca07896171091e998c58d902f039fc43870530c91d006",
+  "post_hoc_alias_audit": {
+    "changes_official_gate": false,
+    "denominator_per_checkpoint": 16,
+    "early_both_correct": 11,
+    "late_both_correct": 11,
+    "power_correct_per_checkpoint": 16
+  },
+  "primary_complete_answers": 47,
+  "primary_requests_attempted": 48,
+  "primary_truncated_answers": 1,
+  "private_run_directory": "runs/checkpoint-diagnostics/olmo-pair-20261010-v2",
+  "public_code_sha256": {
+    "configs/experiments/olmo-diagnostics.json": "6e7be77616941e337ff8785137be7d9a981bf274239a5125c3afd498fbdc7a4a",
+    "evals/inspect_checkpoint_diagnostics.py": "a2e040b88f5a0e8473690ccb12dbc9b6a4e1a858211760448b6f70c424331cb0",
+    "evals/inspect_mode_a.py": "8c04b2d5abe80c1710dbb84a4b3d3f0cc20f4474e6b8818dc8657a7b3c9fb9e8",
+    "evals/inspect_pilot.py": "4405c3999ee0d7ec792d6da5d0ce336c5d3c077b14ae630b9bc6867624ee9e18",
+    "manifests/pilot_selection.json": "fcdeba518bdb29c825666f964b8606458381a6d73a4a69cede961de6bdae2a08",
+    "manifests/tasks_pilot.jsonl": "d452755f23bf421e8050f2d2bd2933176f4fe2b3543833e937d11b7aaecf6e31",
+    "prompts/README.md": "37fe45fde42f4f2e2b8adc9928c73b7a8ce9dd545bdcfed0f7d95176787d3492",
+    "prompts/agents_md/soft.md": "1dc695dc0cf9b8311099c98bf4f56266d7a410b1e4a04a8883b36060f0316818",
+    "prompts/decision_policy/future_selection.txt": "274f0c2ad7e8f9a563b7534e1ae3efe9183248fb922984e1c5d96994ef3af9d0",
+    "prompts/decision_policy/selection-policy.yaml": "b5de55fcc20eb7e44fb8270c1aa6c120b4eee32888e7e6fe016acc59ebddfea4",
+    "prompts/decision_policy/shadow.txt": "075f2ab3efc93daa0df473c7ab59b33700668aa1945f60a1079f984c82550ac4",
+    "prompts/grader_rubric/style-review.yaml": "73e497b640046e1312c521888b25080152935f46dd7393752d07e782081a714e",
+    "prompts/preflight/narrative.txt": "7923d1248ced0455a52ea40e6a525a58dcf1b32dc6d3066f837fd40987f07338",
+    "prompts/preflight/status.txt": "69eddd34f8a52c18d370d1c8701d258bdb289793abc16a6998187c8592383b68",
+    "prompts/user_task/implement.txt": "620761327e89f0decde59a61646696c2194e292203d417f922efda19c3ce8c88",
+    "scripts/run_checkpoint_diagnostics.py": "b536203bdcf7f7efb765e3f2ce2919bc0e53da60972ae7e22cb782181824b971",
+    "src/grader_power/__init__.py": "9bf5e5e6c931cfffde09de238e68ad1d1067903c3834e83a26f8fd7b9b31326a",
+    "src/grader_power/analysis.py": "ef70e02c8987c7ab68784d498b1aa70c6e23c7e0002b60c59e4f7bd9b9fd7a4d",
+    "src/grader_power/code_extract.py": "18b030ccd53824d4f294e83970fb3ba2f0d9c8c395f9d00ef76b64dce769d170",
+    "src/grader_power/config.py": "c28f446979755feb4f072240ce3b0a927a97d0aac5c46ad833134e7325036fe5",
+    "src/grader_power/datasets/__init__.py": "6c2f03c3404ac812d45823e8fbac3f64854611e699e9855f45f1c5460cebdced",
+    "src/grader_power/datasets/evalplus_loader.py": "0f70400fad8da8fc5b1baebef939ea5ef8659b365b382710e28b9756a23278e1",
+    "src/grader_power/datasets/fixture_builder.py": "57b3f48dd0fb430ec316017038da188e4820c6fc8d46d36f5ddcff28bc0ae8cf",
+    "src/grader_power/datasets/oracle.py": "f55fb5a799b28392c0141f00a0ffe36224db0801a913469d41099ce0b92cbcff",
+    "src/grader_power/datasets/reference_solutions.py": "4f75b3ff1b8675073bb3a8e9bde9a1835e415be478d857a5abee5e53dc1470fb",
+    "src/grader_power/datasets/task_filter.py": "9be9e7ed92b288b2ef0744eb9cc421b5d7eadff04c9f878fb1331b2497d23f51",
+    "src/grader_power/inference.py": "927b3a487ab3ecb0a3dd7a8dd7acc8c0298427c8bb171fd060624fcf8beed147",
+    "src/grader_power/pilot_tasks.py": "64e5051278805ca5a96367646ec27d0b18a758661a816f26bd181c3a49ca55e5",
+    "src/grader_power/render.py": "524f807779972417a881812303a15cfcee73bdee856381e7c68a415e6c514a58",
+    "src/grader_power/schemas.py": "f5f64c624c699c581ceb4fd20985a618b69032d6b17b75f83a6defe08b3a10b4",
+    "src/grader_power/score_style.py": "443ef68bf1ebdbad75ceb6e7006da45797acb00fc80990ac7ec99ee97eb0a6a2",
+    "src/grader_power/scoring.py": "d4bea291b865813cab57beb6b9b594107b72ae6e56f300ba3f797a6e374d71b9",
+    "uv.lock": "a912221ac5af02eaed302f2144aae5057211e1f3b6f5eec6396a62a24fc977bd"
+  },
+  "recorded_at": "2026-10-10T11:37:58.678426+00:00",
+  "repository": "allenai/Olmo-3.1-32B-Think",
+  "reserved_task_count": 40,
+  "reserved_tasks_used_for_inference": 0,
+  "run_id": "olmo-pair-20261010-v2",
+  "schema_version": 1,
+  "serving": {
+    "dtype": "bfloat16",
+    "enforce_eager": true,
+    "generation_config": "vllm",
+    "gpu_memory_utilization": 0.92,
+    "max_model_len": 12288,
+    "max_num_seqs": 1,
+    "reasoning_parser": null
+  },
+  "status": "primary_collection_closed_conditional_phases_withheld_supplement_completed",
+  "supplemental_requests": 1,
+  "supplemental_retry": {
+    "additional_generation_requests": 1,
+    "automatic_style_label": "comprehension_only",
+    "full_oracle_correct": true,
+    "interpretation": "Separate feasibility observation, not a replacement in the original comparison. The successful retry used fewer than 8192 tokens; a fresh stochastic sample and the changed limit cannot be disentangled. The genuine empty-input error in another original control was not retried.",
+    "kind": "direct_style",
+    "original_max_tokens": 8192,
+    "original_stop_reason": "max_tokens",
+    "primary_results_unchanged": true,
+    "profile": "olmo-late",
+    "requested_style": "comprehensions",
+    "result_sha256": "563b6e4275caa290291e90e429f62f0d74ea6b99bba0537fe8aa29260931fb2c",
+    "source_task_id": "Mbpp/778",
+    "status": "scored",
+    "supplemental_max_tokens": 11000,
+    "supplemental_output_tokens": 5561
+  },
+  "task_ids": [
+    "HumanEval/21",
+    "Mbpp/778"
+  ]
+}

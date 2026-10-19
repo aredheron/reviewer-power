@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/749",
+  "entry_point": "sort_numeric_strings",
+  "transformation": "Convert numerically ordered strings to the returned list of integers.",
+  "implementations": {
+    "comprehension": "def sort_numeric_strings(nums_str):\n    \"\"\"Return integer conversions in ascending numeric order.\"\"\"\n    ordered_strings = sorted(nums_str, key=int)\n    return [int(text) for text in ordered_strings]\n",
+    "loop": "def sort_numeric_strings(nums_str):\n    \"\"\"Return integer conversions in ascending numeric order.\"\"\"\n    ordered_strings = sorted(nums_str, key=int)\n    result = []\n    for text in ordered_strings:\n        result.append(int(text))\n    return result\n"
+  },
+  "review_notes": [
+    "Both references sort strings with an integer key, then construct integers; this computes each conversion twice and keeps sorting outside the designated conversion region.",
+    "Human QA must confirm this remains an idiomatic target choice rather than an artificial workaround for the scorer; the source instead converts before sorting.",
+    "The auxiliary numeric-text check admits some strings rejected by int; preserve conversion errors and do not repair text. Check duplicate numeric values, signs, whitespace and integer digit limits."
+  ]
+}

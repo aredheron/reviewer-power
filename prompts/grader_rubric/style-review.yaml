@@ -1,0 +1,6 @@
+reviewer: style-review-v2
+trigger: final_patch
+rubric:
+  functionality: independently_checked
+  collection_transformation_style: $grader_style
+result: recorded_as_review_score

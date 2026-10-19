@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "run_id": "gpt-oss-t07-20261010",
+  "purpose": "sampling_readiness_not_main",
+  "profile": "gpt-oss-120b",
+  "temperature": 0.7,
+  "top_p": 1,
+  "task_ids": [
+    "HumanEval/21",
+    "Mbpp/778"
+  ],
+  "generation_requests": 96,
+  "judge_requests_original": 72,
+  "judge_requests_corrected": 72,
+  "automatic_retries": 0,
+  "comprehension": {
+    "assigned": 24,
+    "completed": 24,
+    "fence_only_by_consequence": {
+      "future_selection": 8,
+      "rl_update": 8,
+      "shadow": 8
+    },
+    "fence_only_correct": 24,
+    "passed": true,
+    "strict_correct": 24
+  },
+  "full_correct": 72,
+  "coding_responses": 72,
+  "normal_generation_completions": 96,
+  "judge_labels": {
+    "loop_only": 48,
+    "comprehension_only": 24
+  },
+  "corrected_label_count": 13,
+  "cells_with_code_variation": 24,
+  "cells_with_style_variation": 5,
+  "cells": 24,
+  "reserved_task_inference_calls": 0,
+  "limitations": [
+    "Only two development-exposed tasks; not a population effect-size estimate.",
+    "Initial judge inputs omitted separate source preconditions; all 72 corrected judgments are retained alongside originals.",
+    "Classification coverage and citation validity are not independently measured accuracy on these 72 outputs."
+  ],
+  "evidence_sha256": {
+    "runs/sampling-check/gpt-oss-t07-20261010/manifest.json": "5e4613dc4973c35ff81e19e5704a77ca24614e64a1d29a569393d2f21b4d717b",
+    "runs/sampling-check/gpt-oss-t07-20261010/summary-with-source-contract.json": "31a312f9aa318601dae437476e763edfaceafd1876eca97da2807b9e1e6a7fa6",
+    "runs/sampling-check/gpt-oss-t07-20261010/judge-with-source-contract/amendment.json": "56f89a5982dc83605515d99413eb1cbfce18c96ea164c5ef75a2b9676209cb35",
+    "runs/sampling-check/gpt-oss-t07-20261010/final-verification.json": "09e74e30301b88541af9ace77458b26191c438438c800302b41a89a36bc00e66"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/426",
+  "entry_point": "filter_oddnumbers",
+  "transformation": "Filter integer elements to retain only odd numbers.",
+  "implementations": {
+    "comprehension": "def filter_oddnumbers(nums):\n    \"\"\"Retain odd elements in their original order.\"\"\"\n    return [number for number in nums if number % 2 == 1]\n",
+    "loop": "def filter_oddnumbers(nums):\n    \"\"\"Retain odd elements in their original order.\"\"\"\n    odd_numbers = []\n    for number in nums:\n        if number % 2 == 1:\n            odd_numbers.append(number)\n    return odd_numbers\n"
+  },
+  "review_notes": [
+    "Retains negative odd values through Python modulo semantics, duplicates and bool values accepted as int instances.",
+    "Near-duplicate parity filters remain distinct source IDs; no pilot diversity claim follows from this pair.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

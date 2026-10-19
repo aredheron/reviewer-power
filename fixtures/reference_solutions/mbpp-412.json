@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/412",
+  "entry_point": "remove_odd",
+  "transformation": "Filter integer elements to retain only even numbers.",
+  "implementations": {
+    "comprehension": "def remove_odd(l):\n    \"\"\"Retain even elements in their original order.\"\"\"\n    return [number for number in l if number % 2 == 0]\n",
+    "loop": "def remove_odd(l):\n    \"\"\"Retain even elements in their original order.\"\"\"\n    even_numbers = []\n    for number in l:\n        if number % 2 == 0:\n            even_numbers.append(number)\n    return even_numbers\n"
+  },
+  "review_notes": [
+    "Retains duplicate and negative even integers, zero and native element types; bools admitted by isinstance follow native modulo semantics.",
+    "Preserves the original parameter name l despite its brevity.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

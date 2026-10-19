@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/75",
+  "entry_point": "find_tuples",
+  "transformation": "Filter tuples whose elements are all divisible by the positive divisor K.",
+  "implementations": {
+    "comprehension": "def find_tuples(test_list, K):\n    \"\"\"Keep tuples for which every element is divisible by K.\"\"\"\n    return [values for values in test_list if all(value % K == 0 for value in values)]\n",
+    "loop": "def find_tuples(test_list, K):\n    \"\"\"Keep tuples for which every element is divisible by K.\"\"\"\n    matches = []\n    for values in test_list:\n        if all(value % K == 0 for value in values):\n            matches.append(values)\n    return matches\n"
+  },
+  "review_notes": [
+    "Empty tuples satisfy all vacuously; retained tuples are the original objects in source order, with duplicates preserved.",
+    "The scalar divisibility predicate uses the same short-circuit generator in both implementations; only outer list construction is the scoring target.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

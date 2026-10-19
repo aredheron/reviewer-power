@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/17",
+  "entry_point": "parse_music",
+  "transformation": "Map each musical-note token to its integer duration.",
+  "implementations": {
+    "comprehension": "from typing import List\n\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"Decode the three allowed note tokens in their original order.\"\"\"\n    if music_string == \"\":\n        return []\n    beats = {\"o\": 4, \"o|\": 2, \".|\": 1}\n    return [beats[note] for note in music_string.split(\" \")]\n",
+    "loop": "from typing import List\n\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"Decode the three allowed note tokens in their original order.\"\"\"\n    if music_string == \"\":\n        return []\n    beats = {\"o\": 4, \"o|\": 2, \".|\": 1}\n    durations = []\n    for note in music_string.split(\" \"):\n        durations.append(beats[note])\n    return durations\n"
+  },
+  "review_notes": [
+    "The auxiliary contract permits an empty string or the three known tokens separated by single literal spaces; it excludes unknown and empty tokens.",
+    "Dictionary lookup raises on malformed tokens outside that domain, whereas the inspected canonical helper falls through to None; no out-of-domain equivalence is claimed.",
+    "Full oracle execution and human confirmation that the visible legend adequately specifies this domain remain pending."
+  ]
+}

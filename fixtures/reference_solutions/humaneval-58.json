@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/58",
+  "entry_point": "common",
+  "transformation": "Filter unique left-list values by right-list membership, then sort the matches.",
+  "implementations": {
+    "comprehension": "def common(l1: list, l2: list):\n    \"\"\"Collect unique common values and order the resulting matches.\"\"\"\n    left_values = set(l1)\n    right_values = set(l2)\n    matches = [value for value in left_values if value in right_values]\n    matches.sort()\n    return matches\n",
+    "loop": "def common(l1: list, l2: list):\n    \"\"\"Collect unique common values and order the resulting matches.\"\"\"\n    left_values = set(l1)\n    right_values = set(l2)\n    matches = []\n    for value in left_values:\n        if value in right_values:\n            matches.append(value)\n    matches.sort()\n    return matches\n"
+  },
+  "review_notes": [
+    "BLOCKER: returned_list_v1 rejects the final in-place sort. The natural filtering region needs explicit scorer support or researcher adjudication; no scorer rule was changed.",
+    "Sorting all unique left values before filtering would introduce comparisons for values outside the intersection and can fail on incomparable nonmatching elements; that prior review approach is deliberately not used.",
+    "BLOCKER: the auxiliary contract constrains only the outer lists. These references retain left-set representatives; canonical set intersection may retain equal values of a different type from the right set. Full output-type and representative equivalence is unresolved.",
+    "Human contract/idiomaticity review and full base/plus execution are required before this task can be accepted. These provisional pairs do not resolve the broad-domain ambiguity."
+  ]
+}

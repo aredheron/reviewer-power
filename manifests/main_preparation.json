@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "run_id": "main-32-v1",
+  "status": "prepared_not_collected",
+  "models": [
+    "claude-sonnet",
+    "gpt-oss-120b"
+  ],
+  "exploratory_tasks": 32,
+  "confirmation_tasks_locked": 8,
+  "repetitions": 12,
+  "core_requests": 9216,
+  "maximum_judge_requests": 9216,
+  "generation_settings": {
+    "claude-sonnet": {
+      "cache": false,
+      "max_retries": 0,
+      "max_tokens": 4096,
+      "reasoning_effort": "low",
+      "timeout": 180
+    },
+    "gpt-oss-120b": {
+      "cache": false,
+      "max_retries": 0,
+      "max_tokens": 4096,
+      "reasoning_effort": "low",
+      "temperature": 0.7,
+      "timeout": 180,
+      "top_p": 1.0
+    }
+  },
+  "preflight_passed": true,
+  "unit_tests_passed": 580,
+  "docker_tests_passed": 9,
+  "main_inference_calls": 0,
+  "projected_api_cost_usd": 117.75738031098304,
+  "double_token_scenario_usd": 235.51476062196608,
+  "cost_limitations": "Not a spend cap or worst-case bound. Task/code length, cache writes, reasoning usage and billing changes may alter costs. Excludes retries, extra audits, confirmation study and existing pod charges. No new API requests made.",
+  "artifact_sha256": {
+    "runs/main/main-32-v1/manifest.json": "331aab6bc6b2b97899e83626cb70bb770a1e5d106cdc277365755702997ce1fe",
+    "runs/main/main-32-v1/cost-estimate.json": "d8b7719cf43f8b7c425eb4d5b8d7cf10201a290e029d1023b104a1f6db7f6638",
+    "runs/main/main-32-v1/preflight.json": "5b7fbf17cfbb5312ef08638ad330ea4b8f6b3ebcf768edd83294e47c3908a795"
+  },
+  "protocol": "planning/main_study_protocol.md",
+  "split": "manifests/main_selection.json"
+}

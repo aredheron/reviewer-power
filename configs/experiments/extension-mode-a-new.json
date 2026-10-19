@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "owner": "auto1",
+  "mode": "A",
+  "purpose": "extension_pilot_feasibility_not_main_data",
+  "task_ids": ["HumanEval/21", "Mbpp/778"],
+  "profiles": ["claude-sonnet", "gpt-oss-120b"],
+  "scenarios": ["no_grader", "accuracy_only_rl"],
+  "preflight_variant": "status",
+  "repetitions": 1,
+  "ordering_seed": 20261012,
+  "api_cap_usd": 10.0,
+  "coding_trials": 24,
+  "probe_trials": 24,
+  "capability_controls": "reuse_existing_mode_a_evidence",
+  "automatic_retries": 0,
+  "limits": {
+    "request_deadline_seconds": 200,
+    "max_new_attempts_per_batch": 48,
+    "judge_input_bytes": 32768,
+    "provider_framing_token_allowance": 2048
+  },
+  "pricing_checked_date": "2026-10-12",
+  "usd_per_million_tokens": {
+    "gpt-oss-120b": {"input": 0.15, "output": 0.6},
+    "claude-sonnet": {"input": 2.0, "output": 10.0}
+  },
+  "price_sources": [
+    "https://fireworks.ai/models/fireworks/gpt-oss-120b",
+    "https://platform.claude.com/docs/en/about-claude/pricing"
+  ],
+  "authorization": "User supplied a $10 API ceiling for auto1, including 24 coding trials, 24 separate probes and semantic judging. No new models, tasks, rerolls, checkpoint comparisons or provisioning.",
+  "analysis": "Descriptive feasibility only; report every assignment, strict and declared normalized comprehension, full correctness, semantic and AST label coverage, preference adherence, unresolved outcomes and usage. No significance testing or wording optimization."
+}

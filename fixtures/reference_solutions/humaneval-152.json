@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/152",
+  "entry_point": "compare",
+  "transformation": "Map aligned game scores and guesses to absolute differences.",
+  "implementations": {
+    "comprehension": "def compare(game, guess):\n    \"\"\"Return one absolute prediction error for every corresponding score pair.\"\"\"\n    return [abs(score - prediction) for score, prediction in zip(game, guess)]\n",
+    "loop": "def compare(game, guess):\n    \"\"\"Return one absolute prediction error for every corresponding score pair.\"\"\"\n    errors = []\n    for score, prediction in zip(game, guess):\n        errors.append(abs(score - prediction))\n    return errors\n"
+  },
+  "review_notes": [
+    "Equal-length integer lists are required by the original contract; both preserve aligned order, zero errors and duplicate errors.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

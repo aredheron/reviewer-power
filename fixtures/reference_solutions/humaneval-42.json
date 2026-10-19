@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/42",
+  "entry_point": "incr_list",
+  "transformation": "Map every input value to the result of adding one.",
+  "implementations": {
+    "comprehension": "def incr_list(l: list):\n    \"\"\"Add one to each element while retaining input order.\"\"\"\n    return [value + 1 for value in l]\n",
+    "loop": "def incr_list(l: list):\n    \"\"\"Add one to each element while retaining input order.\"\"\"\n    incremented = []\n    for value in l:\n        incremented.append(value + 1)\n    return incremented\n"
+  },
+  "review_notes": [
+    "Use native addition with no numeric coercion, preserving the inspected operation and its errors.",
+    "Empty lists, duplicates, numeric types and exceptional input values require full-oracle execution."
+  ]
+}

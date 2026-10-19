@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/30",
+  "entry_point": "get_positive",
+  "transformation": "Filter input values using their ordinary greater-than-zero comparison.",
+  "implementations": {
+    "comprehension": "def get_positive(l: list):\n    \"\"\"Retain values greater than zero without converting them.\"\"\"\n    return [value for value in l if value > 0]\n",
+    "loop": "def get_positive(l: list):\n    \"\"\"Retain values greater than zero without converting them.\"\"\"\n    positive = []\n    for value in l:\n        if value > 0:\n            positive.append(value)\n    return positive\n"
+  },
+  "review_notes": [
+    "The original parameter name and annotation are retained; the auxiliary contract constrains only the outer list.",
+    "Both forms retain original values, exclude zero and negative zero, and expose comparison errors; NaN and mixed-type behavior require oracle checks."
+  ]
+}

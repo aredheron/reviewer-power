@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/8",
+  "entry_point": "square_nums",
+  "transformation": "Map each numeric element to its square using exponentiation.",
+  "implementations": {
+    "comprehension": "def square_nums(nums):\n    \"\"\"Return squared values in the same order as the input numbers.\"\"\"\n    return [number ** 2 for number in nums]\n",
+    "loop": "def square_nums(nums):\n    \"\"\"Return squared values in the same order as the input numbers.\"\"\"\n    squares = []\n    for number in nums:\n        squares.append(number ** 2)\n    return squares\n"
+  },
+  "review_notes": [
+    "Preserves exponentiation rather than replacing it with multiplication; integer, float and bool inputs admitted by isinstance retain native arithmetic behavior.",
+    "Large numeric values, floating overflow and oracle comparison behavior remain unexecuted.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/117",
+  "entry_point": "select_words",
+  "transformation": "Filter nonempty space-delimited words by their count of non-vowel characters.",
+  "implementations": {
+    "comprehension": "def _consonant_count(word: str) -> int:\n    \"\"\"Count characters outside the source task's fixed vowel alphabet.\"\"\"\n    return sum(character not in \"aeiouAEIOU\" for character in word)\n\n\ndef select_words(s, n):\n    \"\"\"Retain words with the requested count, preserving input order.\"\"\"\n    return [word for word in s.split(\" \") if word and _consonant_count(word) == n]\n",
+    "loop": "def _consonant_count(word: str) -> int:\n    \"\"\"Count characters outside the source task's fixed vowel alphabet.\"\"\"\n    return sum(character not in \"aeiouAEIOU\" for character in word)\n\n\ndef select_words(s, n):\n    \"\"\"Retain words with the requested count, preserving input order.\"\"\"\n    selected = []\n    for word in s.split(\" \"):\n        if word and _consonant_count(word) == n:\n            selected.append(word)\n    return selected\n"
+  },
+  "review_notes": [
+    "Literal-space splitting, omission of empty tokens, uppercase vowels and duplicates preserve the inspected behavior.",
+    "The auxiliary domain permits Unicode letters, but the inspected source counts any character outside aeiouAEIOU as a consonant; this fixed alphabet is retained.",
+    "The scalar count helper is outside the proposed final-filter scoring region; full oracle execution and human review remain pending."
+  ]
+}

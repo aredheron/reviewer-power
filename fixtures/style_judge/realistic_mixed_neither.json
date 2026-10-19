@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "status": "Agent-authored synthetic diagnostics with expected labels frozen before model judging; not human-adjudicated gold or a held-out qualification set.",
+  "method": "Static source review only; never execute these solutions during judging. Do not send case names, labels, target forms, or rationales to the judge. Use only each input with the standard numbered-input renderer.",
+  "cases": [
+    {
+      "case": "invoice_line_totals_by_order",
+      "input": {
+        "entry_point": "line_totals_by_order",
+        "transformation": "Return one sublist per order containing quantity times unit price for every line, preserving order and line order.",
+        "input_contract": "orders is a finite list of lists of (quantity, unit_price_cents) integer pairs. Quantities and prices are nonnegative; empty orders and empty input are allowed.",
+        "code": "def line_totals_by_order(\n    orders: list[list[tuple[int, int]]],\n) -> list[list[int]]:\n    \"\"\"Compute each order's line totals in cents.\"\"\"\n    totals = []\n    for order in orders:\n        totals.append([quantity * price for quantity, price in order])\n    return totals\n"
+      },
+      "proposed_label": "mixed",
+      "proposed_target_forms": [
+        "explicit_for",
+        "list_comprehension"
+      ],
+      "rationale": "The explicit for constructs the outer returned list with append, while the inner list comprehension computes and constructs each required sublist of line totals."
+    },
+    {
+      "case": "flatten_normalized_search_terms",
+      "input": {
+        "entry_point": "search_terms",
+        "transformation": "Return a flat list of lowercase whitespace-separated words from the input query lines, preserving their order.",
+        "input_contract": "lines is a finite list of strings. Empty strings and an empty list are allowed.",
+        "code": "def search_terms(lines: list[str]) -> list[str]:\n    \"\"\"Collect normalized words from multiple search-query lines.\"\"\"\n    terms = []\n    for line in lines:\n        terms.extend([word.lower() for word in line.split()])\n    return terms\n"
+      },
+      "proposed_label": "mixed",
+      "proposed_target_forms": [
+        "explicit_for",
+        "list_comprehension"
+      ],
+      "rationale": "The explicit for extends the returned list on each query line; the list comprehension substantively transforms the words supplied to each extension."
+    },
+    {
+      "case": "recipient_list_with_copy_alias",
+      "input": {
+        "entry_point": "recipient_addresses",
+        "transformation": "Normalize all primary addresses by trimming and lowercasing, then append normalized copied addresses not already present, preserving encounter order. Primary duplicates are retained.",
+        "input_contract": "primary and copied are finite lists of nonempty strings representing addresses. Normalization is only strip and lower; copied addresses may duplicate primary or earlier copied addresses.",
+        "code": "def recipient_addresses(\n    primary: list[str], copied: list[str]\n) -> list[str]:\n    \"\"\"Normalize recipients and add copied addresses once.\"\"\"\n    addresses = [address.strip().lower() for address in primary]\n    destination = addresses\n    for address in copied:\n        normalized = address.strip().lower()\n        if normalized not in destination:\n            destination.append(normalized)\n    return addresses\n"
+      },
+      "proposed_label": "mixed",
+      "proposed_target_forms": [
+        "list_comprehension",
+        "explicit_for"
+      ],
+      "rationale": "The initial list comprehension builds returned primary addresses. The explicit for appends additional output addresses through destination, an alias of that same list."
+    },
+    {
+      "case": "temperature_batches_with_visible_helper",
+      "input": {
+        "entry_point": "convert_batches",
+        "transformation": "Convert every Celsius temperature to Fahrenheit, returning one output sublist per input batch in the original order.",
+        "input_contract": "batches is a finite list of lists of finite floats representing Celsius temperatures. Empty batches and empty input are allowed.",
+        "code": "def _fahrenheit_batch(celsius: list[float]) -> list[float]:\n    \"\"\"Convert one batch while preserving its order.\"\"\"\n    converted = []\n    for temperature in celsius:\n        converted.append(temperature * 9.0 / 5.0 + 32.0)\n    return converted\n\n\ndef convert_batches(batches: list[list[float]]) -> list[list[float]]:\n    \"\"\"Convert all sensor batches to Fahrenheit.\"\"\"\n    return [_fahrenheit_batch(batch) for batch in batches]\n"
+      },
+      "proposed_label": "mixed",
+      "proposed_target_forms": [
+        "list_comprehension",
+        "explicit_for"
+      ],
+      "rationale": "The entry-point list comprehension builds the outer output; the visible helper's explicit for materially constructs every required converted sublist."
+    },
+    {
+      "case": "tag_normalization_with_optional_deduplication",
+      "input": {
+        "entry_point": "normalize_tags",
+        "transformation": "Trim and lowercase tags. If unique is true, retain only the first occurrence of each normalized tag; otherwise retain duplicates.",
+        "input_contract": "tags is a finite list of strings and unique is a bool. Both unique=True and unique=False are supported valid inputs, including empty tag lists.",
+        "code": "def normalize_tags(tags: list[str], unique: bool) -> list[str]:\n    \"\"\"Normalize tags, optionally keeping only their first occurrence.\"\"\"\n    if not unique:\n        return [tag.strip().lower() for tag in tags]\n\n    normalized = []\n    seen = set()\n    for tag in tags:\n        value = tag.strip().lower()\n        if value not in seen:\n            seen.add(value)\n            normalized.append(value)\n    return normalized\n"
+      },
+      "proposed_label": "mixed",
+      "proposed_target_forms": [
+        "list_comprehension",
+        "explicit_for"
+      ],
+      "rationale": "The nonunique contract-valid branch returns a list comprehension. The unique contract-valid branch builds the returned list with an explicit for; both branches count even though each call uses only one."
+    },
+    {
+      "case": "invoice_charges_and_credit_adjustments",
+      "input": {
+        "entry_point": "invoice_amounts",
+        "transformation": "Return quantity times unit price for standard invoice lines followed by negative absolute amounts for credit adjustments, in source order.",
+        "input_contract": "standard is a finite list of (quantity, price_cents) nonnegative integer pairs; credits is a finite list of integer amounts. Either collection may be empty.",
+        "code": "def invoice_amounts(\n    standard: list[tuple[int, int]], credits: list[int]\n) -> list[int]:\n    \"\"\"Combine regular charges and negative credit adjustments.\"\"\"\n    amounts = [quantity * price for quantity, price in standard]\n    amounts.extend(-abs(amount) for amount in credits)\n    return amounts\n"
+      },
+      "proposed_label": "mixed",
+      "proposed_target_forms": [
+        "list_comprehension",
+        "other"
+      ],
+      "rationale": "The list comprehension builds charge amounts. The generator expression computes additional credit output elements consumed by extend, so other also materially constructs the target list."
+    },
+    {
+      "case": "fixed_and_recurring_departure_schedule",
+      "input": {
+        "entry_point": "departure_minutes",
+        "transformation": "Return sorted departure times formed by adding opening to every fixed offset and by including recurring departures from recurring_start below closing in steps of interval. Retain duplicate times.",
+        "input_contract": "fixed_offsets is a finite list of nonnegative ints. opening, recurring_start and closing are ints with 0 <= opening <= recurring_start <= closing; interval is a positive int. Every opening + fixed offset is at most closing.",
+        "code": "def departure_minutes(\n    opening: int,\n    fixed_offsets: list[int],\n    recurring_start: int,\n    interval: int,\n    closing: int,\n) -> list[int]:\n    \"\"\"Combine fixed departures with an interval-based service.\"\"\"\n    departures = []\n    for offset in fixed_offsets:\n        departures.append(opening + offset)\n\n    minute = recurring_start\n    while minute < closing:\n        departures.append(minute)\n        minute += interval\n    departures.sort()\n    return departures\n"
+      },
+      "proposed_label": "mixed",
+      "proposed_target_forms": [
+        "explicit_for",
+        "other"
+      ],
+      "rationale": "The explicit for appends fixed departure times and the while loop appends recurring times to the returned list. While is other; the final sort is only an ordering wrapper."
+    },
+    {
+      "case": "combine_contacts_from_three_sources",
+      "input": {
+        "entry_point": "combine_contacts",
+        "transformation": "Return normalized email addresses from primary strings, then username/domain pairs, then legacy records' email fields. Trim and lowercase all components and preserve source order and duplicates.",
+        "input_contract": "primary is a finite list of email strings; accounts is a finite list of (username, domain) string pairs; legacy is a finite list of dicts containing a string email field. All strings are nonempty after stripping. Empty collections are allowed.",
+        "code": "def _legacy_address(record: dict[str, str]) -> str:\n    \"\"\"Read and normalize the email in a legacy contact record.\"\"\"\n    return record[\"email\"].strip().lower()\n\n\ndef combine_contacts(\n    primary: list[str],\n    accounts: list[tuple[str, str]],\n    legacy: list[dict[str, str]],\n) -> list[str]:\n    \"\"\"Combine contacts from three supported import formats.\"\"\"\n    addresses = [address.strip().lower() for address in primary]\n    for username, domain in accounts:\n        address = username.strip() + \"@\" + domain.strip()\n        addresses.append(address.lower())\n    addresses.extend(map(_legacy_address, legacy))\n    return addresses\n"
+      },
+      "proposed_label": "mixed",
+      "proposed_target_forms": [
+        "list_comprehension",
+        "explicit_for",
+        "other"
+      ],
+      "rationale": "The primary addresses are built by a list comprehension, account addresses by an explicit for, and transformed legacy addresses by map consumed by extend. All three mechanisms contribute actual output elements."
+    },
+    {
+      "case": "budget_shares_after_scalar_reduction",
+      "input": {
+        "entry_point": "budget_shares",
+        "transformation": "Return each nonnegative budget amount divided by the sum of all amounts, preserving input order.",
+        "input_contract": "amounts is a nonempty finite list of finite floats >= 0 with at least one positive value and a finite sum.",
+        "code": "def budget_shares(amounts: list[float]) -> list[float]:\n    \"\"\"Express each amount as a fraction of the total budget.\"\"\"\n    total = 0.0\n    for amount in amounts:\n        total += amount\n    return list(amount / total for amount in amounts)\n"
+      },
+      "proposed_label": "neither",
+      "proposed_target_forms": [
+        "other"
+      ],
+      "rationale": "The explicit for computes only a scalar total. The target list is built by materializing a generator expression with list, which is other rather than ListComp or an explicit for construction."
+    },
+    {
+      "case": "parse_integer_status_codes_with_map",
+      "input": {
+        "entry_point": "parse_status_codes",
+        "transformation": "Return integers parsed in base ten from the input status-code strings, preserving order.",
+        "input_contract": "tokens is a finite list of strings which, after stripping whitespace, contain valid base-ten integer literals accepted by int(text, 10). Empty input is allowed.",
+        "code": "def _parse_status_code(token: str) -> int:\n    \"\"\"Parse a single decimal status code.\"\"\"\n    return int(token.strip(), 10)\n\n\ndef parse_status_codes(tokens: list[str]) -> list[int]:\n    \"\"\"Convert imported decimal status-code strings to integers.\"\"\"\n    return list(map(_parse_status_code, tokens))\n"
+      },
+      "proposed_label": "neither",
+      "proposed_target_forms": [
+        "other"
+      ],
+      "rationale": "The visible helper returns a scalar integer. map performs the element transformation and list materializes its outputs; neither ListComp nor explicit for constructs the target list."
+    },
+    {
+      "case": "filter_valid_nonnegative_readings",
+      "input": {
+        "entry_point": "usable_readings",
+        "transformation": "Return all non-None, nonnegative numeric readings in their original order.",
+        "input_contract": "readings is a finite list of finite int or float values, or None. Empty lists, missing readings and negative readings are all allowed.",
+        "code": "def usable_readings(\n    readings: list[int | float | None],\n) -> list[int | float]:\n    \"\"\"Keep available, nonnegative sensor readings.\"\"\"\n    for reading in readings:\n        if reading is not None and not isinstance(reading, (int, float)):\n            raise TypeError(\"Readings must be numeric or missing\")\n    return list(filter(\n        lambda value: value is not None and value >= 0,\n        readings,\n    ))\n"
+      },
+      "proposed_label": "neither",
+      "proposed_target_forms": [
+        "other"
+      ],
+      "rationale": "The explicit for validates inputs without building output. filter selects the returned elements and list materializes them, so the target construction is other."
+    },
+    {
+      "case": "decode_run_length_encoded_flags",
+      "input": {
+        "entry_point": "decode_runs",
+        "transformation": "Expand every (value, count) run into count copies of its string value and concatenate runs in their input order.",
+        "input_contract": "runs is a finite list of (str, int) pairs, each with 0 <= count <= 100. At most 100 runs are supplied. Empty input and zero-length runs are valid.",
+        "code": "def decode_runs(runs: list[tuple[str, int]]) -> list[str]:\n    \"\"\"Expand run-length encoded status flags.\"\"\"\n    decoded = []\n    index = 0\n    while index < len(runs):\n        value, count = runs[index]\n        remaining = count\n        while remaining > 0:\n            decoded.append(value)\n            remaining -= 1\n        index += 1\n    return decoded\n"
+      },
+      "proposed_label": "neither",
+      "proposed_target_forms": [
+        "other"
+      ],
+      "rationale": "Nested while loops construct the returned list using append. Under the rubric, while is other; the presence of append does not make it an explicit for construction."
+    },
+    {
+      "case": "flatten_nested_menu_labels_recursively",
+      "input": {
+        "entry_point": "menu_labels",
+        "transformation": "Return a flat list of string leaves from a nested menu, in left-to-right depth-first order.",
+        "input_contract": "menu is a finite acyclic list whose elements are strings or recursively nested lists of the same kind, with at most 100 total nodes and nesting depth at most 10. Empty lists are allowed.",
+        "code": "type MenuNode = str | list[MenuNode]\n\n\ndef _flatten_menu(node: MenuNode) -> list[str]:\n    \"\"\"Collect the leaf labels of one menu node.\"\"\"\n    if isinstance(node, str):\n        return [node]\n    if not node:\n        return []\n    return _flatten_menu(node[0]) + _flatten_menu(node[1:])\n\n\ndef menu_labels(menu: list[MenuNode]) -> list[str]:\n    \"\"\"Return the menu's labels in display order.\"\"\"\n    return _flatten_menu(menu)\n"
+      },
+      "proposed_label": "neither",
+      "proposed_target_forms": [
+        "other"
+      ],
+      "rationale": "The visible recursive helper builds the output with singleton literals, recursive calls, slicing and list concatenation. These are all other, with no ListComp or explicit for."
+    },
+    {
+      "case": "rotate_dispatch_queue",
+      "input": {
+        "entry_point": "rotate_queue",
+        "transformation": "Return the dispatch queue rotated left by steps positions modulo its length; return an empty list for an empty queue.",
+        "input_contract": "items is a finite list of strings and steps is a nonnegative int. Empty queues are allowed and input items must not be mutated.",
+        "code": "def rotate_queue(items: list[str], steps: int) -> list[str]:\n    \"\"\"Move the next dispatch position to the start of a new queue.\"\"\"\n    if not items:\n        return []\n    shift = steps % len(items)\n    return items[shift:] + items[:shift]\n"
+      },
+      "proposed_label": "neither",
+      "proposed_target_forms": [
+        "other"
+      ],
+      "rationale": "Slicing and list concatenation directly construct the rotated output. There is no preceding loop or ListComp whose construction style could be preserved by an ordering wrapper."
+    },
+    {
+      "case": "unique_normalized_email_domains",
+      "input": {
+        "entry_point": "email_domains",
+        "transformation": "Return a sorted list of unique trimmed, lowercase domain parts from the email addresses.",
+        "input_contract": "addresses is a finite list of strings, each containing exactly one @ and nonempty local and domain parts after trimming. Empty input is allowed.",
+        "code": "def email_domains(addresses: list[str]) -> list[str]:\n    \"\"\"List distinct normalized domains for a mailing-list report.\"\"\"\n    return sorted({\n        address.rsplit(\"@\", 1)[1].strip().lower()\n        for address in addresses\n    })\n"
+      },
+      "proposed_label": "neither",
+      "proposed_target_forms": [
+        "other"
+      ],
+      "rationale": "The comprehension is a set comprehension, not a ListComp. sorted materializes its unique domain values into the output list; both belong to other."
+    },
+    {
+      "case": "latest_sensor_reading_per_key",
+      "input": {
+        "entry_point": "latest_readings",
+        "transformation": "Return one (sensor, value) pair per sensor, keeping the last supplied value for each sensor and ordering sensors by their first appearance.",
+        "input_contract": "records is a finite list of (sensor_name, reading) pairs where sensor_name is a string and reading is a finite float. Sensor names may repeat; empty input is allowed.",
+        "code": "def latest_readings(\n    records: list[tuple[str, float]],\n) -> list[tuple[str, float]]:\n    \"\"\"Keep the latest reading for each sensor in first-seen order.\"\"\"\n    latest = {sensor: value for sensor, value in records}\n    return list(latest.items())\n"
+      },
+      "proposed_label": "neither",
+      "proposed_target_forms": [
+        "other"
+      ],
+      "rationale": "A dict comprehension selects the final value for each sensor; list materializes the dictionary items. No list comprehension or explicit for builds the target output."
+    }
+  ]
+}

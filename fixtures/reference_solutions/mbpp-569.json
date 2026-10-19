@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/569",
+  "entry_point": "sort_sublists",
+  "transformation": "Map each input row to a newly sorted list, retaining outer row order.",
+  "implementations": {
+    "comprehension": "def sort_sublists(list1):\n    \"\"\"Sort the contents of each row into a new list.\"\"\"\n    return [sorted(row) for row in list1]\n",
+    "loop": "def sort_sublists(list1):\n    \"\"\"Sort the contents of each row into a new list.\"\"\"\n    result = []\n    for row in list1:\n        result.append(sorted(row))\n    return result\n"
+  },
+  "review_notes": [
+    "Preserve Python string ordering, duplicates, empty rows and outer order.",
+    "Each output row must be a fresh list and the source rows must remain unchanged; target scoring covers outer row mapping."
+  ]
+}

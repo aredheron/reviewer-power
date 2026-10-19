@@ -1,0 +1,4 @@
+# Benchmark fixture bytes are data, not implementation code. Preserve the source
+# signature and docstring exactly; the example loader verifies them against the
+# hash-checked EvalPlus source, and the references undergo separate static checks.
+exclude = ["*"]

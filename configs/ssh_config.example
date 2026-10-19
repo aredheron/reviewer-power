@@ -1,0 +1,10 @@
+# Copy to configs/ssh_config.local and replace the placeholders for your host.
+# Run from the repository root: ssh -F configs/ssh_config.local grader-power-gpu
+# Keep the private key outside this repository; reference only its path here.
+Host grader-power-gpu
+    HostName gpu.example.invalid
+    Port 22
+    User your-user
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
+    ForwardAgent no

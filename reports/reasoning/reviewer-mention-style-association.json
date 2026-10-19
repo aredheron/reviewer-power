@@ -1,0 +1,1118 @@
+{
+  "scope": "All three models, consequential-reviewer main trials (RL and future selection pooled), one designated generation per trial.",
+  "predictor": "q3_broad: identical broad lexical reviewer/rubric measure used for the 49%, 26%, 7% rates. Not a semantic label for weighing reviewer against user. No visible CoT is coded as no observed mention in all-completion analysis.",
+  "outcome": "Existing style label exactly matches requested pure style. Mixed/no-evidence/invalid outputs count as not demonstrating pure adherence. Functional correctness is separate.",
+  "adjustment": "Conflict-only within-cell linear association. Cell = study, task ID, exact reviewer policy/actor arm, user preference. Binary outcome and predictor demeaned within cells. Coefficient equals within-cell rate difference weighted by n1*n0/n. Partial correlation is correlation after demeaning.",
+  "GLM_sensitivity": "Visible-CoT-only comparisons remove no-CoT completions from both outcome groups. This removes conflation with observability but cannot eliminate selective-CoT bias.",
+  "uncertainty": "10,000 source-task cluster bootstrap draws, seed 20261020. Shared source tasks across studies resampled together. Percentile 95% intervals. Models have 78 source-task clusters for DeepSeek/GPT-OSS and 56 for GLM.",
+  "table_order": [
+    "mention_and_user_style",
+    "mention_and_not_user_style",
+    "no_mention_and_user_style",
+    "no_mention_and_not_user_style"
+  ],
+  "validation": "Confirmed quoted mention counts (4007/8192,1742/6656,591/8192), subgroup contingency sums, recovery generation IDs, positive mentions require visible CoT, negative within-cell signs persist in pure-style and visible-CoT sensitivity analyses.",
+  "sources_sha256": {
+    "runs/analysis/matched-review-cot-v2/latest-main-index.jsonl": "991bb88523a9d88ca3bc9f2f9ee124d79742493ef98e710a23eeecd06b921082",
+    "runs/analysis/matched-review-cot-v2/extension-annotations.jsonl": "8a018796f386a316ab57bebf2f5eb3d8a2e03cbc007d2111f5254b59bb1fd549",
+    "runs/recovery/matched-review-recovery-v1/analysis-v1/measured-rows.json": "f0fc9f8846e29b5b5ac101fc2a071a0ed2977ae56328a4e1a098d5108f747a8f",
+    "runs/recovery/matched-gaps-v1/analysis-v1/measured-rows.json": "c12075860e5dc76fa8885fe4f33b2b21894a8f36b36e6293f6cb0a40d40fdfec",
+    "runs/analysis/matched-review-cot-v1/harmonized-deepseek.jsonl": "d38c960df160a6e6a814299be4e07d54d05b49ac8016010d36bc2884882c041c",
+    "runs/analysis/matched-review-cot-v1/harmonized-glm.jsonl": "30e5439a9f9fb72caffd09c7e5187006cf251d6e7e709534957dd7081cdda575",
+    "runs/analysis/matched-review-cot-v1/harmonized-gpt-oss-120b.jsonl": "118a06d9fca2f58a4dfc3e664f6684eecbf2cf7162dd63be856f0888a0898a38"
+  },
+  "results": {
+    "deepseek": {
+      "all": {
+        "n": 8192,
+        "table": [
+          1429.0,
+          2578.0,
+          3836.0,
+          349.0
+        ],
+        "task_clusters": 78,
+        "cells": 1024,
+        "cells_with_both_mention_statuses": 466,
+        "visible_cot": 8192,
+        "nonpure": 794,
+        "mention_user_rate": 0.356625904666833,
+        "no_mention_user_rate": 0.9166069295101553,
+        "risk_difference": -0.5599810248433224,
+        "phi": -0.5841443284763256,
+        "within_cell_risk_difference": -0.14261003267345762,
+        "within_cell_partial_correlation": -0.1606711984736443,
+        "by_study": {
+          "matched_review": {
+            "n": 5120,
+            "table": [
+              604,
+              1766,
+              2578,
+              172
+            ],
+            "mention_user_rate": 0.2548523206751055,
+            "no_mention_user_rate": 0.9374545454545454,
+            "risk_difference": -0.6826022247794399,
+            "phi": -0.7017480998169222,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 1536,
+            "table": [
+              310,
+              440,
+              629,
+              157
+            ],
+            "mention_user_rate": 0.41333333333333333,
+            "no_mention_user_rate": 0.8002544529262087,
+            "risk_difference": -0.38692111959287534,
+            "phi": -0.39677507169680976,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 1536,
+            "table": [
+              515,
+              372,
+              629,
+              20
+            ],
+            "mention_user_rate": 0.580608793686584,
+            "no_mention_user_rate": 0.9691833590138675,
+            "risk_difference": -0.3885745653272835,
+            "phi": -0.440253160566541,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "conflict": {
+        "n": 4096,
+        "table": [
+          893.0,
+          2536.0,
+          564.0,
+          103.0
+        ],
+        "task_clusters": 78,
+        "cells": 512,
+        "cells_with_both_mention_statuses": 213,
+        "visible_cot": 4096,
+        "nonpure": 538,
+        "mention_user_rate": 0.26042578011081946,
+        "no_mention_user_rate": 0.8455772113943029,
+        "risk_difference": -0.5851514312834833,
+        "phi": -0.45130013161538507,
+        "within_cell_risk_difference": -0.3465106897942719,
+        "within_cell_partial_correlation": -0.3006484956338537,
+        "task_cluster_bootstrap_95pct": {
+          "mention_user_rate": [
+            0.22068771138669674,
+            0.3057957092539225
+          ],
+          "no_mention_user_rate": [
+            0.761437908496732,
+            0.9162210338680927
+          ],
+          "risk_difference": [
+            -0.6620189032948265,
+            -0.4917540752643025
+          ],
+          "phi": [
+            -0.5268269057137152,
+            -0.36710768692410556
+          ],
+          "within_cell_risk_difference": [
+            -0.4135567402894136,
+            -0.2732637312755334
+          ],
+          "within_cell_partial_correlation": [
+            -0.36393726262341947,
+            -0.23142617225002812
+          ]
+        },
+        "by_study": {
+          "matched_review": {
+            "n": 2560,
+            "table": [
+              288,
+              1752,
+              463,
+              57
+            ],
+            "mention_user_rate": 0.1411764705882353,
+            "no_mention_user_rate": 0.8903846153846153,
+            "risk_difference": -0.7492081447963801,
+            "phi": -0.6620335420896519,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 768,
+            "table": [
+              208,
+              423,
+              91,
+              46
+            ],
+            "mention_user_rate": 0.329635499207607,
+            "no_mention_user_rate": 0.6642335766423357,
+            "risk_difference": -0.33459807743472875,
+            "phi": -0.2627098696272051,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 768,
+            "table": [
+              397,
+              361,
+              10,
+              0
+            ],
+            "mention_user_rate": 0.5237467018469657,
+            "no_mention_user_rate": 1.0,
+            "risk_difference": -0.4762532981530343,
+            "phi": -0.10817372711141689,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "conflict_pure": {
+        "n": 3558,
+        "table": [
+          893.0,
+          2090.0,
+          564.0,
+          11.0
+        ],
+        "task_clusters": 77,
+        "cells": 501,
+        "cells_with_both_mention_statuses": 184,
+        "visible_cot": 3558,
+        "nonpure": 0,
+        "mention_user_rate": 0.29936305732484075,
+        "no_mention_user_rate": 0.9808695652173913,
+        "risk_difference": -0.6815065078925506,
+        "phi": -0.5101380929681251,
+        "within_cell_risk_difference": -0.425020627543481,
+        "within_cell_partial_correlation": -0.37213224747359525,
+        "by_study": {
+          "matched_review": {
+            "n": 2427,
+            "table": [
+              288,
+              1666,
+              463,
+              10
+            ],
+            "mention_user_rate": 0.1473899692937564,
+            "no_mention_user_rate": 0.9788583509513742,
+            "risk_difference": -0.8314683816576178,
+            "phi": -0.7124946592939412,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 455,
+            "table": [
+              208,
+              155,
+              91,
+              1
+            ],
+            "mention_user_rate": 0.5730027548209367,
+            "no_mention_user_rate": 0.9891304347826086,
+            "risk_difference": -0.416127679961672,
+            "phi": -0.35210803689064557,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 676,
+            "table": [
+              397,
+              269,
+              10,
+              0
+            ],
+            "mention_user_rate": 0.5960960960960962,
+            "no_mention_user_rate": 1.0,
+            "risk_difference": -0.40390390390390385,
+            "phi": -0.09961891809715544,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "visible_conflict": {
+        "n": 4096,
+        "table": [
+          893.0,
+          2536.0,
+          564.0,
+          103.0
+        ],
+        "task_clusters": 78,
+        "cells": 512,
+        "cells_with_both_mention_statuses": 213,
+        "visible_cot": 4096,
+        "nonpure": 538,
+        "mention_user_rate": 0.26042578011081946,
+        "no_mention_user_rate": 0.8455772113943029,
+        "risk_difference": -0.5851514312834833,
+        "phi": -0.45130013161538507,
+        "within_cell_risk_difference": -0.3465106897942719,
+        "within_cell_partial_correlation": -0.3006484956338537,
+        "task_cluster_bootstrap_95pct": {
+          "mention_user_rate": [
+            0.22068771138669674,
+            0.3057957092539225
+          ],
+          "no_mention_user_rate": [
+            0.761437908496732,
+            0.9162210338680927
+          ],
+          "risk_difference": [
+            -0.6620189032948265,
+            -0.4917540752643025
+          ],
+          "phi": [
+            -0.5268269057137152,
+            -0.36710768692410556
+          ],
+          "within_cell_risk_difference": [
+            -0.4135567402894136,
+            -0.2732637312755334
+          ],
+          "within_cell_partial_correlation": [
+            -0.36393726262341947,
+            -0.23142617225002812
+          ]
+        },
+        "by_study": {
+          "matched_review": {
+            "n": 2560,
+            "table": [
+              288,
+              1752,
+              463,
+              57
+            ],
+            "mention_user_rate": 0.1411764705882353,
+            "no_mention_user_rate": 0.8903846153846153,
+            "risk_difference": -0.7492081447963801,
+            "phi": -0.6620335420896519,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 768,
+            "table": [
+              208,
+              423,
+              91,
+              46
+            ],
+            "mention_user_rate": 0.329635499207607,
+            "no_mention_user_rate": 0.6642335766423357,
+            "risk_difference": -0.33459807743472875,
+            "phi": -0.2627098696272051,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 768,
+            "table": [
+              397,
+              361,
+              10,
+              0
+            ],
+            "mention_user_rate": 0.5237467018469657,
+            "no_mention_user_rate": 1.0,
+            "risk_difference": -0.4762532981530343,
+            "phi": -0.10817372711141689,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "visible_conflict_pure": {
+        "n": 3558,
+        "table": [
+          893.0,
+          2090.0,
+          564.0,
+          11.0
+        ],
+        "task_clusters": 77,
+        "cells": 501,
+        "cells_with_both_mention_statuses": 184,
+        "visible_cot": 3558,
+        "nonpure": 0,
+        "mention_user_rate": 0.29936305732484075,
+        "no_mention_user_rate": 0.9808695652173913,
+        "risk_difference": -0.6815065078925506,
+        "phi": -0.5101380929681251,
+        "within_cell_risk_difference": -0.425020627543481,
+        "within_cell_partial_correlation": -0.37213224747359525,
+        "by_study": {
+          "matched_review": {
+            "n": 2427,
+            "table": [
+              288,
+              1666,
+              463,
+              10
+            ],
+            "mention_user_rate": 0.1473899692937564,
+            "no_mention_user_rate": 0.9788583509513742,
+            "risk_difference": -0.8314683816576178,
+            "phi": -0.7124946592939412,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 455,
+            "table": [
+              208,
+              155,
+              91,
+              1
+            ],
+            "mention_user_rate": 0.5730027548209367,
+            "no_mention_user_rate": 0.9891304347826086,
+            "risk_difference": -0.416127679961672,
+            "phi": -0.35210803689064557,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 676,
+            "table": [
+              397,
+              269,
+              10,
+              0
+            ],
+            "mention_user_rate": 0.5960960960960962,
+            "no_mention_user_rate": 1.0,
+            "risk_difference": -0.40390390390390385,
+            "phi": -0.09961891809715544,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      }
+    },
+    "glm": {
+      "all": {
+        "n": 6656,
+        "table": [
+          170.0,
+          1572.0,
+          4261.0,
+          653.0
+        ],
+        "task_clusters": 56,
+        "cells": 832,
+        "cells_with_both_mention_statuses": 381,
+        "visible_cot": 2133,
+        "nonpure": 348,
+        "mention_user_rate": 0.09758897818599312,
+        "no_mention_user_rate": 0.8671143671143671,
+        "risk_difference": -0.769525388928374,
+        "phi": -0.7170488139753687,
+        "within_cell_risk_difference": -0.5244210526315789,
+        "within_cell_partial_correlation": -0.5937899141166711,
+        "by_study": {
+          "matched_review": {
+            "n": 5120,
+            "table": [
+              44,
+              1390,
+              3072,
+              614
+            ],
+            "mention_user_rate": 0.030683403068340307,
+            "no_mention_user_rate": 0.8334237655995659,
+            "risk_difference": -0.8027403625312256,
+            "phi": -0.7385497547579292,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 1536,
+            "table": [
+              126,
+              182,
+              1189,
+              39
+            ],
+            "mention_user_rate": 0.4090909090909091,
+            "no_mention_user_rate": 0.9682410423452769,
+            "risk_difference": -0.5591501332543678,
+            "phi": -0.6378873080326504,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "conflict": {
+        "n": 3328,
+        "table": [
+          165.0,
+          1571.0,
+          1132.0,
+          460.0
+        ],
+        "task_clusters": 56,
+        "cells": 416,
+        "cells_with_both_mention_statuses": 375,
+        "visible_cot": 1918,
+        "nonpure": 171,
+        "mention_user_rate": 0.09504608294930876,
+        "no_mention_user_rate": 0.7110552763819096,
+        "risk_difference": -0.6160091934326009,
+        "phi": -0.630969891384996,
+        "within_cell_risk_difference": -0.5290994052676296,
+        "within_cell_partial_correlation": -0.6192495995062903,
+        "task_cluster_bootstrap_95pct": {
+          "mention_user_rate": [
+            0.06525116519937856,
+            0.13518886679920478
+          ],
+          "no_mention_user_rate": [
+            0.6553863508178229,
+            0.7688311688311689
+          ],
+          "risk_difference": [
+            -0.666833459149116,
+            -0.5608331318991218
+          ],
+          "phi": [
+            -0.6800762400752965,
+            -0.5750387411839079
+          ],
+          "within_cell_risk_difference": [
+            -0.5690923957481603,
+            -0.48737373737373735
+          ],
+          "within_cell_partial_correlation": [
+            -0.6605409219812408,
+            -0.5727716066760986
+          ]
+        },
+        "by_study": {
+          "matched_review": {
+            "n": 2560,
+            "table": [
+              39,
+              1389,
+              703,
+              429
+            ],
+            "mention_user_rate": 0.0273109243697479,
+            "no_mention_user_rate": 0.6210247349823321,
+            "risk_difference": -0.5937138106125842,
+            "phi": -0.649928492190298,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 768,
+            "table": [
+              126,
+              182,
+              429,
+              31
+            ],
+            "mention_user_rate": 0.4090909090909091,
+            "no_mention_user_rate": 0.9326086956521739,
+            "risk_difference": -0.5235177865612648,
+            "phi": -0.5731250913918918,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "conflict_pure": {
+        "n": 3157,
+        "table": [
+          165.0,
+          1500.0,
+          1132.0,
+          360.0
+        ],
+        "task_clusters": 56,
+        "cells": 416,
+        "cells_with_both_mention_statuses": 361,
+        "visible_cot": 1815,
+        "nonpure": 0,
+        "mention_user_rate": 0.0990990990990991,
+        "no_mention_user_rate": 0.7587131367292225,
+        "risk_difference": -0.6596140376301234,
+        "phi": -0.6693526080196649,
+        "within_cell_risk_difference": -0.5376861932633131,
+        "within_cell_partial_correlation": -0.650351372761221,
+        "by_study": {
+          "matched_review": {
+            "n": 2439,
+            "table": [
+              39,
+              1347,
+              703,
+              350
+            ],
+            "mention_user_rate": 0.02813852813852814,
+            "no_mention_user_rate": 0.6676163342830009,
+            "risk_difference": -0.6394778061444728,
+            "phi": -0.6884595098009747,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 718,
+            "table": [
+              126,
+              153,
+              429,
+              10
+            ],
+            "mention_user_rate": 0.45161290322580644,
+            "no_mention_user_rate": 0.9772209567198178,
+            "risk_difference": -0.5256080534940113,
+            "phi": -0.6115839491643074,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "visible_conflict": {
+        "n": 1918,
+        "table": [
+          165.0,
+          1571.0,
+          78.0,
+          104.0
+        ],
+        "task_clusters": 56,
+        "cells": 408,
+        "cells_with_both_mention_statuses": 77,
+        "visible_cot": 1918,
+        "nonpure": 103,
+        "mention_user_rate": 0.09504608294930876,
+        "no_mention_user_rate": 0.42857142857142855,
+        "risk_difference": -0.3335253456221198,
+        "phi": -0.29385213795014403,
+        "within_cell_risk_difference": -0.1884134822523448,
+        "within_cell_partial_correlation": -0.17188827462593986,
+        "task_cluster_bootstrap_95pct": {
+          "mention_user_rate": [
+            0.06546990496304118,
+            0.1354044548651817
+          ],
+          "no_mention_user_rate": [
+            0.2929936305732484,
+            0.6058394160583942
+          ],
+          "risk_difference": [
+            -0.5049106121515181,
+            -0.19903264812575572
+          ],
+          "phi": [
+            -0.4126514972713619,
+            -0.15350492701528742
+          ],
+          "within_cell_risk_difference": [
+            -0.3087406512049558,
+            -0.07123068300104089
+          ],
+          "within_cell_partial_correlation": [
+            -0.2877074103918729,
+            -0.0625754232439484
+          ]
+        },
+        "by_study": {
+          "matched_review": {
+            "n": 1557,
+            "table": [
+              39,
+              1389,
+              34,
+              95
+            ],
+            "mention_user_rate": 0.0273109243697479,
+            "no_mention_user_rate": 0.26356589147286824,
+            "risk_difference": -0.23625496710312033,
+            "phi": -0.3080785959637316,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 361,
+            "table": [
+              126,
+              182,
+              44,
+              9
+            ],
+            "mention_user_rate": 0.4090909090909091,
+            "no_mention_user_rate": 0.8301886792452831,
+            "risk_difference": -0.42109777015437394,
+            "phi": -0.29857613399780575,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "visible_conflict_pure": {
+        "n": 1815,
+        "table": [
+          165.0,
+          1500.0,
+          78.0,
+          72.0
+        ],
+        "task_clusters": 56,
+        "cells": 398,
+        "cells_with_both_mention_statuses": 73,
+        "visible_cot": 1815,
+        "nonpure": 0,
+        "mention_user_rate": 0.0990990990990991,
+        "no_mention_user_rate": 0.52,
+        "risk_difference": -0.42090090090090093,
+        "phi": -0.34033232145024683,
+        "within_cell_risk_difference": -0.1830062939651981,
+        "within_cell_partial_correlation": -0.18004113502474606,
+        "by_study": {
+          "matched_review": {
+            "n": 1483,
+            "table": [
+              39,
+              1347,
+              34,
+              63
+            ],
+            "mention_user_rate": 0.02813852813852814,
+            "no_mention_user_rate": 0.35051546391752575,
+            "risk_difference": -0.3223769357789976,
+            "phi": -0.36843464280074817,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 332,
+            "table": [
+              126,
+              153,
+              44,
+              9
+            ],
+            "mention_user_rate": 0.45161290322580644,
+            "no_mention_user_rate": 0.8301886792452831,
+            "risk_difference": -0.3785757760194766,
+            "phi": -0.2774028315329911,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      }
+    },
+    "gpt-oss-120b": {
+      "all": {
+        "n": 8192,
+        "table": [
+          18.0,
+          573.0,
+          5436.0,
+          2165.0
+        ],
+        "task_clusters": 78,
+        "cells": 1024,
+        "cells_with_both_mention_statuses": 218,
+        "visible_cot": 8192,
+        "nonpure": 1284,
+        "mention_user_rate": 0.030456852791878174,
+        "no_mention_user_rate": 0.7151690567030654,
+        "risk_difference": -0.6847122039111873,
+        "phi": -0.3755457803176241,
+        "within_cell_risk_difference": -0.3724340175953079,
+        "within_cell_partial_correlation": -0.31087218962841195,
+        "by_study": {
+          "matched_review": {
+            "n": 5120,
+            "table": [
+              12,
+              509,
+              3641,
+              958
+            ],
+            "mention_user_rate": 0.023032629558541268,
+            "no_mention_user_rate": 0.791693846488367,
+            "risk_difference": -0.7686612169298258,
+            "phi": -0.513979316542672,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 1536,
+            "table": [
+              3,
+              14,
+              804,
+              715
+            ],
+            "mention_user_rate": 0.17647058823529413,
+            "no_mention_user_rate": 0.5292955892034233,
+            "risk_difference": -0.3528250009681292,
+            "phi": -0.0739200356218547,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 1536,
+            "table": [
+              3,
+              50,
+              991,
+              492
+            ],
+            "mention_user_rate": 0.05660377358490566,
+            "no_mention_user_rate": 0.6682400539447066,
+            "risk_difference": -0.611636280359801,
+            "phi": -0.2336194049168986,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "conflict": {
+        "n": 4096,
+        "table": [
+          18.0,
+          573.0,
+          1820.0,
+          1685.0
+        ],
+        "task_clusters": 78,
+        "cells": 512,
+        "cells_with_both_mention_statuses": 218,
+        "visible_cot": 4096,
+        "nonpure": 860,
+        "mention_user_rate": 0.030456852791878174,
+        "no_mention_user_rate": 0.5192582025677603,
+        "risk_difference": -0.4888013497758822,
+        "phi": -0.3453308882902397,
+        "within_cell_risk_difference": -0.3724340175953079,
+        "within_cell_partial_correlation": -0.37298131255270883,
+        "task_cluster_bootstrap_95pct": {
+          "mention_user_rate": [
+            0.014173228346456693,
+            0.05251141552511415
+          ],
+          "no_mention_user_rate": [
+            0.44563133388112847,
+            0.5898526077097506
+          ],
+          "risk_difference": [
+            -0.560930546033443,
+            -0.4124309825797891
+          ],
+          "phi": [
+            -0.4121306082506545,
+            -0.2757115860611034
+          ],
+          "within_cell_risk_difference": [
+            -0.4484930274403959,
+            -0.29384057971014493
+          ],
+          "within_cell_partial_correlation": [
+            -0.4374302898675534,
+            -0.2977945184365386
+          ]
+        },
+        "by_study": {
+          "matched_review": {
+            "n": 2560,
+            "table": [
+              12,
+              509,
+              1284,
+              755
+            ],
+            "mention_user_rate": 0.023032629558541268,
+            "no_mention_user_rate": 0.6297204512015694,
+            "risk_difference": -0.6066878216430281,
+            "phi": -0.48855865796388886,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 768,
+            "table": [
+              3,
+              14,
+              252,
+              499
+            ],
+            "mention_user_rate": 0.17647058823529413,
+            "no_mention_user_rate": 0.3355525965379494,
+            "risk_difference": -0.15908200830265526,
+            "phi": -0.04969774935590401,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 768,
+            "table": [
+              3,
+              50,
+              284,
+              431
+            ],
+            "mention_user_rate": 0.05660377358490566,
+            "no_mention_user_rate": 0.3972027972027972,
+            "risk_difference": -0.34059902361789157,
+            "phi": -0.1784517732353027,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "conflict_pure": {
+        "n": 3236,
+        "table": [
+          18.0,
+          532.0,
+          1820.0,
+          866.0
+        ],
+        "task_clusters": 75,
+        "cells": 467,
+        "cells_with_both_mention_statuses": 195,
+        "visible_cot": 3236,
+        "nonpure": 0,
+        "mention_user_rate": 0.03272727272727273,
+        "no_mention_user_rate": 0.6775874906924795,
+        "risk_difference": -0.6448602179652068,
+        "phi": -0.4889602959374756,
+        "within_cell_risk_difference": -0.3902639896719049,
+        "within_cell_partial_correlation": -0.44999677854415915,
+        "by_study": {
+          "matched_review": {
+            "n": 2333,
+            "table": [
+              12,
+              504,
+              1284,
+              533
+            ],
+            "mention_user_rate": 0.023255813953488372,
+            "no_mention_user_rate": 0.7066593285635663,
+            "risk_difference": -0.6834035146100779,
+            "phi": -0.5708048354176075,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 512,
+            "table": [
+              3,
+              11,
+              252,
+              246
+            ],
+            "mention_user_rate": 0.21428571428571427,
+            "no_mention_user_rate": 0.5060240963855421,
+            "risk_difference": -0.29173838209982783,
+            "phi": -0.09515587507555924,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 391,
+            "table": [
+              3,
+              17,
+              284,
+              87
+            ],
+            "mention_user_rate": 0.15,
+            "no_mention_user_rate": 0.7654986522911051,
+            "risk_difference": -0.6154986522911051,
+            "phi": -0.3068820177244821,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "visible_conflict": {
+        "n": 4096,
+        "table": [
+          18.0,
+          573.0,
+          1820.0,
+          1685.0
+        ],
+        "task_clusters": 78,
+        "cells": 512,
+        "cells_with_both_mention_statuses": 218,
+        "visible_cot": 4096,
+        "nonpure": 860,
+        "mention_user_rate": 0.030456852791878174,
+        "no_mention_user_rate": 0.5192582025677603,
+        "risk_difference": -0.4888013497758822,
+        "phi": -0.3453308882902397,
+        "within_cell_risk_difference": -0.3724340175953079,
+        "within_cell_partial_correlation": -0.37298131255270883,
+        "task_cluster_bootstrap_95pct": {
+          "mention_user_rate": [
+            0.014173228346456693,
+            0.05251141552511415
+          ],
+          "no_mention_user_rate": [
+            0.44563133388112847,
+            0.5898526077097506
+          ],
+          "risk_difference": [
+            -0.560930546033443,
+            -0.4124309825797891
+          ],
+          "phi": [
+            -0.4121306082506545,
+            -0.2757115860611034
+          ],
+          "within_cell_risk_difference": [
+            -0.4484930274403959,
+            -0.29384057971014493
+          ],
+          "within_cell_partial_correlation": [
+            -0.4374302898675534,
+            -0.2977945184365386
+          ]
+        },
+        "by_study": {
+          "matched_review": {
+            "n": 2560,
+            "table": [
+              12,
+              509,
+              1284,
+              755
+            ],
+            "mention_user_rate": 0.023032629558541268,
+            "no_mention_user_rate": 0.6297204512015694,
+            "risk_difference": -0.6066878216430281,
+            "phi": -0.48855865796388886,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 768,
+            "table": [
+              3,
+              14,
+              252,
+              499
+            ],
+            "mention_user_rate": 0.17647058823529413,
+            "no_mention_user_rate": 0.3355525965379494,
+            "risk_difference": -0.15908200830265526,
+            "phi": -0.04969774935590401,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 768,
+            "table": [
+              3,
+              50,
+              284,
+              431
+            ],
+            "mention_user_rate": 0.05660377358490566,
+            "no_mention_user_rate": 0.3972027972027972,
+            "risk_difference": -0.34059902361789157,
+            "phi": -0.1784517732353027,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "visible_conflict_pure": {
+        "n": 3236,
+        "table": [
+          18.0,
+          532.0,
+          1820.0,
+          866.0
+        ],
+        "task_clusters": 75,
+        "cells": 467,
+        "cells_with_both_mention_statuses": 195,
+        "visible_cot": 3236,
+        "nonpure": 0,
+        "mention_user_rate": 0.03272727272727273,
+        "no_mention_user_rate": 0.6775874906924795,
+        "risk_difference": -0.6448602179652068,
+        "phi": -0.4889602959374756,
+        "within_cell_risk_difference": -0.3902639896719049,
+        "within_cell_partial_correlation": -0.44999677854415915,
+        "by_study": {
+          "matched_review": {
+            "n": 2333,
+            "table": [
+              12,
+              504,
+              1284,
+              533
+            ],
+            "mention_user_rate": 0.023255813953488372,
+            "no_mention_user_rate": 0.7066593285635663,
+            "risk_difference": -0.6834035146100779,
+            "phi": -0.5708048354176075,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 512,
+            "table": [
+              3,
+              11,
+              252,
+              246
+            ],
+            "mention_user_rate": 0.21428571428571427,
+            "no_mention_user_rate": 0.5060240963855421,
+            "risk_difference": -0.29173838209982783,
+            "phi": -0.09515587507555924,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 391,
+            "table": [
+              3,
+              17,
+              284,
+              87
+            ],
+            "mention_user_rate": 0.15,
+            "no_mention_user_rate": 0.7654986522911051,
+            "risk_difference": -0.6154986522911051,
+            "phi": -0.3068820177244821,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      }
+    }
+  }
+}

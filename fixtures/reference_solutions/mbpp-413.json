@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/413",
+  "entry_point": "extract_nth_element",
+  "transformation": "Map each tuple to its element at the original index n.",
+  "implementations": {
+    "comprehension": "def extract_nth_element(list1, n):\n    \"\"\"Extract the same native Python index from each tuple.\"\"\"\n    return [record[n] for record in list1]\n",
+    "loop": "def extract_nth_element(list1, n):\n    \"\"\"Extract the same native Python index from each tuple.\"\"\"\n    elements = []\n    for record in list1:\n        elements.append(record[n])\n    return elements\n"
+  },
+  "review_notes": [
+    "Uses native tuple indexing, including valid negative indices and IndexError for indices below the negative bound.",
+    "The auxiliary contract checks only n less than each tuple length; source-oracle readiness must resolve admitted excessively negative indices without silently skipping or repairing them.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

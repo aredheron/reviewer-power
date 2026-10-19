@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/447",
+  "entry_point": "cube_nums",
+  "transformation": "Map each numeric element to its cube using exponentiation.",
+  "implementations": {
+    "comprehension": "def cube_nums(nums):\n    \"\"\"Return cubed values in the same order as the input numbers.\"\"\"\n    return [number ** 3 for number in nums]\n",
+    "loop": "def cube_nums(nums):\n    \"\"\"Return cubed values in the same order as the input numbers.\"\"\"\n    cubes = []\n    for number in nums:\n        cubes.append(number ** 3)\n    return cubes\n"
+  },
+  "review_notes": [
+    "Preserves native exponentiation, numeric types, signed values, order and duplicates; does not replace powers with repeated multiplication.",
+    "Large numeric values, floating overflow and oracle comparison behavior remain unexecuted.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

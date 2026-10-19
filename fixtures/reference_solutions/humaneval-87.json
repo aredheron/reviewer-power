@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/87",
+  "entry_point": "get_row",
+  "transformation": "Construct matching grid coordinates with ascending row and descending column order.",
+  "implementations": {
+    "comprehension": "def get_row(lst, x):\n    \"\"\"Find matching coordinates in row order and reverse column order.\"\"\"\n    return [\n        (row_index, column_index)\n        for row_index, row in enumerate(lst)\n        for column_index in range(len(row) - 1, -1, -1)\n        if row[column_index] == x\n    ]\n",
+    "loop": "def get_row(lst, x):\n    \"\"\"Find matching coordinates in row order and reverse column order.\"\"\"\n    coordinates = []\n    for row_index, row in enumerate(lst):\n        for column_index in range(len(row) - 1, -1, -1):\n            if row[column_index] == x:\n                coordinates.append((row_index, column_index))\n    return coordinates\n"
+  },
+  "review_notes": [
+    "The intended region is the complete coordinate construction, including both traversal levels.",
+    "Empty and ragged rows, repeated matches and ordinary equality semantics are preserved by inspection and still require full-oracle verification."
+  ]
+}

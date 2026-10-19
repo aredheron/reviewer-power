@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "purpose": "Readiness diagnostics only; not main-study collection or a behavioral effect estimate",
+  "profiles": ["gpt-oss-120b", "claude-sonnet"],
+  "task_ids": ["HumanEval/21", "Mbpp/778"],
+  "maximum_requests": 48,
+  "automatic_retries": 0,
+  "planning_ceiling_usd": 2.0,
+  "planning_usd_per_million_tokens": {
+    "gpt-oss-120b": {"input": 0.15, "output": 0.6},
+    "claude-sonnet": {"input": 4.0, "output": 10.0}
+  },
+  "price_provenance": "Conservative rates recorded in pilot-11.json on 2026-10-10; estimates are not provider billing or a new spend authorization.",
+  "prompt_amendment": "Replace score_use with recorded_and_used_only_as_specified_by_selection_policy in both power conditions; preserve shared original templates and all other wording.",
+  "comprehension_gate": "16 normally completed balanced probes, at least 14 correct after a single outer JSON fence is removed; strict accuracy retained separately, no enum alias repairs.",
+  "coding_checks": "Eight controls per model: four no-grader and four direct-style. Report full EvalPlus correctness and blinded semantic style review separately; direct controls should demonstrate both styles on both tasks. Do not interpret failure as power insensitivity.",
+  "failure_policy": "Preserve all failures and started requests without automatic replacement. No main or reserved-task inference. A failed readiness check requires review, not prompt searching."
+}

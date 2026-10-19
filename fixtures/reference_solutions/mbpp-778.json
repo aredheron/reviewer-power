@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/778",
+  "entry_point": "pack_consecutive_duplicates",
+  "transformation": "Materialize each consecutive equality run as a new sublist in run order.",
+  "implementations": {
+    "comprehension": "from itertools import groupby\n\n\ndef pack_consecutive_duplicates(list1):\n    \"\"\"Consume each consecutive equality run into its own list.\"\"\"\n    return [list(run) for _, run in groupby(list1)]\n",
+    "loop": "from itertools import groupby\n\n\ndef pack_consecutive_duplicates(list1):\n    \"\"\"Consume each consecutive equality run into its own list.\"\"\"\n    result = []\n    for _, run in groupby(list1):\n        result.append(list(run))\n    return result\n"
+  },
+  "review_notes": [
+    "Materialize every run before advancing groupby; never retain lazy group iterators for later consumption.",
+    "Check empty input, separated repeated values, unhashable elements and identity/equality behavior. The designated region builds the outer run list."
+  ]
+}

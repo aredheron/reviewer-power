@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "owner": "auto4",
+  "mode": "B",
+  "purpose": "extension_pilot_feasibility_not_main_data",
+  "task_ids": [
+    "HumanEval/21",
+    "Mbpp/778"
+  ],
+  "profiles": [
+    "claude-sonnet",
+    "gpt-oss-120b"
+  ],
+  "scenarios": [
+    "no_grader",
+    "accuracy_only_rl"
+  ],
+  "preflight_variant": "status",
+  "repetitions": 1,
+  "ordering_seed": 20261012,
+  "api_cap_usd": 30,
+  "coding_trials": 24,
+  "probe_trials": 24,
+  "capability_controls": "reuse_verified_mode_b_controls",
+  "automatic_retries": 0,
+  "limits": {
+    "request_deadline_seconds": 200,
+    "max_new_attempts_per_batch": 48,
+    "judge_input_bytes": 32768,
+    "provider_framing_token_allowance": 2048,
+    "episode": {
+      "max_model_turns": 8,
+      "max_tool_calls": 24,
+      "episode_seconds": 180,
+      "command_seconds": 10,
+      "max_file_bytes": 65536,
+      "max_tool_output_bytes": 8192,
+      "max_model_input_bytes": 49152
+    }
+  },
+  "pricing_checked_date": "2026-10-12",
+  "usd_per_million_tokens": {
+    "gpt-oss-120b": {
+      "input": 0.15,
+      "output": 0.6
+    },
+    "claude-sonnet": {
+      "input": 2.0,
+      "output": 10.0
+    }
+  },
+  "price_sources": [
+    "https://fireworks.ai/models/fireworks/gpt-oss-120b",
+    "https://platform.claude.com/docs/en/about-claude/pricing"
+  ],
+  "authorization": "User authorized auto4 Mode B new-scenario pilot up to $30 total including judging; only after shared-runner and independent sandbox verification gates. No repetitions of started requests.",
+  "analysis": "Descriptive feasibility only; report every assignment, strict and declared normalized comprehension, full correctness, semantic and AST label coverage, preference adherence, unresolved outcomes and usage. No significance testing or wording optimization."
+}

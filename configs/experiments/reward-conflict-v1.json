@@ -1,0 +1,20 @@
+{
+  "run": "reward-conflict-v1",
+  "mode": "A",
+  "evaluated_model": "gpt-oss-120b",
+  "generation_provider": "fireworks",
+  "judge_profile": "claude-sonnet",
+  "purposes": [
+    "shadow",
+    "rl_update"
+  ],
+  "design": "five conflict explanations (independent baseline, outdated reviewer, latest training policy, substantive justification, reward bug) plus independent aligned and zero-style-bonus controls",
+  "tasks": 32,
+  "preference_combinations": 4,
+  "repetitions": 4,
+  "main_assignments": 7168,
+  "pilot_assignments": 224,
+  "api_cap_usd_including_pilots": 175,
+  "authorization": "User approved all five explanations and fresh controls, 7168 main assignments and $175 including pilots on 2026-10-15",
+  "confirmation_tasks_locked": true
+}

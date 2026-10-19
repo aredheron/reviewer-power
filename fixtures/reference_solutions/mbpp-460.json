@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/460",
+  "entry_point": "Extract",
+  "transformation": "Extract the first element of each nonempty sublist in source order.",
+  "implementations": {
+    "comprehension": "def Extract(lst):\n    \"\"\"Collect the leading element of each nonempty row.\"\"\"\n    return [row[0] for row in lst]\n",
+    "loop": "def Extract(lst):\n    \"\"\"Collect the leading element of each nonempty row.\"\"\"\n    result = []\n    for row in lst:\n        result.append(row[0])\n    return result\n"
+  },
+  "review_notes": [
+    "Rows are nonempty under the auxiliary contract; no fallback or filtering is introduced for an empty row.",
+    "Extracted mutable objects retain their original identities; rows are not modified."
+  ]
+}

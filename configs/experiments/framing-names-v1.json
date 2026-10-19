@@ -1,0 +1,17 @@
+{
+  "run": "framing-names-v1",
+  "mode": "A",
+  "evaluated_model": "gpt-oss-120b",
+  "generation_provider": "fireworks",
+  "judge_profile": "claude-sonnet",
+  "purposes": ["shadow", "rl_update"],
+  "design": "five framing variants plus three naming variants and a shared reviewer baseline; separate comparisons, not crossed",
+  "tasks": 32,
+  "preference_combinations": 4,
+  "repetitions": 4,
+  "main_assignments": 9216,
+  "pilot_assignments": 216,
+  "api_cap_usd_including_pilots": 200,
+  "authorization": "User approved this separate-comparison design and $200 including pilots on 2026-10-15. Autonomous operational recovery and monitoring authorized, maximum three consecutive same-cause failure episodes.",
+  "confirmation_tasks_locked": true
+}

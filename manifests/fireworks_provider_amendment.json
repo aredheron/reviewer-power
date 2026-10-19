@@ -1,0 +1,84 @@
+{
+  "amendment": {
+    "analysis": "Tag every row with provider; report provider-stratified descriptive sensitivity results. A pilot pass does not establish provider equivalence. Primary inference remains withheld with unresolved outcomes.",
+    "reason": "User requested Fireworks after repeated Together server-error clusters",
+    "scope": "Only originally unstarted GPT-OSS assignments; retain all Together records and failures. Sonnet unchanged."
+  },
+  "base_manifest_sha256": "331aab6bc6b2b97899e83626cb70bb770a1e5d106cdc277365755702997ce1fe",
+  "base_run": "main-32-v1",
+  "code_sha256": {
+    "configs/providers/fireworks.yaml": "a0eb72be5340ce3c4d48a727dfa2b26f26282e8d5cda38685ac6a7f74391dd5b",
+    "evals/inspect_fireworks.py": "dd2e809d20b02d8c41435e3bb393edfc02b8412c1b1430bf961f757aff6fcbe0",
+    "evals/inspect_rl_pilot.py": "c0032c5dcd40f1b83d9ddb2cd5b13e7458ced8cf221418e785f26b37a91ec844",
+    "evals/inspect_sampling_check.py": "0ff726e70a5febe7b6a138c486176e3633968344a59948f604df3f174761529c",
+    "scripts/run_fireworks.py": "a016e408e9f9edca7b7d6bbf8ba749c1b764ef7053f04984ba6bfa7daf3f4f5c"
+  },
+  "confirmation_tasks_exposed": 0,
+  "continuation_manifest_sha256": "64ebcac186dc1f03e8793a29ddc424bb5e62c17e574fea632154cd6a33d430b5",
+  "fireworks_assignments": 2254,
+  "original_gpt_generation_failures": 47,
+  "original_gpt_saved_responses": 2307,
+  "original_gpt_started": 2354,
+  "pilot": {
+    "comprehension": {
+      "assigned": 24,
+      "completed": 24,
+      "fence_only_by_consequence": {
+        "future_selection": 8,
+        "rl_update": 8,
+        "shadow": 8
+      },
+      "fence_only_correct": 24,
+      "passed": true,
+      "strict_correct": 24
+    },
+    "core_full_correct": 72,
+    "core_label_counts": {
+      "comprehension_only": 22,
+      "loop_only": 50
+    },
+    "generation": {
+      "cache": false,
+      "max_retries": 0,
+      "max_tokens": 4096,
+      "reasoning_effort": "low",
+      "temperature": 0.7,
+      "timeout": 180,
+      "top_p": 1.0
+    },
+    "manifest_sha256": "05192a008c930d8d81d863df4182c9f1d20fd953fb3c90fe184a92b380b8e031",
+    "passed": true,
+    "requests_complete": 96,
+    "valid_judge_labels": 72
+  },
+  "pilot_conservative_recorded_usage_usd": 1.021922,
+  "pilot_readiness_sha256": "4ddaecca0aed770bd26116cb183d9405a8b057148520a5c2c389da313262b168",
+  "pricing_sources": [
+    "https://fireworks.ai/models/fireworks/gpt-oss-120b",
+    "https://platform.claude.com/docs/en/about-claude/pricing"
+  ],
+  "profile": {
+    "generation": {
+      "cache": false,
+      "max_retries": 0,
+      "max_tokens": 4096,
+      "reasoning_effort": "low",
+      "temperature": 0.7,
+      "timeout": 180,
+      "top_p": 1.0
+    },
+    "model": "fireworks/accounts/fireworks/models/gpt-oss-120b",
+    "provider": "fireworks",
+    "revision": "provider-managed"
+  },
+  "provider_profile": "configs/providers/fireworks.yaml",
+  "reason": "User requested Fireworks after repeated Together Internal Server Error clusters.",
+  "recorded_at": "2026-10-11T08:03:20.790911+00:00",
+  "verification": {
+    "integration_tests_skipped_in_unit_run": 9,
+    "original_main_source_bindings": "verified; unchanged",
+    "pyright_errors": 0,
+    "ruff": "passed",
+    "unit_tests_passed": 585
+  }
+}

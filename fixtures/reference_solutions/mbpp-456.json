@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/456",
+  "entry_point": "reverse_string_list",
+  "transformation": "Reverse each string while preserving the order of strings in the outer list.",
+  "implementations": {
+    "comprehension": "def reverse_string_list(stringlist):\n    \"\"\"Reverse the code points of each string without changing outer order.\"\"\"\n    return [text[::-1] for text in stringlist]\n",
+    "loop": "def reverse_string_list(stringlist):\n    \"\"\"Reverse the code points of each string without changing outer order.\"\"\"\n    result = []\n    for text in stringlist:\n        result.append(text[::-1])\n    return result\n"
+  },
+  "review_notes": [
+    "Check empty strings, duplicates and Unicode; Python slicing reverses code points rather than grapheme clusters.",
+    "The input list and outer ordering remain unchanged by inspection."
+  ]
+}

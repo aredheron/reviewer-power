@@ -1,0 +1,342 @@
+[
+  {
+    "task_id": "HumanEval/104",
+    "entry_point": "unique_digits",
+    "transformation": "Retain positive integers with exclusively odd digits in ascending order.",
+    "implementations": {
+      "loops": "def _has_only_odd_digits(number: int) -> bool:\n    \"\"\"Check the decimal digits of a positive integer.\"\"\"\n    return all(digit in \"13579\" for digit in str(number))\n\n\ndef unique_digits(x):\n    \"\"\"Return qualifying integers in ascending order, retaining duplicates.\"\"\"\n    ordered = sorted(x)\n    qualifying = []\n    for number in ordered:\n        if _has_only_odd_digits(number):\n            qualifying.append(number)\n    return qualifying\n",
+      "comprehensions": "def _has_only_odd_digits(number: int) -> bool:\n    \"\"\"Check the decimal digits of a positive integer.\"\"\"\n    return all(digit in \"13579\" for digit in str(number))\n\n\ndef unique_digits(x):\n    \"\"\"Return qualifying integers in ascending order, retaining duplicates.\"\"\"\n    ordered = sorted(x)\n    return [number for number in ordered if _has_only_odd_digits(number)]\n",
+      "map_filter": "def _has_only_odd_digits(number: int) -> bool:\n    \"\"\"Check the decimal digits of a positive integer.\"\"\"\n    return all((digit in '13579' for digit in str(number)))\n\ndef unique_digits(x):\n    \"\"\"Return qualifying integers in ascending order, retaining duplicates.\"\"\"\n    ordered = sorted(x)\n    return list(filter(_has_only_odd_digits, ordered))\n"
+    }
+  },
+  {
+    "task_id": "HumanEval/129",
+    "entry_point": "minPath",
+    "transformation": "Construct k path values alternating the grid minimum and its least adjacent value.",
+    "implementations": {
+      "loops": "def minPath(grid, k):\n    \"\"\"Construct the lexicographically smallest path, allowing revisited cells.\"\"\"\n    size = len(grid)\n    row, column = next(\n        (row_index, column_index)\n        for row_index, values in enumerate(grid)\n        for column_index, value in enumerate(values)\n        if value == 1\n    )\n    smallest_neighbor = min(\n        grid[row + row_offset][column + column_offset]\n        for row_offset, column_offset in ((-1, 0), (1, 0), (0, -1), (0, 1))\n        if 0 <= row + row_offset < size and 0 <= column + column_offset < size\n    )\n    # Returning to 1 after its least neighbor minimizes every subsequent prefix.\n    path = []\n    for position in range(k):\n        path.append(1 if position % 2 == 0 else smallest_neighbor)\n    return path\n",
+      "comprehensions": "def minPath(grid, k):\n    \"\"\"Construct the lexicographically smallest path, allowing revisited cells.\"\"\"\n    size = len(grid)\n    row, column = next(\n        (row_index, column_index)\n        for row_index, values in enumerate(grid)\n        for column_index, value in enumerate(values)\n        if value == 1\n    )\n    smallest_neighbor = min(\n        grid[row + row_offset][column + column_offset]\n        for row_offset, column_offset in ((-1, 0), (1, 0), (0, -1), (0, 1))\n        if 0 <= row + row_offset < size and 0 <= column + column_offset < size\n    )\n    # Returning to 1 after its least neighbor minimizes every subsequent prefix.\n    return [1 if position % 2 == 0 else smallest_neighbor for position in range(k)]\n",
+      "map_filter": "def minPath(grid, k):\n    \"\"\"Construct the lexicographically smallest path, allowing revisited cells.\"\"\"\n    size = len(grid)\n    row, column = next(((row_index, column_index) for row_index, values in enumerate(grid) for column_index, value in enumerate(values) if value == 1))\n    smallest_neighbor = min((grid[row + row_offset][column + column_offset] for row_offset, column_offset in ((-1, 0), (1, 0), (0, -1), (0, 1)) if 0 <= row + row_offset < size and 0 <= column + column_offset < size))\n    return list(map(lambda position: 1 if position % 2 == 0 else smallest_neighbor, range(k)))\n"
+    }
+  },
+  {
+    "task_id": "HumanEval/14",
+    "entry_point": "all_prefixes",
+    "transformation": "Construct all nonempty string prefixes from shortest to longest.",
+    "implementations": {
+      "loops": "from typing import List\n\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\"Return each nonempty prefix, ordered by its ending position.\"\"\"\n    prefixes = []\n    for stop in range(1, len(string) + 1):\n        prefixes.append(string[:stop])\n    return prefixes\n",
+      "comprehensions": "from typing import List\n\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\"Return each nonempty prefix, ordered by its ending position.\"\"\"\n    return [string[:stop] for stop in range(1, len(string) + 1)]\n",
+      "map_filter": "from typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\"Return each nonempty prefix, ordered by its ending position.\"\"\"\n    return list(map(lambda stop: string[:stop], range(1, len(string) + 1)))\n"
+    }
+  },
+  {
+    "task_id": "HumanEval/152",
+    "entry_point": "compare",
+    "transformation": "Map aligned game scores and guesses to absolute differences.",
+    "implementations": {
+      "loops": "def compare(game, guess):\n    \"\"\"Return one absolute prediction error for every corresponding score pair.\"\"\"\n    errors = []\n    for score, prediction in zip(game, guess):\n        errors.append(abs(score - prediction))\n    return errors\n",
+      "comprehensions": "def compare(game, guess):\n    \"\"\"Return one absolute prediction error for every corresponding score pair.\"\"\"\n    return [abs(score - prediction) for score, prediction in zip(game, guess)]\n",
+      "map_filter": "def compare(game, guess):\n    \"\"\"Return one absolute prediction error for every corresponding score pair.\"\"\"\n    return list(map(lambda score, prediction: abs(score - prediction), game, guess))\n"
+    }
+  },
+  {
+    "task_id": "HumanEval/26",
+    "entry_point": "remove_duplicates",
+    "transformation": "Filter the input to integers occurring exactly once, preserving their order.",
+    "implementations": {
+      "loops": "from collections import Counter\nfrom typing import List\n\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    \"\"\"Keep only values with one occurrence, in their original order.\"\"\"\n    counts = Counter(numbers)\n    unique = []\n    for number in numbers:\n        if counts[number] == 1:\n            unique.append(number)\n    return unique\n",
+      "comprehensions": "from collections import Counter\nfrom typing import List\n\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    \"\"\"Keep only values with one occurrence, in their original order.\"\"\"\n    counts = Counter(numbers)\n    return [number for number in numbers if counts[number] == 1]\n",
+      "map_filter": "from collections import Counter\nfrom typing import List\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    \"\"\"Keep only values with one occurrence, in their original order.\"\"\"\n    counts = Counter(numbers)\n    return list(filter(lambda number: counts[number] == 1, numbers))\n"
+    }
+  },
+  {
+    "task_id": "HumanEval/29",
+    "entry_point": "filter_by_prefix",
+    "transformation": "Filter strings by prefix membership, preserving input order and duplicates.",
+    "implementations": {
+      "loops": "from typing import List\n\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    \"\"\"Retain strings beginning with the supplied prefix.\"\"\"\n    matches = []\n    for text in strings:\n        if text.startswith(prefix):\n            matches.append(text)\n    return matches\n",
+      "comprehensions": "from typing import List\n\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    \"\"\"Retain strings beginning with the supplied prefix.\"\"\"\n    return [text for text in strings if text.startswith(prefix)]\n",
+      "map_filter": "from typing import List\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    \"\"\"Retain strings beginning with the supplied prefix.\"\"\"\n    return list(filter(lambda text: text.startswith(prefix), strings))\n"
+    }
+  },
+  {
+    "task_id": "HumanEval/30",
+    "entry_point": "get_positive",
+    "transformation": "Filter input values using their ordinary greater-than-zero comparison.",
+    "implementations": {
+      "loops": "def get_positive(l: list):\n    \"\"\"Retain values greater than zero without converting them.\"\"\"\n    positive = []\n    for value in l:\n        if value > 0:\n            positive.append(value)\n    return positive\n",
+      "comprehensions": "def get_positive(l: list):\n    \"\"\"Retain values greater than zero without converting them.\"\"\"\n    return [value for value in l if value > 0]\n",
+      "map_filter": "def get_positive(l: list):\n    \"\"\"Retain values greater than zero without converting them.\"\"\"\n    return list(filter(lambda value: value > 0, l))\n"
+    }
+  },
+  {
+    "task_id": "HumanEval/37",
+    "entry_point": "sort_even",
+    "transformation": "Reconstruct the list with sorted values at even indices and unchanged odd indices.",
+    "implementations": {
+      "loops": "def sort_even(l: list):\n    \"\"\"Sort values at even indices, preserving odd-index values.\"\"\"\n    replacements = sorted(l[::2])\n    rebuilt = []\n    for index, value in enumerate(l):\n        if index % 2 == 0:\n            rebuilt.append(replacements[index // 2])\n        else:\n            rebuilt.append(value)\n    return rebuilt\n",
+      "comprehensions": "def sort_even(l: list):\n    \"\"\"Sort values at even indices, preserving odd-index values.\"\"\"\n    replacements = sorted(l[::2])\n    return [\n        replacements[index // 2] if index % 2 == 0 else value\n        for index, value in enumerate(l)\n    ]\n",
+      "map_filter": "def sort_even(l: list):\n    \"\"\"Sort values at even indices, preserving odd-index values.\"\"\"\n    replacements = sorted(l[::2])\n    return list(map(lambda index: replacements[index // 2] if index % 2 == 0 else l[index], range(len(l))))\n"
+    }
+  },
+  {
+    "task_id": "HumanEval/42",
+    "entry_point": "incr_list",
+    "transformation": "Map every input value to the result of adding one.",
+    "implementations": {
+      "loops": "def incr_list(l: list):\n    \"\"\"Add one to each element while retaining input order.\"\"\"\n    incremented = []\n    for value in l:\n        incremented.append(value + 1)\n    return incremented\n",
+      "comprehensions": "def incr_list(l: list):\n    \"\"\"Add one to each element while retaining input order.\"\"\"\n    return [value + 1 for value in l]\n",
+      "map_filter": "def incr_list(l: list):\n    \"\"\"Add one to each element while retaining input order.\"\"\"\n    return list(map(lambda value: value + 1, l))\n"
+    }
+  },
+  {
+    "task_id": "HumanEval/58",
+    "entry_point": "common",
+    "transformation": "Filter unique left-list values by right-list membership, then sort the matches.",
+    "implementations": {
+      "loops": "def common(l1: list, l2: list):\n    \"\"\"Collect unique common values and order the resulting matches.\"\"\"\n    left_values = set(l1)\n    right_values = set(l2)\n    matches = []\n    for value in left_values:\n        if value in right_values:\n            matches.append(value)\n    matches.sort()\n    return matches\n",
+      "comprehensions": "def common(l1: list, l2: list):\n    \"\"\"Collect unique common values and order the resulting matches.\"\"\"\n    left_values = set(l1)\n    right_values = set(l2)\n    matches = [value for value in left_values if value in right_values]\n    matches.sort()\n    return matches\n",
+      "map_filter": "def common(l1: list, l2: list):\n    \"\"\"Collect unique common values and order the resulting matches.\"\"\"\n    left_values = set(l1)\n    right_values = set(l2)\n    matches = list(filter(lambda value: value in right_values, left_values))\n    matches.sort()\n    return matches\n"
+    }
+  },
+  {
+    "task_id": "HumanEval/6",
+    "entry_point": "parse_nested_parens",
+    "transformation": "Map each nonempty space-delimited parenthesis group to its maximum nesting depth.",
+    "implementations": {
+      "loops": "from typing import List\n\n\ndef _maximum_depth(group: str) -> int:\n    \"\"\"Track the greatest running balance of a single literal-space token.\"\"\"\n    balance = 0\n    deepest = 0\n    for character in group:\n        if character == \"(\":\n            balance += 1\n        elif character == \")\":\n            balance -= 1\n        deepest = max(deepest, balance)\n    return deepest\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\"Return the depth of each nonempty parenthesis group in input order.\"\"\"\n    depths = []\n    for group in paren_string.split(\" \"):\n        if group:\n            depths.append(_maximum_depth(group))\n    return depths\n",
+      "comprehensions": "from typing import List\n\n\ndef _maximum_depth(group: str) -> int:\n    \"\"\"Track the greatest running balance of a single literal-space token.\"\"\"\n    balance = 0\n    deepest = 0\n    for character in group:\n        if character == \"(\":\n            balance += 1\n        elif character == \")\":\n            balance -= 1\n        deepest = max(deepest, balance)\n    return deepest\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\"Return the depth of each nonempty parenthesis group in input order.\"\"\"\n    return [_maximum_depth(group) for group in paren_string.split(\" \") if group]\n",
+      "map_filter": "from typing import List\n\ndef _maximum_depth(group: str) -> int:\n    \"\"\"Track the greatest running balance of a single literal-space token.\"\"\"\n    balance = 0\n    deepest = 0\n    for character in group:\n        if character == '(':\n            balance += 1\n        elif character == ')':\n            balance -= 1\n        deepest = max(deepest, balance)\n    return deepest\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\"Return the depth of each nonempty parenthesis group in input order.\"\"\"\n    return list(map(_maximum_depth, filter(None, paren_string.split(' '))))\n"
+    }
+  },
+  {
+    "task_id": "HumanEval/62",
+    "entry_point": "derivative",
+    "transformation": "Map each nonconstant coefficient to coefficient times its original power.",
+    "implementations": {
+      "loops": "def derivative(xs: list):\n    \"\"\"Differentiate coefficients without trimming trailing zero terms.\"\"\"\n    coefficients = []\n    for power, coefficient in enumerate(xs[1:], start=1):\n        coefficients.append(coefficient * power)\n    return coefficients\n",
+      "comprehensions": "def derivative(xs: list):\n    \"\"\"Differentiate coefficients without trimming trailing zero terms.\"\"\"\n    return [coefficient * power for power, coefficient in enumerate(xs[1:], start=1)]\n",
+      "map_filter": "def derivative(xs: list):\n    \"\"\"Differentiate coefficients without trimming trailing zero terms.\"\"\"\n    return list(map(lambda power: xs[power] * power, range(1, len(xs))))\n"
+    }
+  },
+  {
+    "task_id": "HumanEval/87",
+    "entry_point": "get_row",
+    "transformation": "Construct matching grid coordinates with ascending row and descending column order.",
+    "implementations": {
+      "loops": "def get_row(lst, x):\n    \"\"\"Find matching coordinates in row order and reverse column order.\"\"\"\n    coordinates = []\n    for row_index, row in enumerate(lst):\n        for column_index in range(len(row) - 1, -1, -1):\n            if row[column_index] == x:\n                coordinates.append((row_index, column_index))\n    return coordinates\n",
+      "comprehensions": "def get_row(lst, x):\n    \"\"\"Find matching coordinates in row order and reverse column order.\"\"\"\n    return [\n        (row_index, column_index)\n        for row_index, row in enumerate(lst)\n        for column_index in range(len(row) - 1, -1, -1)\n        if row[column_index] == x\n    ]\n",
+      "map_filter": "from itertools import chain\n\ndef get_row(lst, x):\n    \"\"\"Find matching coordinates in row order and reverse column order.\"\"\"\n    return list(chain.from_iterable(map(lambda pair: map(lambda column: (pair[0], column), filter(lambda column: pair[1][column] == x, range(len(pair[1]) - 1, -1, -1))), enumerate(lst))))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/104",
+    "entry_point": "sort_sublists",
+    "transformation": "Map each string sublist to a fresh sorted list while retaining outer order.",
+    "implementations": {
+      "loops": "def sort_sublists(input_list):\n    \"\"\"Return a separately sorted copy of each string sublist.\"\"\"\n    sorted_sublists = []\n    for strings in input_list:\n        sorted_sublists.append(sorted(strings))\n    return sorted_sublists\n",
+      "comprehensions": "def sort_sublists(input_list):\n    \"\"\"Return a separately sorted copy of each string sublist.\"\"\"\n    return [sorted(strings) for strings in input_list]\n",
+      "map_filter": "def sort_sublists(input_list):\n    \"\"\"Return a separately sorted copy of each string sublist.\"\"\"\n    return list(map(sorted, input_list))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/161",
+    "entry_point": "remove_elements",
+    "transformation": "Filter first-list elements by absence from the second list.",
+    "implementations": {
+      "loops": "def remove_elements(list1, list2):\n    \"\"\"Keep first-list elements absent from the second list, preserving order.\"\"\"\n    remaining = []\n    for element in list1:\n        if element not in list2:\n            remaining.append(element)\n    return remaining\n",
+      "comprehensions": "def remove_elements(list1, list2):\n    \"\"\"Keep first-list elements absent from the second list, preserving order.\"\"\"\n    return [element for element in list1 if element not in list2]\n",
+      "map_filter": "def remove_elements(list1, list2):\n    \"\"\"Keep first-list elements absent from the second list, preserving order.\"\"\"\n    return list(filter(lambda element: element not in list2, list1))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/272",
+    "entry_point": "rear_extract",
+    "transformation": "Map each nonempty tuple to its last element.",
+    "implementations": {
+      "loops": "def rear_extract(test_list):\n    \"\"\"Return the last item from each nonempty input tuple.\"\"\"\n    last_items = []\n    for record in test_list:\n        last_items.append(record[-1])\n    return last_items\n",
+      "comprehensions": "def rear_extract(test_list):\n    \"\"\"Return the last item from each nonempty input tuple.\"\"\"\n    return [record[-1] for record in test_list]\n",
+      "map_filter": "def rear_extract(test_list):\n    \"\"\"Return the last item from each nonempty input tuple.\"\"\"\n    return list(map(lambda record: record[-1], test_list))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/390",
+    "entry_point": "add_string",
+    "transformation": "Map each list element through the supplied format string.",
+    "implementations": {
+      "loops": "def add_string(list_, string):\n    \"\"\"Format each element using the supplied positional format string.\"\"\"\n    formatted = []\n    for element in list_:\n        formatted.append(string.format(element))\n    return formatted\n",
+      "comprehensions": "def add_string(list_, string):\n    \"\"\"Format each element using the supplied positional format string.\"\"\"\n    return [string.format(element) for element in list_]\n",
+      "map_filter": "def add_string(list_, string):\n    \"\"\"Format each element using the supplied positional format string.\"\"\"\n    return list(map(string.format, list_))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/412",
+    "entry_point": "remove_odd",
+    "transformation": "Filter integer elements to retain only even numbers.",
+    "implementations": {
+      "loops": "def remove_odd(l):\n    \"\"\"Retain even elements in their original order.\"\"\"\n    even_numbers = []\n    for number in l:\n        if number % 2 == 0:\n            even_numbers.append(number)\n    return even_numbers\n",
+      "comprehensions": "def remove_odd(l):\n    \"\"\"Retain even elements in their original order.\"\"\"\n    return [number for number in l if number % 2 == 0]\n",
+      "map_filter": "def remove_odd(l):\n    \"\"\"Retain even elements in their original order.\"\"\"\n    return list(filter(lambda number: number % 2 == 0, l))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/413",
+    "entry_point": "extract_nth_element",
+    "transformation": "Map each tuple to its element at the original index n.",
+    "implementations": {
+      "loops": "def extract_nth_element(list1, n):\n    \"\"\"Extract the same native Python index from each tuple.\"\"\"\n    elements = []\n    for record in list1:\n        elements.append(record[n])\n    return elements\n",
+      "comprehensions": "def extract_nth_element(list1, n):\n    \"\"\"Extract the same native Python index from each tuple.\"\"\"\n    return [record[n] for record in list1]\n",
+      "map_filter": "def extract_nth_element(list1, n):\n    \"\"\"Extract the same native Python index from each tuple.\"\"\"\n    return list(map(lambda record: record[n], list1))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/424",
+    "entry_point": "extract_rear",
+    "transformation": "Map each nonempty string in a tuple to its final character.",
+    "implementations": {
+      "loops": "def extract_rear(test_tuple):\n    \"\"\"Collect the final character of each nonempty string.\"\"\"\n    final_characters = []\n    for text in test_tuple:\n        final_characters.append(text[-1])\n    return final_characters\n",
+      "comprehensions": "def extract_rear(test_tuple):\n    \"\"\"Collect the final character of each nonempty string.\"\"\"\n    return [text[-1] for text in test_tuple]\n",
+      "map_filter": "def extract_rear(test_tuple):\n    \"\"\"Collect the final character of each nonempty string.\"\"\"\n    return list(map(lambda text: text[-1], test_tuple))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/426",
+    "entry_point": "filter_oddnumbers",
+    "transformation": "Filter integer elements to retain only odd numbers.",
+    "implementations": {
+      "loops": "def filter_oddnumbers(nums):\n    \"\"\"Retain odd elements in their original order.\"\"\"\n    odd_numbers = []\n    for number in nums:\n        if number % 2 == 1:\n            odd_numbers.append(number)\n    return odd_numbers\n",
+      "comprehensions": "def filter_oddnumbers(nums):\n    \"\"\"Retain odd elements in their original order.\"\"\"\n    return [number for number in nums if number % 2 == 1]\n",
+      "map_filter": "def filter_oddnumbers(nums):\n    \"\"\"Retain odd elements in their original order.\"\"\"\n    return list(filter(lambda number: number % 2 == 1, nums))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/450",
+    "entry_point": "extract_string",
+    "transformation": "Filter strings whose length equals the requested size, retaining input order.",
+    "implementations": {
+      "loops": "def extract_string(str1, l):\n    \"\"\"Keep strings with exactly the requested number of code points.\"\"\"\n    result = []\n    for text in str1:\n        if len(text) == l:\n            result.append(text)\n    return result\n",
+      "comprehensions": "def extract_string(str1, l):\n    \"\"\"Keep strings with exactly the requested number of code points.\"\"\"\n    return [text for text in str1 if len(text) == l]\n",
+      "map_filter": "def extract_string(str1, l):\n    \"\"\"Keep strings with exactly the requested number of code points.\"\"\"\n    return list(filter(lambda text: len(text) == l, str1))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/460",
+    "entry_point": "Extract",
+    "transformation": "Extract the first element of each nonempty sublist in source order.",
+    "implementations": {
+      "loops": "def Extract(lst):\n    \"\"\"Collect the leading element of each nonempty row.\"\"\"\n    result = []\n    for row in lst:\n        result.append(row[0])\n    return result\n",
+      "comprehensions": "def Extract(lst):\n    \"\"\"Collect the leading element of each nonempty row.\"\"\"\n    return [row[0] for row in lst]\n",
+      "map_filter": "def Extract(lst):\n    \"\"\"Collect the leading element of each nonempty row.\"\"\"\n    return list(map(lambda row: row[0], lst))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/554",
+    "entry_point": "Split",
+    "transformation": "Keep odd integers in their original order, including repeated values.",
+    "implementations": {
+      "loops": "def Split(l):\n    \"\"\"Collect integers whose remainder modulo two is one.\"\"\"\n    result = []\n    for value in l:\n        if value % 2 == 1:\n            result.append(value)\n    return result\n",
+      "comprehensions": "def Split(l):\n    \"\"\"Collect integers whose remainder modulo two is one.\"\"\"\n    return [value for value in l if value % 2 == 1]\n",
+      "map_filter": "def Split(l):\n    \"\"\"Collect integers whose remainder modulo two is one.\"\"\"\n    return list(filter(lambda value: value % 2 == 1, l))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/568",
+    "entry_point": "empty_list",
+    "transformation": "Construct one distinct empty dictionary for each requested position.",
+    "implementations": {
+      "loops": "def empty_list(length):\n    \"\"\"Allocate a separate empty dictionary for each position.\"\"\"\n    result = []\n    for _ in range(length):\n        result.append(dict())\n    return result\n",
+      "comprehensions": "def empty_list(length):\n    \"\"\"Allocate a separate empty dictionary for each position.\"\"\"\n    return [dict() for _ in range(length)]\n",
+      "map_filter": "def empty_list(length):\n    \"\"\"Allocate a separate empty dictionary for each position.\"\"\"\n    return list(map(lambda _: dict(), range(length)))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/569",
+    "entry_point": "sort_sublists",
+    "transformation": "Map each input row to a newly sorted list, retaining outer row order.",
+    "implementations": {
+      "loops": "def sort_sublists(list1):\n    \"\"\"Sort the contents of each row into a new list.\"\"\"\n    result = []\n    for row in list1:\n        result.append(sorted(row))\n    return result\n",
+      "comprehensions": "def sort_sublists(list1):\n    \"\"\"Sort the contents of each row into a new list.\"\"\"\n    return [sorted(row) for row in list1]\n",
+      "map_filter": "def sort_sublists(list1):\n    \"\"\"Sort the contents of each row into a new list.\"\"\"\n    return list(map(sorted, list1))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/578",
+    "entry_point": "interleave_lists",
+    "transformation": "Flatten aligned triples from the three lists into their interleaved order.",
+    "implementations": {
+      "loops": "def interleave_lists(list1, list2, list3):\n    \"\"\"Emit each aligned triple in first-list, second-list, third-list order.\"\"\"\n    result = []\n    for triple in zip(list1, list2, list3):\n        for value in triple:\n            result.append(value)\n    return result\n",
+      "comprehensions": "def interleave_lists(list1, list2, list3):\n    \"\"\"Emit each aligned triple in first-list, second-list, third-list order.\"\"\"\n    return [value for triple in zip(list1, list2, list3) for value in triple]\n",
+      "map_filter": "from itertools import chain\n\ndef interleave_lists(list1, list2, list3):\n    \"\"\"Emit each aligned triple in first-list, second-list, third-list order.\"\"\"\n    return list(chain.from_iterable(map(lambda a, b, c: (a, b, c), list1, list2, list3)))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/618",
+    "entry_point": "div_list",
+    "transformation": "Divide aligned numeric values using true division and retain pairing order.",
+    "implementations": {
+      "loops": "def div_list(nums1, nums2):\n    \"\"\"Compute a quotient for each aligned numerator and denominator.\"\"\"\n    result = []\n    for numerator, denominator in zip(nums1, nums2):\n        result.append(numerator / denominator)\n    return result\n",
+      "comprehensions": "def div_list(nums1, nums2):\n    \"\"\"Compute a quotient for each aligned numerator and denominator.\"\"\"\n    return [numerator / denominator for numerator, denominator in zip(nums1, nums2)]\n",
+      "map_filter": "def div_list(nums1, nums2):\n    \"\"\"Compute a quotient for each aligned numerator and denominator.\"\"\"\n    return list(map(lambda numerator, denominator: numerator / denominator, nums1, nums2))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/623",
+    "entry_point": "nth_nums",
+    "transformation": "Raise each input number to the unchanged exponent in input order.",
+    "implementations": {
+      "loops": "def nth_nums(nums, n):\n    \"\"\"Apply Python exponentiation to each input value.\"\"\"\n    result = []\n    for value in nums:\n        result.append(value ** n)\n    return result\n",
+      "comprehensions": "def nth_nums(nums, n):\n    \"\"\"Apply Python exponentiation to each input value.\"\"\"\n    return [value ** n for value in nums]\n",
+      "map_filter": "def nth_nums(nums, n):\n    \"\"\"Apply Python exponentiation to each input value.\"\"\"\n    return list(map(lambda value: value ** n, nums))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/749",
+    "entry_point": "sort_numeric_strings",
+    "transformation": "Convert numerically ordered strings to the returned list of integers.",
+    "implementations": {
+      "loops": "def sort_numeric_strings(nums_str):\n    \"\"\"Return integer conversions in ascending numeric order.\"\"\"\n    ordered_strings = sorted(nums_str, key=int)\n    result = []\n    for text in ordered_strings:\n        result.append(int(text))\n    return result\n",
+      "comprehensions": "def sort_numeric_strings(nums_str):\n    \"\"\"Return integer conversions in ascending numeric order.\"\"\"\n    ordered_strings = sorted(nums_str, key=int)\n    return [int(text) for text in ordered_strings]\n",
+      "map_filter": "def sort_numeric_strings(nums_str):\n    \"\"\"Return integer conversions in ascending numeric order.\"\"\"\n    ordered_strings = sorted(nums_str, key=int)\n    return list(map(int, ordered_strings))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/75",
+    "entry_point": "find_tuples",
+    "transformation": "Filter tuples whose elements are all divisible by the positive divisor K.",
+    "implementations": {
+      "loops": "def find_tuples(test_list, K):\n    \"\"\"Keep tuples for which every element is divisible by K.\"\"\"\n    matches = []\n    for values in test_list:\n        if all(value % K == 0 for value in values):\n            matches.append(values)\n    return matches\n",
+      "comprehensions": "def find_tuples(test_list, K):\n    \"\"\"Keep tuples for which every element is divisible by K.\"\"\"\n    return [values for values in test_list if all(value % K == 0 for value in values)]\n",
+      "map_filter": "def find_tuples(test_list, K):\n    \"\"\"Keep tuples for which every element is divisible by K.\"\"\"\n    return list(filter(lambda values: all((value % K == 0 for value in values)), test_list))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/766",
+    "entry_point": "pair_wise",
+    "transformation": "Construct adjacent-element tuples for successive positions in the input list.",
+    "implementations": {
+      "loops": "def pair_wise(l1):\n    \"\"\"Pair each element except the last with its immediate successor.\"\"\"\n    result = []\n    for index in range(len(l1) - 1):\n        result.append((l1[index], l1[index + 1]))\n    return result\n",
+      "comprehensions": "def pair_wise(l1):\n    \"\"\"Pair each element except the last with its immediate successor.\"\"\"\n    return [(l1[index], l1[index + 1]) for index in range(len(l1) - 1)]\n",
+      "map_filter": "def pair_wise(l1):\n    \"\"\"Pair each element except the last with its immediate successor.\"\"\"\n    return list(map(lambda index: (l1[index], l1[index + 1]), range(len(l1) - 1)))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/780",
+    "entry_point": "find_combinations",
+    "transformation": "Construct a coordinate-sum tuple for each unordered pair of input positions.",
+    "implementations": {
+      "loops": "from itertools import combinations\n\n\ndef find_combinations(test_list):\n    \"\"\"Collect coordinate-wise sums in input-position combinations order.\"\"\"\n    result = []\n    for first, second in combinations(test_list, 2):\n        summed_tuple = tuple(\n            sum(coordinate_pair) for coordinate_pair in zip(first, second)\n        )\n        result.append(summed_tuple)\n    return result\n",
+      "comprehensions": "from itertools import combinations\n\n\ndef find_combinations(test_list):\n    \"\"\"Collect coordinate-wise sums in input-position combinations order.\"\"\"\n    return [\n        tuple(sum(coordinate_pair) for coordinate_pair in zip(first, second))\n        for first, second in combinations(test_list, 2)\n    ]\n",
+      "map_filter": "from itertools import combinations\n\ndef find_combinations(test_list):\n    \"\"\"Collect coordinate-wise sums in input-position combinations order.\"\"\"\n    return list(map(lambda pair: tuple(map(sum, zip(pair[0], pair[1]))), combinations(test_list, 2)))\n"
+    }
+  },
+  {
+    "task_id": "Mbpp/8",
+    "entry_point": "square_nums",
+    "transformation": "Map each numeric element to its square using exponentiation.",
+    "implementations": {
+      "loops": "def square_nums(nums):\n    \"\"\"Return squared values in the same order as the input numbers.\"\"\"\n    squares = []\n    for number in nums:\n        squares.append(number ** 2)\n    return squares\n",
+      "comprehensions": "def square_nums(nums):\n    \"\"\"Return squared values in the same order as the input numbers.\"\"\"\n    return [number ** 2 for number in nums]\n",
+      "map_filter": "def square_nums(nums):\n    \"\"\"Return squared values in the same order as the input numbers.\"\"\"\n    return list(map(lambda number: number ** 2, nums))\n"
+    }
+  }
+]

@@ -1,0 +1,425 @@
+[
+  {
+    "schema_version": 1,
+    "task_id": "HumanEval/5",
+    "entry_point": "intersperse",
+    "family": "interspersing",
+    "transformation": "Alternate input elements and separators without a trailing separator.",
+    "implementations": {
+      "comprehension": "from typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    return [numbers[i // 2] if i % 2 == 0 else delimeter\n            for i in range(max(0, 2 * len(numbers) - 1))]\n",
+      "loop": "from typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    result = []\n    for i, number in enumerate(numbers):\n        if i:\n            result.append(delimeter)\n        result.append(number)\n    return result\n"
+    },
+    "hold": "idiomaticity_review",
+    "review_notes": [
+      "Index mapping preserves O(n) complexity, but whether this comprehension is as natural as the append loop requires human judgment; not counted as ready."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "HumanEval/70",
+    "entry_point": "strange_sort_list",
+    "family": "alternating_index_mapping",
+    "transformation": "Read alternately from the low and high ends of sorted input.",
+    "implementations": {
+      "comprehension": "def strange_sort_list(lst):\n    ordered = sorted(lst)\n    return [ordered[i // 2] if i % 2 == 0 else ordered[-1 - i // 2]\n            for i in range(len(ordered))]\n",
+      "loop": "def strange_sort_list(lst):\n    ordered = sorted(lst)\n    result = []\n    for i in range(len(ordered)):\n        result.append(ordered[i // 2] if i % 2 == 0 else ordered[-1 - i // 2])\n    return result\n"
+    },
+    "hold": null,
+    "review_notes": [
+      "Both use O(n log n) sorting plus O(n) index mapping, with no destructive pops or input mutation."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "HumanEval/81",
+    "entry_point": "numerical_letter_grade",
+    "family": "piecewise_scalar_mapping",
+    "transformation": "Convert each GPA to its letter grade.",
+    "implementations": {
+      "comprehension": "def _letter(score):\n    if score == 4.0:\n        return \"A+\"\n    thresholds = ((3.7, \"A\"), (3.3, \"A-\"), (3.0, \"B+\"), (2.7, \"B\"),\n                  (2.3, \"B-\"), (2.0, \"C+\"), (1.7, \"C\"), (1.3, \"C-\"),\n                  (1.0, \"D+\"), (0.7, \"D\"), (0.0, \"D-\"))\n    for threshold, label in thresholds:\n        if score > threshold:\n            return label\n    return \"E\"\n\ndef numerical_letter_grade(grades):\n    return [_letter(score) for score in grades]\n",
+      "loop": "def _letter(score):\n    if score == 4.0:\n        return \"A+\"\n    thresholds = ((3.7, \"A\"), (3.3, \"A-\"), (3.0, \"B+\"), (2.7, \"B\"),\n                  (2.3, \"B-\"), (2.0, \"C+\"), (1.7, \"C\"), (1.3, \"C-\"),\n                  (1.0, \"D+\"), (0.7, \"D\"), (0.0, \"D-\"))\n    for threshold, label in thresholds:\n        if score > threshold:\n            return label\n    return \"E\"\n\ndef numerical_letter_grade(grades):\n    result = []\n    for score in grades:\n        result.append(_letter(score))\n    return result\n"
+    },
+    "hold": "wording_approval",
+    "review_notes": [
+      "Proposed visible edit: replace example name grade_equation with numerical_letter_grade. No edit applied."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "HumanEval/96",
+    "entry_point": "count_up_to",
+    "family": "sieve_filtering",
+    "transformation": "Filter integers below n by shared sieve flags.",
+    "implementations": {
+      "comprehension": "from math import isqrt\n\ndef _prime_flags(n):\n    flags = [True] * n\n    for prime in range(2, isqrt(max(n - 1, 0)) + 1):\n        if flags[prime]:\n            for multiple in range(prime * prime, n, prime):\n                flags[multiple] = False\n    return flags\n\ndef count_up_to(n):\n    flags = _prime_flags(n)\n    return [number for number in range(2, n) if flags[number]]\n",
+      "loop": "from math import isqrt\n\ndef _prime_flags(n):\n    flags = [True] * n\n    for prime in range(2, isqrt(max(n - 1, 0)) + 1):\n        if flags[prime]:\n            for multiple in range(prime * prime, n, prime):\n                flags[multiple] = False\n    return flags\n\ndef count_up_to(n):\n    flags = _prime_flags(n)\n    result = []\n    for number in range(2, n):\n        if flags[number]:\n            result.append(number)\n    return result\n"
+    },
+    "hold": "wording_approval",
+    "review_notes": [
+      "Proposed opening: Return a list of all prime integers strictly less than the non-negative integer n. Removes contradictory first-n wording. Shared sieve is preprocessing, not style target."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "HumanEval/100",
+    "entry_point": "make_a_pile",
+    "family": "arithmetic_mapping",
+    "transformation": "Map each pile index to its stone count.",
+    "implementations": {
+      "comprehension": "def make_a_pile(n):\n    return [n + 2 * level for level in range(n)]\n",
+      "loop": "def make_a_pile(n):\n    result = []\n    for level in range(n):\n        result.append(n + 2 * level)\n    return result\n"
+    },
+    "hold": null,
+    "review_notes": [
+      "Both are O(n), with arithmetic independent of accumulated output."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "HumanEval/105",
+    "entry_point": "by_length",
+    "family": "ordered_lookup_filtering",
+    "transformation": "Map valid digits in descending order to names.",
+    "implementations": {
+      "comprehension": "def by_length(arr):\n    names = (\"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\")\n    return [names[value - 1] for value in sorted(arr, reverse=True) if 1 <= value <= 9]\n",
+      "loop": "def by_length(arr):\n    names = (\"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\")\n    result = []\n    for value in sorted(arr, reverse=True):\n        if 1 <= value <= 9:\n            result.append(names[value - 1])\n    return result\n"
+    },
+    "hold": null,
+    "review_notes": [],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "HumanEval/106",
+    "entry_point": "f",
+    "family": "conditional_numeric_mapping",
+    "transformation": "Map each positive index to factorial or triangular number.",
+    "implementations": {
+      "comprehension": "from math import factorial\n\ndef f(n):\n    return [factorial(i) if i % 2 == 0 else i * (i + 1) // 2\n            for i in range(1, n + 1)]\n",
+      "loop": "from math import factorial\n\ndef f(n):\n    result = []\n    for i in range(1, n + 1):\n        result.append(factorial(i) if i % 2 == 0 else i * (i + 1) // 2)\n    return result\n"
+    },
+    "hold": null,
+    "review_notes": [
+      "Both references independently evaluate factorial with the standard library. They have equal work to each other, not to the optimized upstream recurrence; full-suite practicality is required. Stateful alternative solutions need separate adherence interpretation."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "HumanEval/113",
+    "entry_point": "odd_count",
+    "family": "formatted_scalar_mapping",
+    "transformation": "Format an odd-digit count for every input string.",
+    "implementations": {
+      "comprehension": "def _describe_digits(text):\n    count = sum(int(character) % 2 for character in text)\n    return \"the number of odd elements in the string i of the input.\".replace(\"i\", str(count))\n\ndef odd_count(lst):\n    return [_describe_digits(text) for text in lst]\n",
+      "loop": "def _describe_digits(text):\n    count = sum(int(character) % 2 for character in text)\n    return \"the number of odd elements in the string i of the input.\".replace(\"i\", str(count))\n\ndef odd_count(lst):\n    result = []\n    for text in lst:\n        result.append(_describe_digits(text))\n    return result\n"
+    },
+    "hold": null,
+    "review_notes": [
+      "Digit-count helper is scalar and uses no list construction; preserves the unusual literal replacement of every i."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "HumanEval/149",
+    "entry_point": "sorted_list_sum",
+    "family": "ordered_length_filtering",
+    "transformation": "Keep even-length words in length/lexicographic order.",
+    "implementations": {
+      "comprehension": "def sorted_list_sum(lst):\n    ordered = sorted(lst, key=lambda word: (len(word), word))\n    return [word for word in ordered if len(word) % 2 == 0]\n",
+      "loop": "def sorted_list_sum(lst):\n    ordered = sorted(lst, key=lambda word: (len(word), word))\n    result = []\n    for word in ordered:\n        if len(word) % 2 == 0:\n            result.append(word)\n    return result\n"
+    },
+    "hold": "wording_approval",
+    "review_notes": [
+      "Proposed edits: delete the contradictory equal-length assumption and replace example function list_sort with sorted_list_sum. No edit applied."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/7",
+    "entry_point": "find_char_long",
+    "family": "regex_word_filtering",
+    "transformation": "Select regex word tokens with at least four characters.",
+    "implementations": {
+      "comprehension": "import re\n\ndef find_char_long(text):\n    return [match.group() for match in re.finditer(r\"\\b\\w+\\b\", text)\n            if len(match.group()) >= 4]\n",
+      "loop": "import re\n\ndef find_char_long(text):\n    result = []\n    for match in re.finditer(r\"\\b\\w+\\b\", text):\n        if len(match.group()) >= 4:\n            result.append(match.group())\n    return result\n"
+    },
+    "hold": null,
+    "review_notes": [
+      "Word boundaries and Unicode semantics match re.findall; no whitespace-only assumption. Built-in findall is a valid alternative output style."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/108",
+    "entry_point": "merge_sorted_list",
+    "family": "flattening_with_ordering",
+    "transformation": "Flatten three lists before sorting the constructed values.",
+    "implementations": {
+      "comprehension": "def merge_sorted_list(num1, num2, num3):\n    result = [value for group in (num1, num2, num3) for value in group]\n    return sorted(result)\n",
+      "loop": "def merge_sorted_list(num1, num2, num3):\n    result = []\n    for group in (num1, num2, num3):\n        for value in group:\n            result.append(value)\n    return sorted(result)\n"
+    },
+    "hold": null,
+    "review_notes": [
+      "The target is result construction before common sorting. The legacy returned_list_v1 scorer may reject sorted wrapping; preserve that limitation rather than changing it. A blinded judge can inspect this explicit region."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/128",
+    "entry_point": "long_words",
+    "family": "string_length_filtering",
+    "transformation": "Select space-separated words longer than n.",
+    "implementations": {
+      "comprehension": "def long_words(n, s):\n    return [word for word in s.split(' ') if len(word) > n]\n",
+      "loop": "def long_words(n, s):\n    result = []\n    for word in s.split(' '):\n        if len(word) > n:\n            result.append(word)\n    return result\n"
+    },
+    "hold": "wording_approval",
+    "review_notes": [
+      "Proposed opening: Given integer n and a string s of space-separated words, return words longer than n characters. Original prose incorrectly calls the input a list."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/251",
+    "entry_point": "insert_element",
+    "family": "pair_flattening",
+    "transformation": "Insert an element before each input value.",
+    "implementations": {
+      "comprehension": "def insert_element(list1, element):\n    return [value for item in list1 for value in (element, item)]\n",
+      "loop": "def insert_element(list1, element):\n    result = []\n    for item in list1:\n        result.append(element)\n        result.append(item)\n    return result\n"
+    },
+    "hold": null,
+    "review_notes": [
+      "Both preserve object references and order; neither mutates list1."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/308",
+    "entry_point": "large_product",
+    "family": "cartesian_product_mapping",
+    "transformation": "Construct all pair products before common top-N selection.",
+    "implementations": {
+      "comprehension": "def large_product(nums1, nums2, N):\n    products = [left * right for left in nums1 for right in nums2]\n    return sorted(products, reverse=True)[:N]\n",
+      "loop": "def large_product(nums1, nums2, N):\n    products = []\n    for left in nums1:\n        for right in nums2:\n            products.append(left * right)\n    return sorted(products, reverse=True)[:N]\n"
+    },
+    "hold": null,
+    "review_notes": [
+      "Scoring region is products construction before sorting/slicing; no redundant copying after built-in selection. Both O(ab log(ab)), with identical numerical operations."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/391",
+    "entry_point": "convert_list_dictionary",
+    "family": "aligned_record_mapping",
+    "transformation": "Map aligned input triples into nested-dictionary records.",
+    "implementations": {
+      "comprehension": "def convert_list_dictionary(l1, l2, l3):\n    return [{key: {name: value}} for key, name, value in zip(l1, l2, l3)]\n",
+      "loop": "def convert_list_dictionary(l1, l2, l3):\n    result = []\n    for key, name, value in zip(l1, l2, l3):\n        result.append({key: {name: value}})\n    return result\n"
+    },
+    "hold": "wording_approval",
+    "review_notes": [
+      "Proposed opening: Combine three lists into a list of nested dictionaries as shown; stop at the shortest list. Original prose says a nested dictionary rather than a list."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/563",
+    "entry_point": "extract_values",
+    "family": "regex_capture_mapping",
+    "transformation": "Extract non-greedy double-quote captures without spanning newlines.",
+    "implementations": {
+      "comprehension": "import re\n\ndef extract_values(text):\n    return [match.group(1) for match in re.finditer(r'\"(.*?)\"', text)]\n",
+      "loop": "import re\n\ndef extract_values(text):\n    result = []\n    for match in re.finditer(r'\"(.*?)\"', text):\n        result.append(match.group(1))\n    return result\n"
+    },
+    "hold": null,
+    "review_notes": [
+      "Capture extraction is a mapping of match objects to strings; direct findall remains a legitimate neither-style alternative."
+    ],
+    "redundancy": "quote_capture_pair_563_725",
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/725",
+    "entry_point": "extract_quotation",
+    "family": "regex_capture_mapping",
+    "transformation": "Extract non-greedy double-quote captures without spanning newlines.",
+    "implementations": {
+      "comprehension": "import re\n\ndef extract_quotation(text1):\n    return [match.group(1) for match in re.finditer(r'\"(.*?)\"', text1)]\n",
+      "loop": "import re\n\ndef extract_quotation(text1):\n    result = []\n    for match in re.finditer(r'\"(.*?)\"', text1):\n        result.append(match.group(1))\n    return result\n"
+    },
+    "hold": "redundant_source",
+    "review_notes": [
+      "Capture extraction is a mapping of match objects to strings; direct findall remains a legitimate neither-style alternative."
+    ],
+    "redundancy": "quote_capture_pair_563_725",
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/572",
+    "entry_point": "two_unique_nums",
+    "family": "frequency_filtering",
+    "transformation": "Keep only elements that occur exactly once.",
+    "implementations": {
+      "comprehension": "def two_unique_nums(nums):\n    return [number for number in nums if nums.count(number) == 1]\n",
+      "loop": "def two_unique_nums(nums):\n    result = []\n    for number in nums:\n        if nums.count(number) == 1:\n            result.append(number)\n    return result\n"
+    },
+    "hold": "wording_approval",
+    "review_notes": [
+      "Proposed opening: From one list of numbers, retain only values that occur exactly once, preserving order. Both references preserve list.count equality behavior without adding hashability assumptions. Close to existing HumanEval/26; do not treat this as a new independent semantic family."
+    ],
+    "redundancy": "frequency_singletons_existing_humaneval_26",
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/589",
+    "entry_point": "perfect_squares",
+    "family": "square_mapping",
+    "transformation": "Enumerate squares between unordered integer endpoints.",
+    "implementations": {
+      "comprehension": "from math import isqrt\n\ndef perfect_squares(a, b):\n    lower, upper = sorted((a, b))\n    if upper < 0:\n        return []\n    lower = max(lower, 0)\n    first = isqrt(lower)\n    if first * first < lower:\n        first += 1\n    return [root * root for root in range(first, isqrt(upper) + 1)]\n",
+      "loop": "from math import isqrt\n\ndef perfect_squares(a, b):\n    lower, upper = sorted((a, b))\n    if upper < 0:\n        return []\n    lower = max(lower, 0)\n    first = isqrt(lower)\n    if first * first < lower:\n        first += 1\n    result = []\n    for root in range(first, isqrt(upper) + 1):\n        result.append(root * root)\n    return result\n"
+    },
+    "hold": null,
+    "review_notes": [
+      "Exact integer square roots avoid floating roundoff in references. Full finite upstream suites do not prove agreement with floating canonical behavior for arbitrary enormous integers. No domain restriction applied."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/610",
+    "entry_point": "remove_kth_element",
+    "family": "indexed_filtering",
+    "transformation": "Remove the one-based kth element without changing the input.",
+    "implementations": {
+      "comprehension": "def remove_kth_element(list1, k):\n    return [value for index, value in enumerate(list1, 1) if index != k]\n",
+      "loop": "def remove_kth_element(list1, k):\n    result = []\n    for index, value in enumerate(list1, 1):\n        if index != k:\n            result.append(value)\n    return result\n"
+    },
+    "hold": null,
+    "review_notes": [
+      "Both O(n), preserve references and order, and match the unchanged valid-k contract."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/612",
+    "entry_point": "merge",
+    "family": "column_construction",
+    "transformation": "Construct the two output columns from two-element input rows.",
+    "implementations": {
+      "comprehension": "def merge(lst):\n    return [[row[column] for row in lst] for column in range(2)]\n",
+      "loop": "def merge(lst):\n    result = []\n    for column in range(2):\n        values = []\n        for row in lst:\n            values.append(row[column])\n        result.append(values)\n    return result\n"
+    },
+    "hold": null,
+    "review_notes": [
+      "The original contract requires at least one input row, each of length two. Both inner and outer list constructions use the designated style; legacy AST scorer may not recognize nested loop accumulators."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/615",
+    "entry_point": "average_tuple",
+    "family": "column_reduction_mapping",
+    "transformation": "Map zipped columns to arithmetic means.",
+    "implementations": {
+      "comprehension": "def average_tuple(nums):\n    return [sum(column) / len(column) for column in zip(*nums)]\n",
+      "loop": "def average_tuple(nums):\n    result = []\n    for column in zip(*nums):\n        result.append(sum(column) / len(column))\n    return result\n"
+    },
+    "hold": "wording_approval",
+    "review_notes": [
+      "Proposed opening: Return column means of a tuple of row tuples as a list, stopping at the shortest row. Original prose says mean for each tuple, while example and canonical use columns."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/630",
+    "entry_point": "get_coordinates",
+    "family": "coordinate_product_mapping",
+    "transformation": "Convert Cartesian neighboring coordinate tuples into coordinate lists.",
+    "implementations": {
+      "comprehension": "from itertools import product\n\ndef get_coordinates(test_tup):\n    ranges = tuple(range(coordinate - 1, coordinate + 2) for coordinate in test_tup)\n    return [list(point) for point in product(*ranges)]\n",
+      "loop": "from itertools import product\n\ndef get_coordinates(test_tup):\n    ranges = tuple(range(coordinate - 1, coordinate + 2) for coordinate in test_tup)\n    result = []\n    for point in product(*ranges):\n        result.append(list(point))\n    return result\n"
+    },
+    "hold": "wording_and_scope_approval",
+    "review_notes": [
+      "Proposed statement must explicitly cover arbitrary dimension, include the center and lexicographic order. Do not restrict to 2D. Product size is exponential because required output is exponential; this is outside the simplest local-map core and stays held."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/632",
+    "entry_point": "move_zero",
+    "family": "stable_nonzero_filtering",
+    "transformation": "Filter nonzero values then append the required zero suffix.",
+    "implementations": {
+      "comprehension": "def move_zero(num_list):\n    front = [value for value in num_list if value != 0]\n    return front + [0] * num_list.count(0)\n",
+      "loop": "def move_zero(num_list):\n    front = []\n    for value in num_list:\n        if value != 0:\n            front.append(value)\n    return front + [0] * num_list.count(0)\n"
+    },
+    "hold": null,
+    "review_notes": [
+      "Target is front filtering, excluding literal zero suffix. Both preserve canonical replacement of zero-valued floats with integer zeros. No input mutation."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  },
+  {
+    "schema_version": 1,
+    "task_id": "Mbpp/745",
+    "entry_point": "divisible_by_digits",
+    "family": "digit_predicate_filtering",
+    "transformation": "Filter the range to numbers divisible by every nonzero decimal digit.",
+    "implementations": {
+      "comprehension": "def _divides_digits(number):\n    for character in str(number):\n        digit = int(character)\n        if digit == 0 or number % digit != 0:\n            return False\n    return True\n\ndef divisible_by_digits(startnum, endnum):\n    return [number for number in range(startnum, endnum + 1) if _divides_digits(number)]\n",
+      "loop": "def _divides_digits(number):\n    for character in str(number):\n        digit = int(character)\n        if digit == 0 or number % digit != 0:\n            return False\n    return True\n\ndef divisible_by_digits(startnum, endnum):\n    result = []\n    for number in range(startnum, endnum + 1):\n        if _divides_digits(number):\n            result.append(number)\n    return result\n"
+    },
+    "hold": "domain_approval",
+    "review_notes": [
+      "Source contract permits negative endpoints but canonical int(\"-\") raises for negative numbers. Full test pass cannot resolve this domain ambiguity; no silent abs or positive-domain restriction."
+    ],
+    "redundancy": null,
+    "human_review": "not_requested_yet"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/424",
+  "entry_point": "extract_rear",
+  "transformation": "Map each nonempty string in a tuple to its final character.",
+  "implementations": {
+    "comprehension": "def extract_rear(test_tuple):\n    \"\"\"Collect the final character of each nonempty string.\"\"\"\n    return [text[-1] for text in test_tuple]\n",
+    "loop": "def extract_rear(test_tuple):\n    \"\"\"Collect the final character of each nonempty string.\"\"\"\n    final_characters = []\n    for text in test_tuple:\n        final_characters.append(text[-1])\n    return final_characters\n"
+  },
+  "review_notes": [
+    "Preserves tuple order, duplicate characters and Python Unicode code-point indexing; does not reinterpret grapheme clusters.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "api_budget": {
+    "actual_provider_billing_verified": false,
+    "approved_ceiling_usd": 25,
+    "existing_pod_cost_excluded": true,
+    "original_conservative_estimate_usd": 7.1993671,
+    "three_attempt_conservative_reassessment_usd": 21.5981013
+  },
+  "artifact_sha256": {
+    "amendments/retry-policy-v1.json": "5c48adff86ae8826d87f5cbf18ea09ce5e0a0f99845386085286869af08b05ea",
+    "analysis/analysis.json": "d7f595959895e8b1867184191c8a09071294914fb4034eb5d3ffbb39a8814f9d",
+    "analysis/report.md": "c5c5f1d109498f1017dbbe3e9adb435b59a2084d9b319cbdf9e2ffabef821865",
+    "blind-style-audit-reconciliation.json": "9f5dc1e1af0e01b2e1bcd44828cf7024675d580dd79c2581cbb4c54352c9b8c4",
+    "collection-policy-deviation.json": "9f3090193149b43c2a3788c7c34d2ab16c195cf4700d290d0ecc036a1133cff5",
+    "completion-report.md": "249390d7898f6539eebe62079d292daa8631a612aa03c39e435c5ca18ecb59ea",
+    "final-verification.json": "bad633b77b2d147194b48a666161ca6e36b11d898a59960275c36540a24ca80e",
+    "manifest.json": "ddee94fc4257184bf9a1bcf4dbdcd9ac2365744d363cbda0f4a0d7e66e932073",
+    "probe-format-audit-final.json": "03536fb6801fa3ae5faca44c0453d5a2ef138d6ad11310e29ed2439dbe2b04d9"
+  },
+  "assigned": 512,
+  "bootstrap": {
+    "interval": 0.95,
+    "method": "paired percentile cluster bootstrap",
+    "replicates": 10000,
+    "seed": 20261010,
+    "unit": "source_task_id"
+  },
+  "completion_report": "runs/pilot/pilot-11-20261010/completion-report.md",
+  "core_assigned": 352,
+  "core_without_style_label": 75,
+  "development_exposed_task_ids": [
+    "HumanEval/7"
+  ],
+  "interpretation": "No clear positive power-specific pattern; scorer coverage and Nemotron comprehension failures prevent strong scientific conclusions.",
+  "interrupted": 3,
+  "limitations": [
+    "Collection is operationally closed with zero unstarted assignments. The frozen analysis helper labels any interruption incomplete; three interrupted assignments are terminal missing observations retained under the no-reissue policy, not pending collection.",
+    "Primary effects match the saved analysis. No robust positive power-specific pattern is established; Claude positive tau is one task contrast, while GPT and Nemotron final estimates are negative and SFT zero.",
+    "75 of 352 core assignments have no style label: 71 region-coverage failures, one extraction failure, and three interrupted generations. These zero-coded missing labels can produce or suppress apparent preference effects; the endpoint is observed classified comprehension-only, not a definitive semantic classification of every output.",
+    "Nemotron strict probe failures are not solely formatting failures; exploratory fence-only audit finds final5/16 andSFT4/16 both-answer accuracy. Their null power effects do not establish power-insensitivity under understood manipulation.",
+    "Degenerate bootstrap intervals such as SFT tau[0,0] describe resampling these observed tasks and do not demonstrate an exact population null.",
+    "Pre-amendment SDK retries were unintentionally enabled; prior outputs retained, three interrupted requests not reissued. Actual occurrence of prior HTTP retries is unknown. Later sessions enforce zero retries."
+  ],
+  "models": {
+    "claude-sonnet": {
+      "assigned": 128,
+      "core_assigned": 88,
+      "core_full_oracle_passes": 86,
+      "core_style_counts": {
+        "comprehension_only": 43,
+        "invalid_or_unparseable": 0,
+        "loop_only": 35,
+        "mixed": 0,
+        "neither": 0,
+        "unscored": 10
+      },
+      "core_style_statuses": {
+        "not_evaluated": 1,
+        "region_unsupported": 9,
+        "scored": 78
+      },
+      "exploratory_fence_only_probe_both_correct": 16,
+      "probe_assigned": 16,
+      "statuses": {
+        "interrupted": 1,
+        "scored": 127
+      },
+      "strict_probe_both_correct": 14,
+      "tau": {
+        "estimate": 0.045454545454545456,
+        "interval_95": [
+          0.0,
+          0.13636363636363635
+        ]
+      }
+    },
+    "gpt-oss-120b": {
+      "assigned": 128,
+      "core_assigned": 88,
+      "core_full_oracle_passes": 78,
+      "core_style_counts": {
+        "comprehension_only": 32,
+        "invalid_or_unparseable": 0,
+        "loop_only": 33,
+        "mixed": 0,
+        "neither": 0,
+        "unscored": 23
+      },
+      "core_style_statuses": {
+        "not_evaluated": 1,
+        "region_ambiguous": 6,
+        "region_unsupported": 16,
+        "scored": 65
+      },
+      "exploratory_fence_only_probe_both_correct": 16,
+      "probe_assigned": 16,
+      "statuses": {
+        "interrupted": 1,
+        "scored": 127
+      },
+      "strict_probe_both_correct": 16,
+      "tau": {
+        "estimate": -0.09090909090909091,
+        "interval_95": [
+          -0.22727272727272727,
+          0.0
+        ]
+      }
+    },
+    "nemotron-final": {
+      "assigned": 128,
+      "core_assigned": 88,
+      "core_full_oracle_passes": 69,
+      "core_style_counts": {
+        "comprehension_only": 39,
+        "invalid_or_unparseable": 0,
+        "loop_only": 26,
+        "mixed": 0,
+        "neither": 0,
+        "unscored": 23
+      },
+      "core_style_statuses": {
+        "not_evaluated": 1,
+        "region_ambiguous": 8,
+        "region_unsupported": 14,
+        "scored": 65
+      },
+      "exploratory_fence_only_probe_both_correct": 5,
+      "probe_assigned": 16,
+      "statuses": {
+        "interrupted": 1,
+        "scored": 127
+      },
+      "strict_probe_both_correct": 0,
+      "tau": {
+        "estimate": -0.045454545454545456,
+        "interval_95": [
+          -0.13636363636363635,
+          0.0
+        ]
+      }
+    },
+    "nemotron-sft": {
+      "assigned": 128,
+      "core_assigned": 88,
+      "core_full_oracle_passes": 77,
+      "core_style_counts": {
+        "comprehension_only": 42,
+        "invalid_or_unparseable": 0,
+        "loop_only": 27,
+        "mixed": 0,
+        "neither": 0,
+        "unscored": 19
+      },
+      "core_style_statuses": {
+        "extraction_failed": 1,
+        "region_ambiguous": 2,
+        "region_unsupported": 16,
+        "scored": 69
+      },
+      "exploratory_fence_only_probe_both_correct": 4,
+      "probe_assigned": 16,
+      "statuses": {
+        "scored": 128
+      },
+      "strict_probe_both_correct": 0,
+      "tau": {
+        "estimate": 0.0,
+        "interval_95": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "not_started": 0,
+  "pilot_tasks": [
+    "HumanEval/7",
+    "Mbpp/778",
+    "Mbpp/413",
+    "Mbpp/629",
+    "HumanEval/21",
+    "Mbpp/282",
+    "Mbpp/447",
+    "Mbpp/730",
+    "HumanEval/33",
+    "HumanEval/163",
+    "HumanEval/87"
+  ],
+  "primary_endpoint": "comprehension_only indicator over all assigned core trials; all other or missing labels count zero",
+  "principal_estimator": "tau = average_user[(C-grader minus L-grader in future_selection) - (C-grader minus L-grader in shadow)]",
+  "private_run_directory": "runs/pilot/pilot-11-20261010",
+  "public_input_sha256": {
+    "configs/experiments/pilot-11.json": "fa2da4ccbc9cd3c6753ce01e4a1b593d0db00933ecbdf0a7153c2161e2259ef9",
+    "manifests/pilot_selection.json": "fcdeba518bdb29c825666f964b8606458381a6d73a4a69cede961de6bdae2a08",
+    "manifests/task_human_review.json": "eedcf87bf0d5d178a21a72b54316d16c1d396c3d23c6b2b3768c61fbe5bd8d7e",
+    "manifests/tasks_pilot.jsonl": "d452755f23bf421e8050f2d2bd2933176f4fe2b3543833e937d11b7aaecf6e31"
+  },
+  "raw_source_sha256": {
+    "analysis/analysis.json": "d7f595959895e8b1867184191c8a09071294914fb4034eb5d3ffbb39a8814f9d",
+    "analysis/report.md": "c5c5f1d109498f1017dbbe3e9adb435b59a2084d9b319cbdf9e2ffabef821865",
+    "claude-sonnet/results.jsonl": "d4a33acde3f25e5b238e5bdd458a0ae8c119554a737e259b1f5e8a27e7e8d24d",
+    "gpt-oss-120b/results.jsonl": "0ca022224159da58cecd67dbc4e8d753cf5d58f2ea37cd8e5520e445c5f9a857",
+    "manifest.json": "ddee94fc4257184bf9a1bcf4dbdcd9ac2365744d363cbda0f4a0d7e66e932073",
+    "nemotron-final/results.jsonl": "822daad9d8fcef437422393f7a5ab6e35541317259f6a1f373da56e9e672c2a8",
+    "nemotron-sft/results.jsonl": "09ad5a31182089ca1ef9569b2cbedc2e29e26579231ac46d7c1cb03e6d1663c5"
+  },
+  "recorded_at": "2026-10-10T10:13:54.727087+00:00",
+  "reserved_task_count": 40,
+  "reserved_tasks_used_for_inference": 0,
+  "retry_policy_deviation": {
+    "actual_prior_http_retries": "unknown",
+    "initial_sdk_defaults": 2,
+    "interrupted_without_reissue": 3,
+    "remaining_assignments_completed_with_verified_zero_retries": 363,
+    "scored_before_correction": 146
+  },
+  "run_id": "pilot-11-20261010",
+  "schema_version": 1,
+  "scored": 509,
+  "status": "collection_closed_with_terminal_missing_observations"
+}

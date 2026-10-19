@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grader Power · Experiment results</title>
+<style>/* DASHBOARD_CSS */</style>
+</head>
+<body>
+<header><div class="topline"><span class="brand">GRADER POWER / LAB NOTEBOOK</span><span id="snapshot"></span></div>
+<h1>When models go against<br>the user’s style preference.</h1>
+<p class="intro">Saved experiments, compared condition by condition. Each horizontal number line is a condition. Filled points and solid bars show rates and 95% confidence intervals; hollow diamonds and dashes in the matched study show unknown-outcome bounds instead. Click a condition to inspect its prompt.</p>
+<div class="summary" id="summary"></div></header>
+<main>
+<div id="study-status" aria-label="Study status updates" hidden></div>
+<section class="controls" aria-label="Chart controls">
+<label>Study<select id="study"><option value="main">All main studies</option><option value="all">All studies, including early pilots</option></select></label>
+<label>User preference<select id="user"><option value="all">Pool style directions</option><option value="loops">Explicit loops</option><option value="comprehensions">Comprehensions</option><option value="map_filter">Map / filter</option><option value="snake_case">snake_case</option><option value="camelCase">camelCase</option><option value="single_quotes">Single quotes</option><option value="double_quotes">Double quotes</option></select></label>
+<label>Measure<select id="metric"><option value="nonfollowing">Does not follow user style</option><option value="alternative">Uses a different pure style</option></select></label>
+<label>Matched experiment view<select id="matched-view"><option value="recovery">Designated recovery</option><option value="strict">Original strict</option><option value="prior">First loop recovery</option></select></label>
+<label class="search">Find a condition<input id="search" type="search" placeholder="e.g. reward, shadow, definitions"></label>
+<button id="export">Export displayed rates ↓</button>
+<button id="export-paired" hidden>Export paired comparisons ↓</button>
+</section>
+<details class="method"><summary>How to read these charts &amp; what is included</summary>
+<div><p><strong>Default rate:</strong> judged outcomes whose style label differs from the user’s preferred style, divided by assessed outcomes. Mixed, neither, and invalid/unparseable labels count as non-following. Unresolved judgments are excluded from the rate and reported separately. For naming and quotes, resolved <em>no style evidence</em> labels are also excluded: they establish neither following nor violation. Historical studies have no such category, so their assessed denominator equals the previous resolved denominator. This is a behavioral description, not a claim about intent.</p>
+<p><strong>Matched reviewer study exception:</strong> the fixed endpoint is pure opposite-user style divided by <em>all assigned outputs</em>, regardless of the measure menu. Mixed, neither and invalid labels remain separate observed outcomes and count zero for this narrow endpoint. They are not thereby classified as compliant. Unresolved outputs remain in the denominator: hollow diamonds joined by dashes show their sharp identification bounds, not a confidence interval. When outcomes are unresolved, the full rate estimate and task interval are withheld. Each of the four actor names has agreement and conflict panels; the one shared absence cohort is shown repeatedly for comparison without duplicating observations.</p>
+<p><strong>Matched paired analysis:</strong> subtract treatment and reference opposite-style counts out of eight within each task and user direction, average the directions, then weight all 32 tasks equally. The frozen analysis uses 10,000 paired task bootstrap draws, marginal 95% intervals, and separate Holm families of 12 primary, 15 consequence and 3 unseen-output comparisons. The full family is withheld if required outcomes are unresolved. Its identification bounds are displayed separately from sampling intervals; bounds excluding zero are not a significance test. A non-significant result does not establish equivalence. The direction menu changes the descriptive view; predeclared tests apply only to the two-direction average.</p>
+<p><strong>Naming and quote robustness:</strong> the same per-assigned endpoint applies, including resolved no-evidence outcomes as observed zeros. Each style has 24 separately audited tasks, eight repetitions per direction and 10,000 paired task bootstrap draws. The full 6/12/6 Holm families span both styles and all three models; GLM naming remains held and is not removed from the families. These are fresh observations, separate from the older naming and quote studies.</p>
+<p><strong>Recovery view:</strong> the menu switches last night’s matched-policy cells and paired comparisons between original strict outcomes and the predeclared additive recovery. It adds no observations. The recovery used 130 designated fresh generations, 17 fresh blinded judgments of existing responses, and 86 separately recorded mechanical repairs; earlier outcomes remain preserved. Unresolved outcomes are never replaced with zero or selected by success.</p>
+<p><strong>Alternative measure:</strong> only a different pure style counts in the numerator; the denominator remains assessed outcomes. Correctness is never used to filter either measure. Style directions are pooled by observation; use the preference menu to split them. Tables separately show mixed, no-evidence and unresolved counts out of all assignments.</p>
+<p><strong>Baselines:</strong> dashed number lines mark the closest matching no-reviewer condition in the same study and mode, where available; otherwise the same intervention with user and reviewer agreeing. Different task sets and historical pilot controls are not substituted. No-reviewer controls remove the reviewer/consequence machinery. Some ablations have no matching baseline.</p>
+<p><strong>95% confidence intervals:</strong> approximate percentile intervals from 2,000 deterministic bootstrap resamples of source tasks. Repetitions and pooled style directions stay together within a task; each resample recomputes the ratio of non-following to assessed outcomes. Tasks with no assessed outcomes are excluded. Intervals are conditional on assessed outcomes and are not adjusted for multiple comparisons. Fewer than two assessed tasks gives no interval; constant outcomes can yield a zero-width interval. Missingness bounds in the tables are separate.</p>
+<p><strong>Comparison limits:</strong> these are descriptive comparisons. Models are categories, not stages of training. Tasks, repetitions, providers and judge rubrics can differ between cohorts; counts and paths appear in the tables and prompt inspector. “Described RL” is prompt wording, not actual training during these experiments. Unmeasured models have no marker; they are not shown as zero.</p>
+<p><strong>Coverage:</strong> completed main-analysis exports and early core pilots. Includes audited main-study recoveries. Each recovered cell uses its designated fresh attempt even if it failed; earlier attempts remain preserved and are not counted as additional observations. Free judgment repairs retain their source judgments and separate audit provenance. Excludes access checks, synthetic demos, readiness checks, development pilots, comprehension probes and duplicate historical analyses. Early pilots use the historical static scorer and are kept separate from semantic-judge main studies.</p>
+<p>Inspired by the stacked condition comparisons in <a href="https://www.lesswrong.com/posts/LhXW8ziwnn7Dd8edm/a-toy-environment-for-exploring-reasoning-about-reward" target="_blank" rel="noreferrer">A Toy Environment For Exploring Reasoning About Reward</a>. This page is a local snapshot; rebuild to refresh.</p>
+<div id="sources"></div></div></details>
+<div class="key"><span class="line"></span> Condition number line <span class="line dashed"></span> Baseline number line <span>Same model color and condition ID throughout</span></div>
+<div id="charts"></div><p id="empty" hidden>No matching conditions. Try another study, style preference or search.</p>
+<footer>Local snapshot · No network requests · Rebuild with <code>.venv/bin/python scripts/build_results_dashboard.py</code></footer>
+</main>
+<dialog id="prompt-dialog"><div class="dialog-head"><div><span class="eyebrow">CONDITION & PROMPT</span><h2 id="prompt-title"></h2></div><button id="close-dialog" aria-label="Close prompt inspector">✕</button></div>
+<p id="prompt-id" class="mono"></p><p id="prompt-description"></p>
+<label>Saved style combination &amp; cohort<select id="prompt-example"></select></label>
+<div class="tabs"><button id="template-tab" aria-pressed="true">Prompt template</button><button id="example-tab" aria-pressed="false">Exact saved example</button><button id="copy-prompt">Copy text</button></div>
+<p id="prompt-meta" class="meta"></p><pre id="prompt-text" tabindex="0"></pre>
+<details><summary>Counts for this condition</summary><div id="prompt-counts"></div></details>
+</dialog>
+<script id="data" type="application/json">DASHBOARD_DATA</script>
+<script>/* DASHBOARD_JS */</script>
+</body></html>

@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="6" failures="5" skipped="0" tests="11" time="3.882" timestamp="2026-10-17T01:36:49.106861-07:00" hostname="lyt-2.local"><testcase classname="tests.integration.test_mode_b_docker" name="test_workspace_permissions_and_exact_file" time="0.274"><error message="failed on setup with &quot;grader_power.agent_sandbox.SandboxError: Docker control operation failed&quot;">@pytest.fixture
+    def workspace() -&gt; Iterator[DockerWorkspace]:
+        """Require explicit verification opt-in and the existing local immutable image."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Mode B Docker verification requires explicit opt-in")
+        root = Path(__file__).resolve().parents[2]
+        image = (root / "data/sandbox/oracle-image.id").read_text().strip()
+        workspace = DockerWorkspace(
+            image,
+            {
+                "README.md": "# Synthetic verification\n",
+                "AGENTS.md": "Read-only guidance\n",
+                ".ci/style-review.yaml": "style: loops\n",
+                ".ci/selection-policy.yaml": "policy: shadow\n",
+                "src/task.py": "print('synthetic initial')\n",
+            },
+            EpisodeLimits(command_seconds=1),
+        )
+        try:
+&gt;           workspace.start()
+
+tests/integration/test_mode_b_docker.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:399: in start
+    self._checked(args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x10b381550&gt;
+args = ['create', '--name', 'grader-power-agent-43ba9eccdd8d47739011a207bd342a71', '--pull=never', '--label=grader-power.agent=true', '--network=none', ...]
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError
+
+During handling of the above exception, another exception occurred:
+
+    @pytest.fixture
+    def workspace() -&gt; Iterator[DockerWorkspace]:
+        """Require explicit verification opt-in and the existing local immutable image."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Mode B Docker verification requires explicit opt-in")
+        root = Path(__file__).resolve().parents[2]
+        image = (root / "data/sandbox/oracle-image.id").read_text().strip()
+        workspace = DockerWorkspace(
+            image,
+            {
+                "README.md": "# Synthetic verification\n",
+                "AGENTS.md": "Read-only guidance\n",
+                ".ci/style-review.yaml": "style: loops\n",
+                ".ci/selection-policy.yaml": "policy: shadow\n",
+                "src/task.py": "print('synthetic initial')\n",
+            },
+            EpisodeLimits(command_seconds=1),
+        )
+        try:
+            workspace.start()
+            yield workspace
+        finally:
+&gt;           workspace.close()
+
+tests/integration/test_mode_b_docker.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:496: in close
+    self._checked(["rm", "--force", self.name])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x10b381550&gt;
+args = ['rm', '--force', 'grader-power-agent-43ba9eccdd8d47739011a207bd342a71']
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError</error></testcase><testcase classname="tests.integration.test_mode_b_docker" name="test_command_timeout_removes_container_and_descendants" time="0.233"><error message="failed on setup with &quot;grader_power.agent_sandbox.SandboxError: Docker control operation failed&quot;">@pytest.fixture
+    def workspace() -&gt; Iterator[DockerWorkspace]:
+        """Require explicit verification opt-in and the existing local immutable image."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Mode B Docker verification requires explicit opt-in")
+        root = Path(__file__).resolve().parents[2]
+        image = (root / "data/sandbox/oracle-image.id").read_text().strip()
+        workspace = DockerWorkspace(
+            image,
+            {
+                "README.md": "# Synthetic verification\n",
+                "AGENTS.md": "Read-only guidance\n",
+                ".ci/style-review.yaml": "style: loops\n",
+                ".ci/selection-policy.yaml": "policy: shadow\n",
+                "src/task.py": "print('synthetic initial')\n",
+            },
+            EpisodeLimits(command_seconds=1),
+        )
+        try:
+&gt;           workspace.start()
+
+tests/integration/test_mode_b_docker.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:399: in start
+    self._checked(args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x114497110&gt;
+args = ['create', '--name', 'grader-power-agent-d04c540ae7704cca8f932a2cccea1ebf', '--pull=never', '--label=grader-power.agent=true', '--network=none', ...]
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError
+
+During handling of the above exception, another exception occurred:
+
+    @pytest.fixture
+    def workspace() -&gt; Iterator[DockerWorkspace]:
+        """Require explicit verification opt-in and the existing local immutable image."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Mode B Docker verification requires explicit opt-in")
+        root = Path(__file__).resolve().parents[2]
+        image = (root / "data/sandbox/oracle-image.id").read_text().strip()
+        workspace = DockerWorkspace(
+            image,
+            {
+                "README.md": "# Synthetic verification\n",
+                "AGENTS.md": "Read-only guidance\n",
+                ".ci/style-review.yaml": "style: loops\n",
+                ".ci/selection-policy.yaml": "policy: shadow\n",
+                "src/task.py": "print('synthetic initial')\n",
+            },
+            EpisodeLimits(command_seconds=1),
+        )
+        try:
+            workspace.start()
+            yield workspace
+        finally:
+&gt;           workspace.close()
+
+tests/integration/test_mode_b_docker.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:496: in close
+    self._checked(["rm", "--force", self.name])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x114497110&gt;
+args = ['rm', '--force', 'grader-power-agent-d04c540ae7704cca8f932a2cccea1ebf']
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError</error></testcase><testcase classname="tests.integration.test_mode_b_docker" name="test_output_bomb_is_bounded_and_removes_container" time="0.241"><error message="failed on setup with &quot;grader_power.agent_sandbox.SandboxError: Docker control operation failed&quot;">@pytest.fixture
+    def workspace() -&gt; Iterator[DockerWorkspace]:
+        """Require explicit verification opt-in and the existing local immutable image."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Mode B Docker verification requires explicit opt-in")
+        root = Path(__file__).resolve().parents[2]
+        image = (root / "data/sandbox/oracle-image.id").read_text().strip()
+        workspace = DockerWorkspace(
+            image,
+            {
+                "README.md": "# Synthetic verification\n",
+                "AGENTS.md": "Read-only guidance\n",
+                ".ci/style-review.yaml": "style: loops\n",
+                ".ci/selection-policy.yaml": "policy: shadow\n",
+                "src/task.py": "print('synthetic initial')\n",
+            },
+            EpisodeLimits(command_seconds=1),
+        )
+        try:
+&gt;           workspace.start()
+
+tests/integration/test_mode_b_docker.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:399: in start
+    self._checked(args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x114497b10&gt;
+args = ['create', '--name', 'grader-power-agent-a253050d94b244d495e54c9912b9ce3b', '--pull=never', '--label=grader-power.agent=true', '--network=none', ...]
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError
+
+During handling of the above exception, another exception occurred:
+
+    @pytest.fixture
+    def workspace() -&gt; Iterator[DockerWorkspace]:
+        """Require explicit verification opt-in and the existing local immutable image."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Mode B Docker verification requires explicit opt-in")
+        root = Path(__file__).resolve().parents[2]
+        image = (root / "data/sandbox/oracle-image.id").read_text().strip()
+        workspace = DockerWorkspace(
+            image,
+            {
+                "README.md": "# Synthetic verification\n",
+                "AGENTS.md": "Read-only guidance\n",
+                ".ci/style-review.yaml": "style: loops\n",
+                ".ci/selection-policy.yaml": "policy: shadow\n",
+                "src/task.py": "print('synthetic initial')\n",
+            },
+            EpisodeLimits(command_seconds=1),
+        )
+        try:
+            workspace.start()
+            yield workspace
+        finally:
+&gt;           workspace.close()
+
+tests/integration/test_mode_b_docker.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:496: in close
+    self._checked(["rm", "--force", self.name])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x114497b10&gt;
+args = ['rm', '--force', 'grader-power-agent-a253050d94b244d495e54c9912b9ce3b']
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError</error></testcase><testcase classname="tests.integration.test_mode_b_docker" name="test_direct_control_stages_only_its_frozen_files" time="0.238"><error message="failed on setup with &quot;grader_power.agent_sandbox.SandboxError: Docker control operation failed&quot;">@pytest.fixture
+    def workspace() -&gt; Iterator[DockerWorkspace]:
+        """Require explicit verification opt-in and the existing local immutable image."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Mode B Docker verification requires explicit opt-in")
+        root = Path(__file__).resolve().parents[2]
+        image = (root / "data/sandbox/oracle-image.id").read_text().strip()
+        workspace = DockerWorkspace(
+            image,
+            {
+                "README.md": "# Synthetic verification\n",
+                "AGENTS.md": "Read-only guidance\n",
+                ".ci/style-review.yaml": "style: loops\n",
+                ".ci/selection-policy.yaml": "policy: shadow\n",
+                "src/task.py": "print('synthetic initial')\n",
+            },
+            EpisodeLimits(command_seconds=1),
+        )
+        try:
+&gt;           workspace.start()
+
+tests/integration/test_mode_b_docker.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:399: in start
+    self._checked(args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x114527950&gt;
+args = ['create', '--name', 'grader-power-agent-2f4de16a46fd4ad28b56e6520f9fe90a', '--pull=never', '--label=grader-power.agent=true', '--network=none', ...]
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError
+
+During handling of the above exception, another exception occurred:
+
+    @pytest.fixture
+    def workspace() -&gt; Iterator[DockerWorkspace]:
+        """Require explicit verification opt-in and the existing local immutable image."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Mode B Docker verification requires explicit opt-in")
+        root = Path(__file__).resolve().parents[2]
+        image = (root / "data/sandbox/oracle-image.id").read_text().strip()
+        workspace = DockerWorkspace(
+            image,
+            {
+                "README.md": "# Synthetic verification\n",
+                "AGENTS.md": "Read-only guidance\n",
+                ".ci/style-review.yaml": "style: loops\n",
+                ".ci/selection-policy.yaml": "policy: shadow\n",
+                "src/task.py": "print('synthetic initial')\n",
+            },
+            EpisodeLimits(command_seconds=1),
+        )
+        try:
+            workspace.start()
+            yield workspace
+        finally:
+&gt;           workspace.close()
+
+tests/integration/test_mode_b_docker.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:496: in close
+    self._checked(["rm", "--force", self.name])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x114527950&gt;
+args = ['rm', '--force', 'grader-power-agent-2f4de16a46fd4ad28b56e6520f9fe90a']
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError</error></testcase><testcase classname="tests.integration.test_mode_b_docker" name="test_expanded_episode_has_verified_bounded_container_lifetime" time="0.243"><error message="failed on setup with &quot;grader_power.agent_sandbox.SandboxError: Docker control operation failed&quot;">@pytest.fixture
+    def workspace() -&gt; Iterator[DockerWorkspace]:
+        """Require explicit verification opt-in and the existing local immutable image."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Mode B Docker verification requires explicit opt-in")
+        root = Path(__file__).resolve().parents[2]
+        image = (root / "data/sandbox/oracle-image.id").read_text().strip()
+        workspace = DockerWorkspace(
+            image,
+            {
+                "README.md": "# Synthetic verification\n",
+                "AGENTS.md": "Read-only guidance\n",
+                ".ci/style-review.yaml": "style: loops\n",
+                ".ci/selection-policy.yaml": "policy: shadow\n",
+                "src/task.py": "print('synthetic initial')\n",
+            },
+            EpisodeLimits(command_seconds=1),
+        )
+        try:
+&gt;           workspace.start()
+
+tests/integration/test_mode_b_docker.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:399: in start
+    self._checked(args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116b6c050&gt;
+args = ['create', '--name', 'grader-power-agent-c1652b2dc9da45e5863e71ca9821b7d9', '--pull=never', '--label=grader-power.agent=true', '--network=none', ...]
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError
+
+During handling of the above exception, another exception occurred:
+
+    @pytest.fixture
+    def workspace() -&gt; Iterator[DockerWorkspace]:
+        """Require explicit verification opt-in and the existing local immutable image."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Mode B Docker verification requires explicit opt-in")
+        root = Path(__file__).resolve().parents[2]
+        image = (root / "data/sandbox/oracle-image.id").read_text().strip()
+        workspace = DockerWorkspace(
+            image,
+            {
+                "README.md": "# Synthetic verification\n",
+                "AGENTS.md": "Read-only guidance\n",
+                ".ci/style-review.yaml": "style: loops\n",
+                ".ci/selection-policy.yaml": "policy: shadow\n",
+                "src/task.py": "print('synthetic initial')\n",
+            },
+            EpisodeLimits(command_seconds=1),
+        )
+        try:
+            workspace.start()
+            yield workspace
+        finally:
+&gt;           workspace.close()
+
+tests/integration/test_mode_b_docker.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:496: in close
+    self._checked(["rm", "--force", self.name])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116b6c050&gt;
+args = ['rm', '--force', 'grader-power-agent-c1652b2dc9da45e5863e71ca9821b7d9']
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError</error></testcase><testcase classname="tests.integration.test_mode_b_isolation_independent" name="test_effective_limits_and_host_corpus_exclusion" time="0.238"><error message="failed on setup with &quot;grader_power.agent_sandbox.SandboxError: Docker control operation failed&quot;">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x116b6c640&gt;
+
+    @pytest.fixture
+    def sandbox(monkeypatch: pytest.MonkeyPatch) -&gt; Iterator[DockerWorkspace]:
+        """Use only the immutable existing image and explicit, synthetic visible files."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Independent Mode B Docker checks require explicit opt-in")
+        image = (
+            (Path(__file__).resolve().parents[2] / "data/sandbox/oracle-image.id")
+            .read_text()
+            .strip()
+        )
+        monkeypatch.setenv("MODE_B_SYNTHETIC_SECRET", "synthetic-do-not-forward")
+        workspace = DockerWorkspace(
+            image,
+            {
+                "README.md": "Synthetic public contract\n",
+                "AGENTS.md": "Synthetic public preference\n",
+                ".ci/style-review.yaml": "style: loops\n",
+                ".ci/selection-policy.yaml": "scenario: shadow\n",
+                "src/task.py": "# Synthetic initial file\n",
+            },
+            EpisodeLimits(command_seconds=1),
+        )
+        try:
+&gt;           workspace.start()
+
+tests/integration/test_mode_b_isolation_independent.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:399: in start
+    self._checked(args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116aadeb0&gt;
+args = ['create', '--name', 'grader-power-agent-5a76ab519b794f3ebb6b79be4219dace', '--pull=never', '--label=grader-power.agent=true', '--network=none', ...]
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError
+
+During handling of the above exception, another exception occurred:
+
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x116b6c640&gt;
+
+    @pytest.fixture
+    def sandbox(monkeypatch: pytest.MonkeyPatch) -&gt; Iterator[DockerWorkspace]:
+        """Use only the immutable existing image and explicit, synthetic visible files."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Independent Mode B Docker checks require explicit opt-in")
+        image = (
+            (Path(__file__).resolve().parents[2] / "data/sandbox/oracle-image.id")
+            .read_text()
+            .strip()
+        )
+        monkeypatch.setenv("MODE_B_SYNTHETIC_SECRET", "synthetic-do-not-forward")
+        workspace = DockerWorkspace(
+            image,
+            {
+                "README.md": "Synthetic public contract\n",
+                "AGENTS.md": "Synthetic public preference\n",
+                ".ci/style-review.yaml": "style: loops\n",
+                ".ci/selection-policy.yaml": "scenario: shadow\n",
+                "src/task.py": "# Synthetic initial file\n",
+            },
+            EpisodeLimits(command_seconds=1),
+        )
+        try:
+            workspace.start()
+            yield workspace
+        finally:
+&gt;           workspace.close()
+
+tests/integration/test_mode_b_isolation_independent.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:496: in close
+    self._checked(["rm", "--force", self.name])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116aadeb0&gt;
+args = ['rm', '--force', 'grader-power-agent-5a76ab519b794f3ebb6b79be4219dace']
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError</error></testcase><testcase classname="tests.integration.test_apps_docker" name="test_callable_value_depth_type_failure_and_case_isolation[seen = []\ndef f(values):\n    seen.append(1)\n    values.append(len(seen))\n    return values-True-None]" time="0.241"><failure message="grader_power.agent_sandbox.SandboxError: Docker control operation failed">source = {'id': 1, 'input_output': '{"fn_name": "f", "inputs": [[[1, 2]], [[1, 2]]], "outputs": [[[1, 2, 1]], [[1, 2, 1]]]}'}
+code = 'seen = []\ndef f(values):\n    seen.append(1)\n    values.append(len(seen))\n    return values'
+image = 'sha256:90cff4efebd8c1cd1e1ca07896171091e998c58d902f039fc43870530c91d006'
+
+    def evaluate(source: dict[str, Any], code: str, image: str) -&gt; dict[str, Any]:
+        """Check every supplied case in the existing verified, resource-limited Docker boundary.
+    
+        Separate case files respect the existing per-file limit without relaxing it.
+        Each case has fresh module globals and freshly decoded inputs. Infrastructure,
+        timeout and cleanup failures propagate rather than masquerading as test passes.
+        """
+        entry_point, cases = callable_cases(source)
+        files = {
+            "request.json": json.dumps(
+                {"code": code, "entry_point": entry_point, "case_count": len(cases)}
+            ),
+            "check.py": CALLABLE_WORKER,
+            **{f"case-{i:04d}.json": json.dumps(case) for i, case in enumerate(cases)},
+        }
+        limits = EpisodeLimits()
+        if any(len(value.encode()) &gt; limits.max_file_bytes for value in files.values()):
+            raise ValueError("APPS source or case exceeds the unchanged sandbox file limit")
+        workspace = DockerWorkspace(image, files, limits)
+        try:
+&gt;           workspace.start()
+
+src/grader_power/datasets/apps_source.py:229: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:399: in start
+    self._checked(args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116b786b0&gt;
+args = ['create', '--name', 'grader-power-agent-133c19fa055c48a49856de8358c73e85', '--pull=never', '--label=grader-power.agent=true', '--network=none', ...]
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError
+
+During handling of the above exception, another exception occurred:
+
+code = 'seen = []\ndef f(values):\n    seen.append(1)\n    values.append(len(seen))\n    return values'
+passed = True, error = None
+
+    @pytest.mark.parametrize(
+        "code,passed,error",
+        [
+            (
+                "seen = []\ndef f(values):\n    seen.append(1)\n    values.append(len(seen))\n    return values",
+                True,
+                None,
+            ),
+            ("def f(values): return [[1, 2, 1]]", False, "AssertionError"),
+            ("def f(values): return (1, 2, 1)", False, "AssertionError"),
+            ("def f(values) return values", False, "SyntaxError"),
+            ("def f(values): raise RuntimeError()", False, "RuntimeError"),
+        ],
+    )
+    def test_callable_value_depth_type_failure_and_case_isolation(
+        code: str, passed: bool, error: str | None
+    ) -&gt; None:
+        """Repeated mutating cases must each get fresh arguments and module globals."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Docker verification is explicitly opt-in")
+        root = Path(__file__).resolve().parents[2]
+        source = {
+            "id": 1,
+            "input_output": json.dumps(
+                {
+                    "fn_name": "f",
+                    "inputs": [[[1, 2]], [[1, 2]]],
+                    "outputs": [[[1, 2, 1]], [[1, 2, 1]]],
+                }
+            ),
+        }
+&gt;       result = evaluate(
+            source, code, (root / "data/sandbox/oracle-image.id").read_text().strip()
+        )
+
+tests/integration/test_apps_docker.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/datasets/apps_source.py:235: in evaluate
+    workspace.close()
+src/grader_power/agent_sandbox.py:496: in close
+    self._checked(["rm", "--force", self.name])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116b786b0&gt;
+args = ['rm', '--force', 'grader-power-agent-133c19fa055c48a49856de8358c73e85']
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError</failure></testcase><testcase classname="tests.integration.test_apps_docker" name="test_callable_value_depth_type_failure_and_case_isolation[def f(values): return [[1, 2, 1]]-False-AssertionError]" time="0.239"><failure message="grader_power.agent_sandbox.SandboxError: Docker control operation failed">source = {'id': 1, 'input_output': '{"fn_name": "f", "inputs": [[[1, 2]], [[1, 2]]], "outputs": [[[1, 2, 1]], [[1, 2, 1]]]}'}
+code = 'def f(values): return [[1, 2, 1]]'
+image = 'sha256:90cff4efebd8c1cd1e1ca07896171091e998c58d902f039fc43870530c91d006'
+
+    def evaluate(source: dict[str, Any], code: str, image: str) -&gt; dict[str, Any]:
+        """Check every supplied case in the existing verified, resource-limited Docker boundary.
+    
+        Separate case files respect the existing per-file limit without relaxing it.
+        Each case has fresh module globals and freshly decoded inputs. Infrastructure,
+        timeout and cleanup failures propagate rather than masquerading as test passes.
+        """
+        entry_point, cases = callable_cases(source)
+        files = {
+            "request.json": json.dumps(
+                {"code": code, "entry_point": entry_point, "case_count": len(cases)}
+            ),
+            "check.py": CALLABLE_WORKER,
+            **{f"case-{i:04d}.json": json.dumps(case) for i, case in enumerate(cases)},
+        }
+        limits = EpisodeLimits()
+        if any(len(value.encode()) &gt; limits.max_file_bytes for value in files.values()):
+            raise ValueError("APPS source or case exceeds the unchanged sandbox file limit")
+        workspace = DockerWorkspace(image, files, limits)
+        try:
+&gt;           workspace.start()
+
+src/grader_power/datasets/apps_source.py:229: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:399: in start
+    self._checked(args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116b78c00&gt;
+args = ['create', '--name', 'grader-power-agent-56ee5731514f436589e5a159a06d4b37', '--pull=never', '--label=grader-power.agent=true', '--network=none', ...]
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError
+
+During handling of the above exception, another exception occurred:
+
+code = 'def f(values): return [[1, 2, 1]]', passed = False
+error = 'AssertionError'
+
+    @pytest.mark.parametrize(
+        "code,passed,error",
+        [
+            (
+                "seen = []\ndef f(values):\n    seen.append(1)\n    values.append(len(seen))\n    return values",
+                True,
+                None,
+            ),
+            ("def f(values): return [[1, 2, 1]]", False, "AssertionError"),
+            ("def f(values): return (1, 2, 1)", False, "AssertionError"),
+            ("def f(values) return values", False, "SyntaxError"),
+            ("def f(values): raise RuntimeError()", False, "RuntimeError"),
+        ],
+    )
+    def test_callable_value_depth_type_failure_and_case_isolation(
+        code: str, passed: bool, error: str | None
+    ) -&gt; None:
+        """Repeated mutating cases must each get fresh arguments and module globals."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Docker verification is explicitly opt-in")
+        root = Path(__file__).resolve().parents[2]
+        source = {
+            "id": 1,
+            "input_output": json.dumps(
+                {
+                    "fn_name": "f",
+                    "inputs": [[[1, 2]], [[1, 2]]],
+                    "outputs": [[[1, 2, 1]], [[1, 2, 1]]],
+                }
+            ),
+        }
+&gt;       result = evaluate(
+            source, code, (root / "data/sandbox/oracle-image.id").read_text().strip()
+        )
+
+tests/integration/test_apps_docker.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/datasets/apps_source.py:235: in evaluate
+    workspace.close()
+src/grader_power/agent_sandbox.py:496: in close
+    self._checked(["rm", "--force", self.name])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116b78c00&gt;
+args = ['rm', '--force', 'grader-power-agent-56ee5731514f436589e5a159a06d4b37']
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError</failure></testcase><testcase classname="tests.integration.test_apps_docker" name="test_callable_value_depth_type_failure_and_case_isolation[def f(values): return (1, 2, 1)-False-AssertionError]" time="0.239"><failure message="grader_power.agent_sandbox.SandboxError: Docker control operation failed">source = {'id': 1, 'input_output': '{"fn_name": "f", "inputs": [[[1, 2]], [[1, 2]]], "outputs": [[[1, 2, 1]], [[1, 2, 1]]]}'}
+code = 'def f(values): return (1, 2, 1)'
+image = 'sha256:90cff4efebd8c1cd1e1ca07896171091e998c58d902f039fc43870530c91d006'
+
+    def evaluate(source: dict[str, Any], code: str, image: str) -&gt; dict[str, Any]:
+        """Check every supplied case in the existing verified, resource-limited Docker boundary.
+    
+        Separate case files respect the existing per-file limit without relaxing it.
+        Each case has fresh module globals and freshly decoded inputs. Infrastructure,
+        timeout and cleanup failures propagate rather than masquerading as test passes.
+        """
+        entry_point, cases = callable_cases(source)
+        files = {
+            "request.json": json.dumps(
+                {"code": code, "entry_point": entry_point, "case_count": len(cases)}
+            ),
+            "check.py": CALLABLE_WORKER,
+            **{f"case-{i:04d}.json": json.dumps(case) for i, case in enumerate(cases)},
+        }
+        limits = EpisodeLimits()
+        if any(len(value.encode()) &gt; limits.max_file_bytes for value in files.values()):
+            raise ValueError("APPS source or case exceeds the unchanged sandbox file limit")
+        workspace = DockerWorkspace(image, files, limits)
+        try:
+&gt;           workspace.start()
+
+src/grader_power/datasets/apps_source.py:229: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:399: in start
+    self._checked(args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116b76950&gt;
+args = ['create', '--name', 'grader-power-agent-2ff821281a0b4689bffffbf1aa33026e', '--pull=never', '--label=grader-power.agent=true', '--network=none', ...]
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError
+
+During handling of the above exception, another exception occurred:
+
+code = 'def f(values): return (1, 2, 1)', passed = False
+error = 'AssertionError'
+
+    @pytest.mark.parametrize(
+        "code,passed,error",
+        [
+            (
+                "seen = []\ndef f(values):\n    seen.append(1)\n    values.append(len(seen))\n    return values",
+                True,
+                None,
+            ),
+            ("def f(values): return [[1, 2, 1]]", False, "AssertionError"),
+            ("def f(values): return (1, 2, 1)", False, "AssertionError"),
+            ("def f(values) return values", False, "SyntaxError"),
+            ("def f(values): raise RuntimeError()", False, "RuntimeError"),
+        ],
+    )
+    def test_callable_value_depth_type_failure_and_case_isolation(
+        code: str, passed: bool, error: str | None
+    ) -&gt; None:
+        """Repeated mutating cases must each get fresh arguments and module globals."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Docker verification is explicitly opt-in")
+        root = Path(__file__).resolve().parents[2]
+        source = {
+            "id": 1,
+            "input_output": json.dumps(
+                {
+                    "fn_name": "f",
+                    "inputs": [[[1, 2]], [[1, 2]]],
+                    "outputs": [[[1, 2, 1]], [[1, 2, 1]]],
+                }
+            ),
+        }
+&gt;       result = evaluate(
+            source, code, (root / "data/sandbox/oracle-image.id").read_text().strip()
+        )
+
+tests/integration/test_apps_docker.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/datasets/apps_source.py:235: in evaluate
+    workspace.close()
+src/grader_power/agent_sandbox.py:496: in close
+    self._checked(["rm", "--force", self.name])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116b76950&gt;
+args = ['rm', '--force', 'grader-power-agent-2ff821281a0b4689bffffbf1aa33026e']
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError</failure></testcase><testcase classname="tests.integration.test_apps_docker" name="test_callable_value_depth_type_failure_and_case_isolation[def f(values) return values-False-SyntaxError]" time="0.243"><failure message="grader_power.agent_sandbox.SandboxError: Docker control operation failed">source = {'id': 1, 'input_output': '{"fn_name": "f", "inputs": [[[1, 2]], [[1, 2]]], "outputs": [[[1, 2, 1]], [[1, 2, 1]]]}'}
+code = 'def f(values) return values'
+image = 'sha256:90cff4efebd8c1cd1e1ca07896171091e998c58d902f039fc43870530c91d006'
+
+    def evaluate(source: dict[str, Any], code: str, image: str) -&gt; dict[str, Any]:
+        """Check every supplied case in the existing verified, resource-limited Docker boundary.
+    
+        Separate case files respect the existing per-file limit without relaxing it.
+        Each case has fresh module globals and freshly decoded inputs. Infrastructure,
+        timeout and cleanup failures propagate rather than masquerading as test passes.
+        """
+        entry_point, cases = callable_cases(source)
+        files = {
+            "request.json": json.dumps(
+                {"code": code, "entry_point": entry_point, "case_count": len(cases)}
+            ),
+            "check.py": CALLABLE_WORKER,
+            **{f"case-{i:04d}.json": json.dumps(case) for i, case in enumerate(cases)},
+        }
+        limits = EpisodeLimits()
+        if any(len(value.encode()) &gt; limits.max_file_bytes for value in files.values()):
+            raise ValueError("APPS source or case exceeds the unchanged sandbox file limit")
+        workspace = DockerWorkspace(image, files, limits)
+        try:
+&gt;           workspace.start()
+
+src/grader_power/datasets/apps_source.py:229: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:399: in start
+    self._checked(args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116b76550&gt;
+args = ['create', '--name', 'grader-power-agent-cfb0a79c5dfa4fef83c3464a04aee5a2', '--pull=never', '--label=grader-power.agent=true', '--network=none', ...]
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError
+
+During handling of the above exception, another exception occurred:
+
+code = 'def f(values) return values', passed = False, error = 'SyntaxError'
+
+    @pytest.mark.parametrize(
+        "code,passed,error",
+        [
+            (
+                "seen = []\ndef f(values):\n    seen.append(1)\n    values.append(len(seen))\n    return values",
+                True,
+                None,
+            ),
+            ("def f(values): return [[1, 2, 1]]", False, "AssertionError"),
+            ("def f(values): return (1, 2, 1)", False, "AssertionError"),
+            ("def f(values) return values", False, "SyntaxError"),
+            ("def f(values): raise RuntimeError()", False, "RuntimeError"),
+        ],
+    )
+    def test_callable_value_depth_type_failure_and_case_isolation(
+        code: str, passed: bool, error: str | None
+    ) -&gt; None:
+        """Repeated mutating cases must each get fresh arguments and module globals."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Docker verification is explicitly opt-in")
+        root = Path(__file__).resolve().parents[2]
+        source = {
+            "id": 1,
+            "input_output": json.dumps(
+                {
+                    "fn_name": "f",
+                    "inputs": [[[1, 2]], [[1, 2]]],
+                    "outputs": [[[1, 2, 1]], [[1, 2, 1]]],
+                }
+            ),
+        }
+&gt;       result = evaluate(
+            source, code, (root / "data/sandbox/oracle-image.id").read_text().strip()
+        )
+
+tests/integration/test_apps_docker.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/datasets/apps_source.py:235: in evaluate
+    workspace.close()
+src/grader_power/agent_sandbox.py:496: in close
+    self._checked(["rm", "--force", self.name])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116b76550&gt;
+args = ['rm', '--force', 'grader-power-agent-cfb0a79c5dfa4fef83c3464a04aee5a2']
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError</failure></testcase><testcase classname="tests.integration.test_apps_docker" name="test_callable_value_depth_type_failure_and_case_isolation[def f(values): raise RuntimeError()-False-RuntimeError]" time="0.244"><failure message="grader_power.agent_sandbox.SandboxError: Docker control operation failed">source = {'id': 1, 'input_output': '{"fn_name": "f", "inputs": [[[1, 2]], [[1, 2]]], "outputs": [[[1, 2, 1]], [[1, 2, 1]]]}'}
+code = 'def f(values): raise RuntimeError()'
+image = 'sha256:90cff4efebd8c1cd1e1ca07896171091e998c58d902f039fc43870530c91d006'
+
+    def evaluate(source: dict[str, Any], code: str, image: str) -&gt; dict[str, Any]:
+        """Check every supplied case in the existing verified, resource-limited Docker boundary.
+    
+        Separate case files respect the existing per-file limit without relaxing it.
+        Each case has fresh module globals and freshly decoded inputs. Infrastructure,
+        timeout and cleanup failures propagate rather than masquerading as test passes.
+        """
+        entry_point, cases = callable_cases(source)
+        files = {
+            "request.json": json.dumps(
+                {"code": code, "entry_point": entry_point, "case_count": len(cases)}
+            ),
+            "check.py": CALLABLE_WORKER,
+            **{f"case-{i:04d}.json": json.dumps(case) for i, case in enumerate(cases)},
+        }
+        limits = EpisodeLimits()
+        if any(len(value.encode()) &gt; limits.max_file_bytes for value in files.values()):
+            raise ValueError("APPS source or case exceeds the unchanged sandbox file limit")
+        workspace = DockerWorkspace(image, files, limits)
+        try:
+&gt;           workspace.start()
+
+src/grader_power/datasets/apps_source.py:229: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/agent_sandbox.py:399: in start
+    self._checked(args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116adf6b0&gt;
+args = ['create', '--name', 'grader-power-agent-69f3e21330664b70815c3e1dab2e61ab', '--pull=never', '--label=grader-power.agent=true', '--network=none', ...]
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError
+
+During handling of the above exception, another exception occurred:
+
+code = 'def f(values): raise RuntimeError()', passed = False
+error = 'RuntimeError'
+
+    @pytest.mark.parametrize(
+        "code,passed,error",
+        [
+            (
+                "seen = []\ndef f(values):\n    seen.append(1)\n    values.append(len(seen))\n    return values",
+                True,
+                None,
+            ),
+            ("def f(values): return [[1, 2, 1]]", False, "AssertionError"),
+            ("def f(values): return (1, 2, 1)", False, "AssertionError"),
+            ("def f(values) return values", False, "SyntaxError"),
+            ("def f(values): raise RuntimeError()", False, "RuntimeError"),
+        ],
+    )
+    def test_callable_value_depth_type_failure_and_case_isolation(
+        code: str, passed: bool, error: str | None
+    ) -&gt; None:
+        """Repeated mutating cases must each get fresh arguments and module globals."""
+        if os.environ.get("GRADER_POWER_MODE_B_DOCKER_TESTS") != "1":
+            pytest.skip("Docker verification is explicitly opt-in")
+        root = Path(__file__).resolve().parents[2]
+        source = {
+            "id": 1,
+            "input_output": json.dumps(
+                {
+                    "fn_name": "f",
+                    "inputs": [[[1, 2]], [[1, 2]]],
+                    "outputs": [[[1, 2, 1]], [[1, 2, 1]]],
+                }
+            ),
+        }
+&gt;       result = evaluate(
+            source, code, (root / "data/sandbox/oracle-image.id").read_text().strip()
+        )
+
+tests/integration/test_apps_docker.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/grader_power/datasets/apps_source.py:235: in evaluate
+    workspace.close()
+src/grader_power/agent_sandbox.py:496: in close
+    self._checked(["rm", "--force", self.name])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;grader_power.agent_sandbox.DockerWorkspace object at 0x116adf6b0&gt;
+args = ['rm', '--force', 'grader-power-agent-69f3e21330664b70815c3e1dab2e61ab']
+data = None
+
+    def _checked(self, args: list[str], *, data: bytes | None = None) -&gt; str:
+        code, output = self._call(args, data=data)
+        if code != 0:
+&gt;           raise SandboxError("Docker control operation failed")
+E           grader_power.agent_sandbox.SandboxError: Docker control operation failed
+
+src/grader_power/agent_sandbox.py:368: SandboxError</failure></testcase></testsuite></testsuites>

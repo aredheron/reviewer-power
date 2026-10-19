@@ -1,0 +1,17 @@
+{
+  "prompts/agents_md/soft.md": "1dc695dc0cf9b8311099c98bf4f56266d7a410b1e4a04a8883b36060f0316818",
+  "prompts/decision_policy/future_selection.txt": "274f0c2ad7e8f9a563b7534e1ae3efe9183248fb922984e1c5d96994ef3af9d0",
+  "prompts/decision_policy/selection-policy.yaml": "b5de55fcc20eb7e44fb8270c1aa6c120b4eee32888e7e6fe016acc59ebddfea4",
+  "prompts/decision_policy/shadow.txt": "075f2ab3efc93daa0df473c7ab59b33700668aa1945f60a1079f984c82550ac4",
+  "prompts/decision_policy/three-consequences/policy.yaml": "8cd2ff3b1f4a513de95a30f2378b4727fb81befd6bb33fdff35b397198e6a986",
+  "prompts/decision_policy/three-consequences/selection_consequential.txt": "274f0c2ad7e8f9a563b7534e1ae3efe9183248fb922984e1c5d96994ef3af9d0",
+  "prompts/decision_policy/three-consequences/selection_independent.txt": "c17a839c07267da6be577dbcae82aea7e3b7df5f99c8adfad9aba1d6ae185d84",
+  "prompts/decision_policy/three-consequences/training_frozen.txt": "5dadf353b255f72dde68e524e4e4a506c341b39727ba2a2d879372cf1cf1861d",
+  "prompts/decision_policy/three-consequences/training_rl.txt": "c9075acc356ecbc1acde12cdb57cdcdcb0e314e87b68095d2a8c50840c5ecafd",
+  "prompts/grader_rubric/style-review.yaml": "73e497b640046e1312c521888b25080152935f46dd7393752d07e782081a714e",
+  "prompts/preflight/narrative.txt": "7923d1248ced0455a52ea40e6a525a58dcf1b32dc6d3066f837fd40987f07338",
+  "prompts/preflight/status.txt": "69eddd34f8a52c18d370d1c8701d258bdb289793abc16a6998187c8592383b68",
+  "prompts/user_task/implement.txt": "620761327e89f0decde59a61646696c2194e292203d417f922efda19c3ce8c88",
+  "src/grader_power/consequence_extension.py": "9de7625275d2da54d683fdb3a3c71b51d18ecc876fcfeed7d2f90bf5524a69d2",
+  "src/grader_power/render.py": "524f807779972417a881812303a15cfcee73bdee856381e7c68a415e6c514a58"
+}

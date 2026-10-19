@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/14",
+  "entry_point": "all_prefixes",
+  "transformation": "Construct all nonempty string prefixes from shortest to longest.",
+  "implementations": {
+    "comprehension": "from typing import List\n\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\"Return each nonempty prefix, ordered by its ending position.\"\"\"\n    return [string[:stop] for stop in range(1, len(string) + 1)]\n",
+    "loop": "from typing import List\n\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\"Return each nonempty prefix, ordered by its ending position.\"\"\"\n    prefixes = []\n    for stop in range(1, len(string) + 1):\n        prefixes.append(string[:stop])\n    return prefixes\n"
+  },
+  "review_notes": [
+    "Empty input returns an empty list; slices use ordinary Python Unicode code-point positions.",
+    "Both forms copy a quadratic total number of characters, matching the size of the required output; resource limits remain untested."
+  ]
+}

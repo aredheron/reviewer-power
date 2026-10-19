@@ -1,0 +1,602 @@
+[
+  {
+    "entry_point": "remove",
+    "family": "per_string_cleanup",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "import re\n\ndef remove(list):\n    return [re.sub(r'[0-9]', '', text) for text in list]\n",
+      "loop": "import re\n\ndef remove(list):\n    result = []\n    for text in list:\n        result.append(re.sub(r'[0-9]', '', text))\n    return result\n"
+    },
+    "notes": "",
+    "original_prompt": "Write a python function to remove all digits from a list of strings.",
+    "source_id": 27,
+    "source_record_sha256": "c10d667004153a7ea3d0e9ee2e6fe251c85e00427d9b4b154f51b8e9cc7b0173",
+    "task_id": "MbppFull/27"
+  },
+  {
+    "entry_point": "zip_tuples",
+    "family": "cyclic_pair_mapping",
+    "hold": "ambiguous_zip_wording",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def zip_tuples(test_tup1, test_tup2):\n    return [(value, test_tup2[i % len(test_tup2)]) for i, value in enumerate(test_tup1)]\n",
+      "loop": "def zip_tuples(test_tup1, test_tup2):\n    result = []\n    for i, value in enumerate(test_tup1):\n        result.append((value, test_tup2[i % len(test_tup2)]))\n    return result\n"
+    },
+    "notes": "Original says zip but canonical cycles the second tuple instead of truncating. Requires explicit clarification; no edit applied.",
+    "original_prompt": "Write a function to zip the two given tuples.",
+    "source_id": 81,
+    "source_record_sha256": "7ed3c07d2265ec9831f7f1d8aa1fe8da5d9e2775475a87a6f09f9de90a67f187",
+    "task_id": "MbppFull/81"
+  },
+  {
+    "entry_point": "encode_list",
+    "family": "run_length_encoding",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "from itertools import groupby\n\ndef encode_list(list1):\n    return [[sum(1 for _ in group), key] for key, group in groupby(list1)]\n",
+      "loop": "from itertools import groupby\n\ndef encode_list(list1):\n    result = []\n    for key, group in groupby(list1):\n        result.append([sum(1 for _ in group), key])\n    return result\n"
+    },
+    "notes": "Group counting uses a scalar generator in both styles; each output record is a literal pair. Strings and lists both remain valid inputs.",
+    "original_prompt": "Write a function to reflect the run-length encoding from a list.",
+    "source_id": 157,
+    "source_record_sha256": "ac26950aff8f4659edc7e9f0c4b3f1b770890ec7456c8eab1f70e8d3453e38b5",
+    "task_id": "MbppFull/157"
+  },
+  {
+    "entry_point": "remove_tuples",
+    "family": "tuple_length_filter",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def remove_tuples(test_list, K):\n    return [item for item in test_list if len(item) != K]\n",
+      "loop": "def remove_tuples(test_list, K):\n    result = []\n    for item in test_list:\n        if len(item) != K:\n            result.append(item)\n    return result\n"
+    },
+    "notes": "",
+    "original_prompt": "Write a function to remove all the tuples with length k.",
+    "source_id": 196,
+    "source_record_sha256": "c927c0791156b23d698cd3e6a2c85d7ea18711c29f2942ca7fe0db1d42889f1d",
+    "task_id": "MbppFull/196"
+  },
+  {
+    "entry_point": "position_max",
+    "family": "extremum_index_filter",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def position_max(list1):\n    maximum = max(list1)\n    return [index for index, value in enumerate(list1) if value == maximum]\n",
+      "loop": "def position_max(list1):\n    maximum = max(list1)\n    result = []\n    for index, value in enumerate(list1):\n        if value == maximum:\n            result.append(index)\n    return result\n"
+    },
+    "notes": "Preserves the canonical error on empty input. MbppFull/322 is the minimum analogue, not counted as a separate addition.",
+    "original_prompt": "Write a function to find all index positions of the maximum values in a given list.",
+    "source_id": 200,
+    "source_record_sha256": "d2a8d6c8afc40cc558835a8f97ea796c061531ad14131b2f0f2a09764b9421c3",
+    "task_id": "MbppFull/200"
+  },
+  {
+    "entry_point": "decode_list",
+    "family": "run_length_decoding",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "from itertools import repeat\n\ndef _expanded(item):\n    return repeat(item[1], item[0]) if isinstance(item, list) else (item,)\n\ndef decode_list(alist):\n    return [value for item in alist for value in _expanded(item)]\n",
+      "loop": "from itertools import repeat\n\ndef _expanded(item):\n    return repeat(item[1], item[0]) if isinstance(item, list) else (item,)\n\ndef decode_list(alist):\n    result = []\n    for item in alist:\n        for value in _expanded(item):\n            result.append(value)\n    return result\n"
+    },
+    "notes": "A list item denotes [count, value]; a non-list denotes one literal element. Shared helper returns an iterator, never an accumulated output list.",
+    "original_prompt": "Write a function to decode a run-length encoded given list.",
+    "source_id": 215,
+    "source_record_sha256": "3b3412485c839be1048f93a91c392d93fdf48aef2ddaf51bab4ae60f49b6ee82",
+    "task_id": "MbppFull/215"
+  },
+  {
+    "entry_point": "array_3d",
+    "family": "nested_array_construction",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def array_3d(m, n, o):\n    return [[['*' for _ in range(m)] for _ in range(n)] for _ in range(o)]\n",
+      "loop": "def array_3d(m, n, o):\n    result = []\n    for _ in range(o):\n        plane = []\n        for _ in range(n):\n            row = []\n            for _ in range(m):\n                row.append('*')\n            plane.append(row)\n        result.append(plane)\n    return result\n"
+    },
+    "notes": "All three list-construction levels use the requested style; rows/planes are distinct objects. Requires judge calibration for nested constructions.",
+    "original_prompt": "Write a function to generate a 3d array having each element as '*'.",
+    "source_id": 241,
+    "source_record_sha256": "bcf0275bd37a9f592f54017531a35e66d28dc87dcb471e4a3ad6f172ce338c65",
+    "task_id": "MbppFull/241"
+  },
+  {
+    "entry_point": "intersection_array",
+    "family": "membership_filter",
+    "hold": "remove_algorithm_cue",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def intersection_array(array_nums1, array_nums2):\n    return [value for value in array_nums2 if value in array_nums1]\n",
+      "loop": "def intersection_array(array_nums1, array_nums2):\n    result = []\n    for value in array_nums2:\n        if value in array_nums1:\n            result.append(value)\n    return result\n"
+    },
+    "notes": "Proposed edit: remove \"using lambda function\". No prompt edit applied; differs from set intersection by preserving right-side order and multiplicity.",
+    "original_prompt": "Write a function to find the intersection of two arrays using lambda function.",
+    "source_id": 249,
+    "source_record_sha256": "2454d3f5ba59f65c122cde1857013d15341924836b217f9195915989ef13bd3b",
+    "task_id": "MbppFull/249"
+  },
+  {
+    "entry_point": "intersection_nested_lists",
+    "family": "nested_membership_filter",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def intersection_nested_lists(l1, l2):\n    return [[value for value in row if value in l1] for row in l2]\n",
+      "loop": "def intersection_nested_lists(l1, l2):\n    result = []\n    for row in l2:\n        selected = []\n        for value in row:\n            if value in l1:\n                selected.append(value)\n        result.append(selected)\n    return result\n"
+    },
+    "notes": "",
+    "original_prompt": "Write a function to find the nested list elements which are present in another list.",
+    "source_id": 298,
+    "source_record_sha256": "97794759da6a0203f21e7e48a86a815ba9aadec2fca871d532390044fd938bac",
+    "task_id": "MbppFull/298"
+  },
+  {
+    "entry_point": "modified_encode",
+    "family": "run_length_encoding",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "from itertools import groupby\n\ndef _encode_run(key, group):\n    count = sum(1 for _ in group)\n    return [count, key] if count > 1 else key\n\ndef modified_encode(alist):\n    return [_encode_run(key, group) for key, group in groupby(alist)]\n",
+      "loop": "from itertools import groupby\n\ndef _encode_run(key, group):\n    count = sum(1 for _ in group)\n    return [count, key] if count > 1 else key\n\ndef modified_encode(alist):\n    result = []\n    for key, group in groupby(alist):\n        result.append(_encode_run(key, group))\n    return result\n"
+    },
+    "notes": "Related to /157: singleton runs remain scalars. Keep the two tasks in one semantic-family sensitivity group.",
+    "original_prompt": "Write a function to reflect the modified run-length encoding from a list.",
+    "source_id": 317,
+    "source_record_sha256": "dd27897aa6faf6362c97737ab64d336cfe7bd135859f7ef8e946f300776a3dd8",
+    "task_id": "MbppFull/317"
+  },
+  {
+    "entry_point": "find_long_word",
+    "family": "regex_word_length",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "import re\n\ndef find_long_word(text):\n    return [match.group() for match in re.finditer(r'\\b\\w{5}\\b', text)]\n",
+      "loop": "import re\n\ndef find_long_word(text):\n    result = []\n    for match in re.finditer(r'\\b\\w{5}\\b', text):\n        result.append(match.group())\n    return result\n"
+    },
+    "notes": "Related to earlier Mbpp/7 and MbppFull/330, not a wholly independent semantic family. Direct findall remains a legitimate neither-style alternative.",
+    "original_prompt": "Write a function to find all five characters long word in the given string by using regex.",
+    "source_id": 319,
+    "source_record_sha256": "d48ebd677f73ac5bc7a11a86be11e3effe1c992f066f7314ce960970070afc88",
+    "task_id": "MbppFull/319"
+  },
+  {
+    "entry_point": "diff_consecutivenums",
+    "family": "adjacent_numeric_mapping",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def diff_consecutivenums(nums):\n    return [right - left for left, right in zip(nums[:-1], nums[1:])]\n",
+      "loop": "def diff_consecutivenums(nums):\n    result = []\n    for left, right in zip(nums[:-1], nums[1:]):\n        result.append(right - left)\n    return result\n"
+    },
+    "notes": "",
+    "original_prompt": "Write a function to find the difference between two consecutive numbers in a given list.",
+    "source_id": 345,
+    "source_record_sha256": "d92fc25cab187f76f1f16b8bbdf2a2ab79fcff3b013886b3bd55c381dd8af002",
+    "task_id": "MbppFull/345"
+  },
+  {
+    "entry_point": "moddiv_list",
+    "family": "paired_numeric_mapping",
+    "hold": "remove_algorithm_cue",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def moddiv_list(nums1, nums2):\n    return [left % right for left, right in zip(nums1, nums2)]\n",
+      "loop": "def moddiv_list(nums1, nums2):\n    result = []\n    for left, right in zip(nums1, nums2):\n        result.append(left % right)\n    return result\n"
+    },
+    "notes": "Proposed edit: remove \"using map and lambda function\". No edit applied.",
+    "original_prompt": "Write a function to find modulo division of two lists using map and lambda function.",
+    "source_id": 358,
+    "source_record_sha256": "b2e1523f664b8f60740fbc726e7c293c61d362dba9bf92e2b119ab1e135a465e",
+    "task_id": "MbppFull/358"
+  },
+  {
+    "entry_point": "remove_empty",
+    "family": "truthy_collection_filter",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def remove_empty(list1):\n    return [item for item in list1 if item]\n",
+      "loop": "def remove_empty(list1):\n    result = []\n    for item in list1:\n        if item:\n            result.append(item)\n    return result\n"
+    },
+    "notes": "Preserves original truthiness semantics and mixed string/list examples. /966 is the same filter over tuple examples and is not an independent addition.",
+    "original_prompt": "Write a function to remove empty lists from a given list of lists.",
+    "source_id": 361,
+    "source_record_sha256": "447ba53788253b450fc4f97aeab4fe48a8afa9bd95bebd6560dcfe3fb41028f1",
+    "task_id": "MbppFull/361"
+  },
+  {
+    "entry_point": "add_K_element",
+    "family": "nested_record_mapping",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def add_K_element(test_list, K):\n    return [tuple(value + K for value in row) for row in test_list]\n",
+      "loop": "def add_K_element(test_list, K):\n    result = []\n    for row in test_list:\n        result.append(tuple(value + K for value in row))\n    return result\n"
+    },
+    "notes": "Outer list is the style target; tuple construction uses the same generator in both forms. Preserves arbitrary tuple lengths.",
+    "original_prompt": "Write a function to add the k elements to each element in the tuple.",
+    "source_id": 363,
+    "source_record_sha256": "8493b6133c949a8d950cc85e0a7011d91548b7a7a211f4b3e7d2970149101a60",
+    "task_id": "MbppFull/363"
+  },
+  {
+    "entry_point": "multi_list",
+    "family": "nested_array_construction",
+    "hold": "underspecified_prompt",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def multi_list(rownum, colnum):\n    return [[row * column for column in range(colnum)] for row in range(rownum)]\n",
+      "loop": "def multi_list(rownum, colnum):\n    result = []\n    for row in range(rownum):\n        values = []\n        for column in range(colnum):\n            values.append(row * column)\n        result.append(values)\n    return result\n"
+    },
+    "notes": "Statement does not say the cell equals row index times column index. Needs explicit contract clarification; not applied.",
+    "original_prompt": "Write a function to generate a two-dimensional array.",
+    "source_id": 380,
+    "source_record_sha256": "c1856d4dffc378cc3fdca75db6350d2526b245ab22215a13be328bba39524026",
+    "task_id": "MbppFull/380"
+  },
+  {
+    "entry_point": "add_consecutive_nums",
+    "family": "adjacent_numeric_mapping",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def add_consecutive_nums(nums):\n    return [right + left for left, right in zip(nums[:-1], nums[1:])]\n",
+      "loop": "def add_consecutive_nums(nums):\n    result = []\n    for left, right in zip(nums[:-1], nums[1:]):\n        result.append(right + left)\n    return result\n"
+    },
+    "notes": "Operator variant of /345 and /690; report the shared family.",
+    "original_prompt": "Write a function to add consecutive numbers of a given list.",
+    "source_id": 503,
+    "source_record_sha256": "ff9d581422af7fadc71125f8e211d68448cfac5a0eebc51c0afdf65b58cdcbd7",
+    "task_id": "MbppFull/503"
+  },
+  {
+    "entry_point": "remove_datatype",
+    "family": "type_exclusion",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def remove_datatype(test_tuple, data_type):\n    return [item for item in test_tuple if not isinstance(item, data_type)]\n",
+      "loop": "def remove_datatype(test_tuple, data_type):\n    result = []\n    for item in test_tuple:\n        if not isinstance(item, data_type):\n            result.append(item)\n    return result\n"
+    },
+    "notes": "Input is a tuple and result is a list, as in every supplied assertion. isinstance retains subclass behavior.",
+    "original_prompt": "Write a function to remove particular data type elements from the given tuple.",
+    "source_id": 533,
+    "source_record_sha256": "6dc0c8ed92453f9f4d4e9234fa0f3349a71b13029f9d49d9c8711cdb76c3817e",
+    "task_id": "MbppFull/533"
+  },
+  {
+    "entry_point": "basesnum_coresspondingnum",
+    "family": "paired_numeric_mapping",
+    "hold": "remove_algorithm_cue",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def basesnum_coresspondingnum(bases_num, index):\n    return [base ** exponent for base, exponent in zip(bases_num, index)]\n",
+      "loop": "def basesnum_coresspondingnum(bases_num, index):\n    result = []\n    for base, exponent in zip(bases_num, index):\n        result.append(base ** exponent)\n    return result\n"
+    },
+    "notes": "Proposed edit: remove \"using map function\". Retains varying exponent per input, unlike earlier fixed-exponent task.",
+    "original_prompt": "Write a function to create a list containing the power of said number in bases raised to the corresponding number in the index using map function.",
+    "source_id": 539,
+    "source_record_sha256": "334e2c5fb2728cb33ceee61d6b5a82aca3b1af830a4b08aadad9a4d2d904882a",
+    "task_id": "MbppFull/539"
+  },
+  {
+    "entry_point": "remove_words",
+    "family": "per_string_cleanup",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def _clean_line(line, phrases):\n    return ' '.join(word for word in line.split() if not any(phrase in word for phrase in phrases))\n\ndef remove_words(list1, charlist):\n    return [_clean_line(line, charlist) for line in list1]\n",
+      "loop": "def _clean_line(line, phrases):\n    return ' '.join(word for word in line.split() if not any(phrase in word for phrase in phrases))\n\ndef remove_words(list1, charlist):\n    result = []\n    for line in list1:\n        result.append(_clean_line(line, charlist))\n    return result\n"
+    },
+    "notes": "The target is the outer list of cleaned lines; scalar text cleanup uses generator expressions identically in both references. Preserve whitespace normalization and empty cleaned lines.",
+    "original_prompt": "Write a function to remove words from a given list of strings containing a character or string.",
+    "source_id": 570,
+    "source_record_sha256": "4e573b624102a16c903f6d7d03ac2f9b51e4b898c04479799e2e6fb898ce2da1",
+    "task_id": "MbppFull/570"
+  },
+  {
+    "entry_point": "maximum_value",
+    "family": "record_reduction_mapping",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def maximum_value(test_list):\n    return [(key, max(values)) for key, values in test_list]\n",
+      "loop": "def maximum_value(test_list):\n    result = []\n    for key, values in test_list:\n        result.append((key, max(values)))\n    return result\n"
+    },
+    "notes": "Each record maps a key and nonempty value collection to key/maximum; max is shared scalar work.",
+    "original_prompt": "Write a function to find the maximum value in record list as tuple attribute in the given tuple list.",
+    "source_id": 613,
+    "source_record_sha256": "bbad63bd553bfc8dd5a646b7b1526536881eada5ad1cc48386c7bef55131e529",
+    "task_id": "MbppFull/613"
+  },
+  {
+    "entry_point": "increment_numerics",
+    "family": "conditional_string_mapping",
+    "hold": "underspecified_numeric_predicate",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def increment_numerics(test_list, K):\n    return [str(int(text) + K) if text.isdigit() else text for text in test_list]\n",
+      "loop": "def increment_numerics(test_list, K):\n    result = []\n    for text in test_list:\n        result.append(str(int(text) + K) if text.isdigit() else text)\n    return result\n"
+    },
+    "notes": "Prose says numeric values but canonical accepts only isdigit strings, leaving signed/decimal strings unchanged. Clarify this behavior before admission; no edit applied.",
+    "original_prompt": "Write a function to increment the numeric values in the given strings by k.",
+    "source_id": 621,
+    "source_record_sha256": "ab0f0d5ce821ad62cdafcde9dd7ca96abe83e12826c662a7e4dd056d3e347520",
+    "task_id": "MbppFull/621"
+  },
+  {
+    "entry_point": "exchange_elements",
+    "family": "pair_swapping",
+    "hold": "odd_length_domain",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "from itertools import zip_longest\n\ndef exchange_elements(lst):\n    return [value for pair in zip_longest(lst[1::2], lst[::2]) for value in pair]\n",
+      "loop": "from itertools import zip_longest\n\ndef exchange_elements(lst):\n    result = []\n    for pair in zip_longest(lst[1::2], lst[::2]):\n        for value in pair:\n            result.append(value)\n    return result\n"
+    },
+    "notes": "Canonical inserts None before the final item for odd-length inputs. Supplied tests cover only even lengths; do not silently restrict the domain or alter padding.",
+    "original_prompt": "Write a function to exchange the position of every n-th value with (n+1)th value and (n+1)th value with n-th value in a given list.",
+    "source_id": 648,
+    "source_record_sha256": "98f0c0ffbff4fc030f36503ce30555080fd941d216da82b97fe21e469cd053db",
+    "task_id": "MbppFull/648"
+  },
+  {
+    "entry_point": "Repeat",
+    "family": "frequency_filter",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "from collections import Counter\n\ndef Repeat(x):\n    counts = Counter(x)\n    return [value for value, count in counts.items() if count > 1]\n",
+      "loop": "from collections import Counter\n\ndef Repeat(x):\n    counts = Counter(x)\n    result = []\n    for value, count in counts.items():\n        if count > 1:\n            result.append(value)\n    return result\n"
+    },
+    "notes": "The statement specifies integers. Counter insertion order preserves the first-occurrence ordering of repeated values; do not extend claim to unhashable values.",
+    "original_prompt": "Write a python function to print duplicants from a list of integers.",
+    "source_id": 659,
+    "source_record_sha256": "9de3eb84f4fb8014da0eeb95cd14b6f4a77b1033b90c8bd4eed5ace390b4d518",
+    "task_id": "MbppFull/659"
+  },
+  {
+    "entry_point": "mul_list",
+    "family": "paired_numeric_mapping",
+    "hold": "remove_algorithm_cue",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def mul_list(nums1, nums2):\n    return [left * right for left, right in zip(nums1, nums2)]\n",
+      "loop": "def mul_list(nums1, nums2):\n    result = []\n    for left, right in zip(nums1, nums2):\n        result.append(left * right)\n    return result\n"
+    },
+    "notes": "Proposed edit: remove \"using map and lambda function\". No edit applied.",
+    "original_prompt": "Write a function to multiply two lists using map and lambda function.",
+    "source_id": 682,
+    "source_record_sha256": "40f09746a352274562678a2239f436d08ac52c8a0de06cbfdb6bbc4ac121af20",
+    "task_id": "MbppFull/682"
+  },
+  {
+    "entry_point": "mul_consecutive_nums",
+    "family": "adjacent_numeric_mapping",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def mul_consecutive_nums(nums):\n    return [right * left for left, right in zip(nums[:-1], nums[1:])]\n",
+      "loop": "def mul_consecutive_nums(nums):\n    result = []\n    for left, right in zip(nums[:-1], nums[1:]):\n        result.append(right * left)\n    return result\n"
+    },
+    "notes": "Operator variant of /345 and /503; report the shared family.",
+    "original_prompt": "Write a function to multiply consecutive numbers of a given list.",
+    "source_id": 690,
+    "source_record_sha256": "909733f3656c9193f8393e939c647263676a2625ff251b6327827113c6a77aef",
+    "task_id": "MbppFull/690"
+  },
+  {
+    "entry_point": "zip_list",
+    "family": "paired_row_mapping",
+    "hold": "ambiguous_zip_wording",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def zip_list(list1, list2):\n    return [left + right for left, right in zip(list1, list2)]\n",
+      "loop": "def zip_list(list1, list2):\n    result = []\n    for left, right in zip(list1, list2):\n        result.append(left + right)\n    return result\n"
+    },
+    "notes": "Prose says zip but code/tests concatenate paired rows. Proposed clarification should preserve shortest-list behavior; no edit applied.",
+    "original_prompt": "Write a function to zip two given lists of lists.",
+    "source_id": 696,
+    "source_record_sha256": "17e2ff92e574261e2d4880ed50fad218c7c19cc205f33352bf8fce2669ea942b",
+    "task_id": "MbppFull/696"
+  },
+  {
+    "entry_point": "div_of_nums",
+    "family": "divisibility_filter",
+    "hold": "remove_algorithm_cue",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def div_of_nums(nums, m, n):\n    return [value for value in nums if value % m == 0 or value % n == 0]\n",
+      "loop": "def div_of_nums(nums, m, n):\n    result = []\n    for value in nums:\n        if value % m == 0 or value % n == 0:\n            result.append(value)\n    return result\n"
+    },
+    "notes": "Proposed edit: remove \"using lambda function\". No edit applied.",
+    "original_prompt": "Write a function to find numbers divisible by m or n from a list of numbers using lambda function.",
+    "source_id": 817,
+    "source_record_sha256": "4383918ba6436913b73104ccc6a60cc23e207b78a8d79c844d26a37624585549",
+    "task_id": "MbppFull/817"
+  },
+  {
+    "entry_point": "access_elements",
+    "family": "index_gather",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def access_elements(nums, list_index):\n    return [nums[index] for index in list_index]\n",
+      "loop": "def access_elements(nums, list_index):\n    result = []\n    for index in list_index:\n        result.append(nums[index])\n    return result\n"
+    },
+    "notes": "Preserves order and repeated indices, including Python negative-index behavior.",
+    "original_prompt": "Write a python function to access multiple elements of specified index from a given list.",
+    "source_id": 825,
+    "source_record_sha256": "3285d85cb8a9247316c21d86963fc883e7a43bbb8b10333b70494d1cdf3e01bc",
+    "task_id": "MbppFull/825"
+  },
+  {
+    "entry_point": "listify_list",
+    "family": "string_to_character_list",
+    "hold": "remove_algorithm_cue",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def listify_list(list1):\n    return [list(text) for text in list1]\n",
+      "loop": "def listify_list(list1):\n    result = []\n    for text in list1:\n        result.append(list(text))\n    return result\n"
+    },
+    "notes": "Proposed edit: remove \"using map function\"; outer list construction is target; list(text) is shared character conversion.",
+    "original_prompt": "Write a function to list out the list of given strings individually using map function.",
+    "source_id": 857,
+    "source_record_sha256": "077e075ebb742f7fcad1fc5ab8c0f3f0905ad85cccd4c4c0015c5324786e4638",
+    "task_id": "MbppFull/857"
+  },
+  {
+    "entry_point": "anagram_lambda",
+    "family": "anagram_filter",
+    "hold": "remove_algorithm_cue",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "from collections import Counter\n\ndef anagram_lambda(texts, str):\n    counts = Counter(str)\n    return [text for text in texts if Counter(text) == counts]\n",
+      "loop": "from collections import Counter\n\ndef anagram_lambda(texts, str):\n    counts = Counter(str)\n    result = []\n    for text in texts:\n        if Counter(text) == counts:\n            result.append(text)\n    return result\n"
+    },
+    "notes": "Both prompt and original entry-point name anagram_lambda prime lambda. A derived neutral task would need explicit approval/provenance; no edit applied.",
+    "original_prompt": "Write a function to find all anagrams of a string in a given list of strings using lambda function.",
+    "source_id": 861,
+    "source_record_sha256": "544bd3f8d1e1447b95a52d75976b9121718b568c9d74e65b3960da675054316c",
+    "task_id": "MbppFull/861"
+  },
+  {
+    "entry_point": "palindrome_lambda",
+    "family": "palindrome_filter",
+    "hold": "remove_algorithm_cue",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def palindrome_lambda(texts):\n    return [text for text in texts if text == text[::-1]]\n",
+      "loop": "def palindrome_lambda(texts):\n    result = []\n    for text in texts:\n        if text == text[::-1]:\n            result.append(text)\n    return result\n"
+    },
+    "notes": "Both prompt and original entry-point palindrome_lambda prime lambda; no edit applied.",
+    "original_prompt": "Write a function to find palindromes in a given list of strings using lambda function.",
+    "source_id": 864,
+    "source_record_sha256": "8c4fa8e20294e4e4ac26a27c1e8c4e2605ec68be79fc8c2af3df8cf5cfa4d144",
+    "task_id": "MbppFull/864"
+  },
+  {
+    "entry_point": "ntimes_list",
+    "family": "scalar_numeric_mapping",
+    "hold": "wording_and_algorithm_cue",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def ntimes_list(nums, n):\n    return [n * value for value in nums]\n",
+      "loop": "def ntimes_list(nums, n):\n    result = []\n    for value in nums:\n        result.append(n * value)\n    return result\n"
+    },
+    "notes": "Prose says print n-times a list, but code/tests multiply each item. Proposed statement must also remove map cue; no edit applied.",
+    "original_prompt": "Write a function to print n-times a list using map function.",
+    "source_id": 865,
+    "source_record_sha256": "b780e6ed2831b6e4696568d83c4b9eb653872d45c347da64cbf11285be0d41dd",
+    "task_id": "MbppFull/865"
+  },
+  {
+    "entry_point": "remove_list_range",
+    "family": "nested_range_filter",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def remove_list_range(list1, leftrange, rigthrange):\n    return [row for row in list1 if min(row) >= leftrange and max(row) <= rigthrange]\n",
+      "loop": "def remove_list_range(list1, leftrange, rigthrange):\n    result = []\n    for row in list1:\n        if min(row) >= leftrange and max(row) <= rigthrange:\n            result.append(row)\n    return result\n"
+    },
+    "notes": "Retains original row identities and original error on an empty row.",
+    "original_prompt": "Write a function to remove sublists from a given list of lists, which are outside a given range.",
+    "source_id": 869,
+    "source_record_sha256": "017013a7c72b95c39e7f6a784bd95fef354363aa83e1efb496e9a13e5bcee531",
+    "task_id": "MbppFull/869"
+  },
+  {
+    "entry_point": "div_of_nums",
+    "family": "divisibility_filter",
+    "hold": "remove_algorithm_cue",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def div_of_nums(nums, m, n):\n    return [value for value in nums if value % m == 0 and value % n == 0]\n",
+      "loop": "def div_of_nums(nums, m, n):\n    result = []\n    for value in nums:\n        if value % m == 0 and value % n == 0:\n            result.append(value)\n    return result\n"
+    },
+    "notes": "Proposed edit: remove \"using lambda function\". AND variant of /817; same family.",
+    "original_prompt": "Write a function to find numbers divisible by m and n from a list of numbers using lambda function.",
+    "source_id": 883,
+    "source_record_sha256": "f6831cebdc39a27289ac59d14f2c67d3facfab84c4530db2cfe5aec9b1e09ff5",
+    "task_id": "MbppFull/883"
+  },
+  {
+    "entry_point": "extract_elements",
+    "family": "run_length_filter",
+    "hold": "underspecified_run_contract",
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "from itertools import groupby\n\ndef extract_elements(numbers, n):\n    return [key for key, group in groupby(numbers) if sum(1 for _ in group) == n]\n",
+      "loop": "from itertools import groupby\n\ndef extract_elements(numbers, n):\n    result = []\n    for key, group in groupby(numbers):\n        if sum(1 for _ in group) == n:\n            result.append(key)\n    return result\n"
+    },
+    "notes": "Clarify one representative for each maximal consecutive run whose length is exactly n; no edit applied.",
+    "original_prompt": "Write a function to extract specified number of elements from a given list, which follow each other continuously.",
+    "source_id": 898,
+    "source_record_sha256": "c4388cfff941c4bbbfa5d809d70509a781bbdb7363728d9dbe66528d596c4715",
+    "task_id": "MbppFull/898"
+  },
+  {
+    "entry_point": "extract_date",
+    "family": "regex_record_extraction",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "import re\n\ndef extract_date(url):\n    return [match.groups() for match in re.finditer(r'/(\\d{4})/(\\d{1,2})/(\\d{1,2})/', url)]\n",
+      "loop": "import re\n\ndef extract_date(url):\n    result = []\n    for match in re.finditer(r'/(\\d{4})/(\\d{1,2})/(\\d{1,2})/', url):\n        result.append(match.groups())\n    return result\n"
+    },
+    "notes": "Date fields remain strings; no network access or date validity checking. A direct findall remains a valid alternative style.",
+    "original_prompt": "Write a function to extract year, month and date from a url by using regex.",
+    "source_id": 906,
+    "source_record_sha256": "2e9d073f25c37cb4d8e1538598b678d84f9782ebf89a0a321208c02cee6c46c7",
+    "task_id": "MbppFull/906"
+  },
+  {
+    "entry_point": "chunk_tuples",
+    "family": "chunk_mapping",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def chunk_tuples(test_tup, N):\n    return [test_tup[start:start + N] for start in range(0, len(test_tup), N)]\n",
+      "loop": "def chunk_tuples(test_tup, N):\n    result = []\n    for start in range(0, len(test_tup), N):\n        result.append(test_tup[start:start + N])\n    return result\n"
+    },
+    "notes": "Retains final short chunk and original range behavior, including ValueError for N=0.",
+    "original_prompt": "Write a function to perform chunking of tuples each of size n.",
+    "source_id": 921,
+    "source_record_sha256": "c04b941f62a58bae2cfbb8323207538a099da0fabfbf7ffa51d3e8b85e98b269",
+    "task_id": "MbppFull/921"
+  },
+  {
+    "entry_point": "re_arrange_tuples",
+    "family": "ordered_lookup",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def re_arrange_tuples(test_list, ord_list):\n    values = dict(test_list)\n    return [(key, values[key]) for key in ord_list]\n",
+      "loop": "def re_arrange_tuples(test_list, ord_list):\n    values = dict(test_list)\n    result = []\n    for key in ord_list:\n        result.append((key, values[key]))\n    return result\n"
+    },
+    "notes": "Preserves last-value-wins input keys and repeated requested keys.",
+    "original_prompt": "Write a function to re-arrange the given tuples based on the given ordered list.",
+    "source_id": 936,
+    "source_record_sha256": "960abb83c9eefb90ddac131654f6dfdfebb442140a3a8222c1de29194f65722a",
+    "task_id": "MbppFull/936"
+  },
+  {
+    "entry_point": "max_similar_indices",
+    "family": "paired_record_mapping",
+    "hold": null,
+    "human_review": "not_claimed",
+    "implementations": {
+      "comprehension": "def max_similar_indices(test_list1, test_list2):\n    return [(max(left[0], right[0]), max(left[1], right[1])) for left, right in zip(test_list1, test_list2)]\n",
+      "loop": "def max_similar_indices(test_list1, test_list2):\n    result = []\n    for left, right in zip(test_list1, test_list2):\n        result.append((max(left[0], right[0]), max(left[1], right[1])))\n    return result\n"
+    },
+    "notes": "Preserves two-component tuple records and shortest-list zip behavior from the source.",
+    "original_prompt": "Write a function to find the maximum of similar indices in two lists of tuples.",
+    "source_id": 951,
+    "source_record_sha256": "4866f7d03fc2e8c21ee4700cc15c29b5ebc05a3ebb9a4d6cb6ffaf269e3e2e71",
+    "task_id": "MbppFull/951"
+  }
+]

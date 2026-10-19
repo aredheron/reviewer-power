@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/623",
+  "entry_point": "nth_nums",
+  "transformation": "Raise each input number to the unchanged exponent in input order.",
+  "implementations": {
+    "comprehension": "def nth_nums(nums, n):\n    \"\"\"Apply Python exponentiation to each input value.\"\"\"\n    return [value ** n for value in nums]\n",
+    "loop": "def nth_nums(nums, n):\n    \"\"\"Apply Python exponentiation to each input value.\"\"\"\n    result = []\n    for value in nums:\n        result.append(value ** n)\n    return result\n"
+  },
+  "review_notes": [
+    "The exponent may be int or float; preserve native complex results, overflow and domain exceptions rather than narrowing or coercing inputs.",
+    "Check empty input, zero and negative bases, fractional or negative exponents and resource costs of large powers in the sandbox."
+  ]
+}

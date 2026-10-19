@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/766",
+  "entry_point": "pair_wise",
+  "transformation": "Construct adjacent-element tuples for successive positions in the input list.",
+  "implementations": {
+    "comprehension": "def pair_wise(l1):\n    \"\"\"Pair each element except the last with its immediate successor.\"\"\"\n    return [(l1[index], l1[index + 1]) for index in range(len(l1) - 1)]\n",
+    "loop": "def pair_wise(l1):\n    \"\"\"Pair each element except the last with its immediate successor.\"\"\"\n    result = []\n    for index in range(len(l1) - 1):\n        result.append((l1[index], l1[index + 1]))\n    return result\n"
+  },
+  "review_notes": [
+    "Check empty and singleton lists, repeated elements and mutable element identities; records are tuples in adjacency order.",
+    "Indexed tuple construction uses linear work without mutating the input or creating an extra slice of the entire list."
+  ]
+}

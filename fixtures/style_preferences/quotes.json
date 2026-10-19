@@ -1,0 +1,432 @@
+{
+  "family": "quotes",
+  "styles": [
+    "single_quotes",
+    "double_quotes"
+  ],
+  "tasks": [
+    {
+      "task_id": "HumanEval/1",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "separate_paren_groups",
+      "selection_rationale": "Balanced-parenthesis parsing naturally requires bracket and space literals, plus an empty accumulator.",
+      "style_opportunities": [
+        "Opening and closing parenthesis comparisons",
+        "Space filtering",
+        "Empty group accumulator"
+      ],
+      "implementations": {
+        "single_quotes": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    groups = []\n    current_group = ''\n    depth = 0\n    for character in paren_string:\n        if character == ' ':\n            continue\n        current_group += character\n        if character == '(':\n            depth += 1\n        elif character == ')':\n            depth -= 1\n        if depth == 0 and current_group:\n            groups.append(current_group)\n            current_group = ''\n    return groups\n",
+        "double_quotes": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    groups = []\n    current_group = \"\"\n    depth = 0\n    for character in paren_string:\n        if character == \" \":\n            continue\n        current_group += character\n        if character == \"(\":\n            depth += 1\n        elif character == \")\":\n            depth -= 1\n        if depth == 0 and current_group:\n            groups.append(current_group)\n            current_group = \"\"\n    return groups\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/19",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "sort_numbers",
+      "selection_rationale": "Converting digit names to numeric order requires a natural vocabulary table and separator.",
+      "style_opportunities": [
+        "Ten digit-name literals",
+        "Space delimiter for tokenizing and joining"
+      ],
+      "implementations": {
+        "single_quotes": "def sort_numbers(numbers: str) -> str:\n    vocabulary = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']\n    ranks = {word: index for index, word in enumerate(vocabulary)}\n    if not numbers:\n        return ''\n    return ' '.join(sorted(numbers.split(' '), key=ranks.__getitem__))\n",
+        "double_quotes": "def sort_numbers(numbers: str) -> str:\n    vocabulary = [\"zero\", \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", \"eight\", \"nine\"]\n    ranks = {word: index for index, word in enumerate(vocabulary)}\n    if not numbers:\n        return \"\"\n    return \" \".join(sorted(numbers.split(\" \"), key=ranks.__getitem__))\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/51",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "remove_vowels",
+      "selection_rationale": "Vowel filtering uses a nonempty character-class literal and a join delimiter.",
+      "style_opportunities": [
+        "Vowel character class",
+        "Empty join delimiter"
+      ],
+      "implementations": {
+        "single_quotes": "def remove_vowels(text):\n    vowels = 'aeiouAEIOU'\n    return ''.join(character for character in text if character not in vowels)\n",
+        "double_quotes": "def remove_vowels(text):\n    vowels = \"aeiouAEIOU\"\n    return \"\".join(character for character in text if character not in vowels)\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/64",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "vowels_count",
+      "selection_rationale": "Context-dependent vowel counting distinguishes ordinary vowels from final y.",
+      "style_opportunities": [
+        "Ordinary vowel character class",
+        "Final-y character class"
+      ],
+      "implementations": {
+        "single_quotes": "def vowels_count(s):\n    vowel_count = sum(character in 'aeiouAEIOU' for character in s)\n    return vowel_count + int(bool(s) and s[-1] in 'yY')\n",
+        "double_quotes": "def vowels_count(s):\n    vowel_count = sum(character in \"aeiouAEIOU\" for character in s)\n    return vowel_count + int(bool(s) and s[-1] in \"yY\")\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/79",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "decimal_to_binary",
+      "selection_rationale": "The output format explicitly requires a db prefix and suffix.",
+      "style_opportunities": [
+        "Required output prefix",
+        "Required output suffix"
+      ],
+      "implementations": {
+        "single_quotes": "def decimal_to_binary(decimal):\n    binary_digits = bin(decimal)[2:]\n    return 'db' + binary_digits + 'db'\n",
+        "double_quotes": "def decimal_to_binary(decimal):\n    binary_digits = bin(decimal)[2:]\n    return \"db\" + binary_digits + \"db\"\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/86",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "anti_shuffle",
+      "selection_rationale": "Space-preserving word transformations naturally require split and join delimiters.",
+      "style_opportunities": [
+        "Space split delimiter",
+        "Space output delimiter",
+        "Empty delimiter within sorted words"
+      ],
+      "implementations": {
+        "single_quotes": "def anti_shuffle(s):\n    words = s.split(' ')\n    return ' '.join(''.join(sorted(word)) for word in words)\n",
+        "double_quotes": "def anti_shuffle(s):\n    words = s.split(\" \")\n    return \" \".join(\"\".join(sorted(word)) for word in words)\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/89",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "encrypt",
+      "selection_rationale": "Alphabet rotation uses the alphabet and base character as runtime constants.",
+      "style_opportunities": [
+        "Lowercase alphabet membership",
+        "Alphabet origin for character arithmetic",
+        "Empty output join delimiter"
+      ],
+      "implementations": {
+        "single_quotes": "def encrypt(s):\n    alphabet = 'abcdefghijklmnopqrstuvwxyz'\n    origin = ord('a')\n    return ''.join(chr((ord(character) - origin + 4) % 26 + origin) if character in alphabet else character for character in s)\n",
+        "double_quotes": "def encrypt(s):\n    alphabet = \"abcdefghijklmnopqrstuvwxyz\"\n    origin = ord(\"a\")\n    return \"\".join(chr((ord(character) - origin + 4) % 26 + origin) if character in alphabet else character for character in s)\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/93",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "encode",
+      "selection_rationale": "Case conversion and vowel substitution use letter-boundary and vowel literals.",
+      "style_opportunities": [
+        "ASCII uppercase and lowercase bounds",
+        "Vowel character class",
+        "Empty output join delimiter"
+      ],
+      "implementations": {
+        "single_quotes": "def encode(message):\n    encoded_characters = []\n    for character in message:\n        if 'A' <= character <= 'Z':\n            character = chr(ord(character) + 32)\n        elif 'a' <= character <= 'z':\n            character = chr(ord(character) - 32)\n        if character in 'aeiouAEIOU':\n            character = chr(ord(character) + 2)\n        encoded_characters.append(character)\n    return ''.join(encoded_characters)\n",
+        "double_quotes": "def encode(message):\n    encoded_characters = []\n    for character in message:\n        if \"A\" <= character <= \"Z\":\n            character = chr(ord(character) + 32)\n        elif \"a\" <= character <= \"z\":\n            character = chr(ord(character) - 32)\n        if character in \"aeiouAEIOU\":\n            character = chr(ord(character) + 2)\n        encoded_characters.append(character)\n    return \"\".join(encoded_characters)\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/101",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "words_string",
+      "selection_rationale": "Comma-to-space normalization requires two distinct literal values.",
+      "style_opportunities": [
+        "Comma replacement target",
+        "Space replacement value"
+      ],
+      "implementations": {
+        "single_quotes": "def words_string(s):\n    return s.replace(',', ' ').split()\n",
+        "double_quotes": "def words_string(s):\n    return s.replace(\",\", \" \").split()\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/105",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "by_length",
+      "selection_rationale": "Mapping valid digits to English names requires a vocabulary of nine strings.",
+      "style_opportunities": [
+        "English digit names"
+      ],
+      "implementations": {
+        "single_quotes": "def by_length(arr):\n    names = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine']\n    return [names[value - 1] for value in sorted(arr, reverse=True) if 1 <= value <= 9]\n",
+        "double_quotes": "def by_length(arr):\n    names = [\"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\"]\n    return [names[value - 1] for value in sorted(arr, reverse=True) if 1 <= value <= 9]\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/118",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "get_closest_vowel",
+      "selection_rationale": "The vowel-neighbor rule requires a vowel class and an empty-string no-result value.",
+      "style_opportunities": [
+        "Vowel character class",
+        "No-result empty string"
+      ],
+      "implementations": {
+        "single_quotes": "def get_closest_vowel(word):\n    vowels = 'aeiouAEIOU'\n    for index in range(len(word) - 2, 0, -1):\n        if word[index] in vowels and word[index - 1] not in vowels and word[index + 1] not in vowels:\n            return word[index]\n    return ''\n",
+        "double_quotes": "def get_closest_vowel(word):\n    vowels = \"aeiouAEIOU\"\n    for index in range(len(word) - 2, 0, -1):\n        if word[index] in vowels and word[index - 1] not in vowels and word[index + 1] not in vowels:\n            return word[index]\n    return \"\"\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/119",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "match_parens",
+      "selection_rationale": "Parenthesis validation returns the exact required Yes/No string labels.",
+      "style_opportunities": [
+        "Opening parenthesis comparison",
+        "Yes and No output labels"
+      ],
+      "implementations": {
+        "single_quotes": "def match_parens(lst):\n    def balanced(text):\n        depth = 0\n        for character in text:\n            depth += 1 if character == '(' else -1\n            if depth < 0:\n                return False\n        return depth == 0\n    if balanced(lst[0] + lst[1]) or balanced(lst[1] + lst[0]):\n        return 'Yes'\n    return 'No'\n",
+        "double_quotes": "def match_parens(lst):\n    def balanced(text):\n        depth = 0\n        for character in text:\n            depth += 1 if character == \"(\" else -1\n            if depth < 0:\n                return False\n        return depth == 0\n    if balanced(lst[0] + lst[1]) or balanced(lst[1] + lst[0]):\n        return \"Yes\"\n    return \"No\"\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/125",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "split_words",
+      "selection_rationale": "Delimiter-dependent parsing needs whitespace, comma, and alphabet-origin literals. The reference retains the dataset whitespace set.",
+      "style_opportunities": [
+        "Whitespace character class",
+        "Comma delimiter",
+        "Alphabet origin"
+      ],
+      "implementations": {
+        "single_quotes": "def split_words(txt):\n    if any(character in txt for character in ' \\n\\r\\t'):\n        return txt.split()\n    if ',' in txt:\n        return txt.split(',')\n    return sum(character.islower() and (ord(character) - ord('a')) % 2 == 1 for character in txt)\n",
+        "double_quotes": "def split_words(txt):\n    if any(character in txt for character in \" \\n\\r\\t\"):\n        return txt.split()\n    if \",\" in txt:\n        return txt.split(\",\")\n    return sum(character.islower() and (ord(character) - ord(\"a\")) % 2 == 1 for character in txt)\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/127",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "intersection",
+      "selection_rationale": "A numeric interval task with required YES/NO labels broadens beyond text-processing tasks.",
+      "style_opportunities": [
+        "YES and NO output labels"
+      ],
+      "implementations": {
+        "single_quotes": "def intersection(interval1, interval2):\n    overlap_length = min(interval1[1], interval2[1]) - max(interval1[0], interval2[0])\n    if overlap_length < 2:\n        return 'NO'\n    for divisor in range(2, int(overlap_length ** 0.5) + 1):\n        if overlap_length % divisor == 0:\n            return 'NO'\n    return 'YES'\n",
+        "double_quotes": "def intersection(interval1, interval2):\n    overlap_length = min(interval1[1], interval2[1]) - max(interval1[0], interval2[0])\n    if overlap_length < 2:\n        return \"NO\"\n    for divisor in range(2, int(overlap_length ** 0.5) + 1):\n        if overlap_length % divisor == 0:\n            return \"NO\"\n    return \"YES\"\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/137",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "compare_one",
+      "selection_rationale": "Locale-like decimal separator normalization uses comma and period literals without escape tradeoffs.",
+      "style_opportunities": [
+        "Comma separator",
+        "Period replacement"
+      ],
+      "implementations": {
+        "single_quotes": "def compare_one(a, b):\n    first_value = float(str(a).replace(',', '.'))\n    second_value = float(str(b).replace(',', '.'))\n    if first_value == second_value:\n        return None\n    return a if first_value > second_value else b\n",
+        "double_quotes": "def compare_one(a, b):\n    first_value = float(str(a).replace(\",\", \".\"))\n    second_value = float(str(b).replace(\",\", \".\"))\n    if first_value == second_value:\n        return None\n    return a if first_value > second_value else b\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/141",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "file_name_check",
+      "selection_rationale": "Filename validation requires a separator, extension whitelist, and exact output labels. The reference follows the source isalpha behavior.",
+      "style_opportunities": [
+        "Period separator",
+        "Extension whitelist",
+        "Yes and No output labels"
+      ],
+      "implementations": {
+        "single_quotes": "def file_name_check(file_name):\n    parts = file_name.split('.')\n    if len(parts) != 2 or not parts[0] or not parts[0][0].isalpha():\n        return 'No'\n    if parts[1] not in ('txt', 'exe', 'dll'):\n        return 'No'\n    if sum(character.isdigit() for character in file_name) > 3:\n        return 'No'\n    return 'Yes'\n",
+        "double_quotes": "def file_name_check(file_name):\n    parts = file_name.split(\".\")\n    if len(parts) != 2 or not parts[0] or not parts[0][0].isalpha():\n        return \"No\"\n    if parts[1] not in (\"txt\", \"exe\", \"dll\"):\n        return \"No\"\n    if sum(character.isdigit() for character in file_name) > 3:\n        return \"No\"\n    return \"Yes\"\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/148",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "bf",
+      "selection_rationale": "Planet ordering requires a fixed vocabulary of eight runtime string values.",
+      "style_opportunities": [
+        "Ordered planet-name vocabulary"
+      ],
+      "implementations": {
+        "single_quotes": "def bf(planet1, planet2):\n    planets = ('Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune')\n    if planet1 not in planets or planet2 not in planets:\n        return ()\n    first_index, second_index = sorted((planets.index(planet1), planets.index(planet2)))\n    return planets[first_index + 1:second_index]\n",
+        "double_quotes": "def bf(planet1, planet2):\n    planets = (\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\")\n    if planet1 not in planets or planet2 not in planets:\n        return ()\n    first_index, second_index = sorted((planets.index(planet1), planets.index(planet2)))\n    return planets[first_index + 1:second_index]\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/156",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "int_to_mini_roman",
+      "selection_rationale": "Roman numeral construction naturally uses a table of required string fragments.",
+      "style_opportunities": [
+        "Roman numeral fragments",
+        "Empty output join delimiter"
+      ],
+      "implementations": {
+        "single_quotes": "def int_to_mini_roman(number):\n    numeral_values = ((1000, 'm'), (900, 'cm'), (500, 'd'), (400, 'cd'), (100, 'c'), (90, 'xc'), (50, 'l'), (40, 'xl'), (10, 'x'), (9, 'ix'), (5, 'v'), (4, 'iv'), (1, 'i'))\n    fragments = []\n    for value, numeral in numeral_values:\n        repetitions, number = divmod(number, value)\n        fragments.append(numeral * repetitions)\n    return ''.join(fragments)\n",
+        "double_quotes": "def int_to_mini_roman(number):\n    numeral_values = ((1000, \"m\"), (900, \"cm\"), (500, \"d\"), (400, \"cd\"), (100, \"c\"), (90, \"xc\"), (50, \"l\"), (40, \"xl\"), (10, \"x\"), (9, \"ix\"), (5, \"v\"), (4, \"iv\"), (1, \"i\"))\n    fragments = []\n    for value, numeral in numeral_values:\n        repetitions, number = divmod(number, value)\n        fragments.append(numeral * repetitions)\n    return \"\".join(fragments)\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/102",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "snake_to_camel",
+      "selection_rationale": "Underscore-delimited name conversion uses separator and join literals. This task is for quotes only; its subject explicitly discusses naming conventions.",
+      "style_opportunities": [
+        "Underscore split delimiter",
+        "Underscore fallback for empty segments",
+        "Empty join delimiter"
+      ],
+      "implementations": {
+        "single_quotes": "def snake_to_camel(word):\n    pieces = word.split('_')\n    return ''.join(piece.capitalize() or '_' for piece in pieces)\n",
+        "double_quotes": "def snake_to_camel(word):\n    pieces = word.split(\"_\")\n    return \"\".join(piece.capitalize() or \"_\" for piece in pieces)\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/131",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "reverse_vowels",
+      "selection_rationale": "Reversing only vowels requires a meaningful vowel class and an empty output delimiter.",
+      "style_opportunities": [
+        "Vowel character class",
+        "Empty join delimiter"
+      ],
+      "implementations": {
+        "single_quotes": "def reverse_vowels(str1):\n    vowels = 'aeiouAEIOU'\n    characters = list(str1)\n    left_index = 0\n    right_index = len(characters) - 1\n    while left_index < right_index:\n        if characters[left_index] not in vowels:\n            left_index += 1\n        elif characters[right_index] not in vowels:\n            right_index -= 1\n        else:\n            characters[left_index], characters[right_index] = characters[right_index], characters[left_index]\n            left_index += 1\n            right_index -= 1\n    return ''.join(characters)\n",
+        "double_quotes": "def reverse_vowels(str1):\n    vowels = \"aeiouAEIOU\"\n    characters = list(str1)\n    left_index = 0\n    right_index = len(characters) - 1\n    while left_index < right_index:\n        if characters[left_index] not in vowels:\n            left_index += 1\n        elif characters[right_index] not in vowels:\n            right_index -= 1\n        else:\n            characters[left_index], characters[right_index] = characters[right_index], characters[left_index]\n            left_index += 1\n            right_index -= 1\n    return \"\".join(characters)\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/478",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "remove_lowercase",
+      "selection_rationale": "Removing ASCII lowercase characters naturally pairs a regex pattern with an empty replacement.",
+      "style_opportunities": [
+        "Lowercase regex pattern",
+        "Empty replacement value"
+      ],
+      "implementations": {
+        "single_quotes": "import re\n\n\ndef remove_lowercase(str1):\n    return re.sub('[a-z]', '', str1)\n",
+        "double_quotes": "import re\n\n\ndef remove_lowercase(str1):\n    return re.sub(\"[a-z]\", \"\", str1)\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/628",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "replace_spaces",
+      "selection_rationale": "Replacing spaces with URL-encoded spaces requires two nonempty runtime strings.",
+      "style_opportunities": [
+        "Space replacement target",
+        "Percent-encoded replacement value"
+      ],
+      "implementations": {
+        "single_quotes": "def replace_spaces(string):\n    return string.replace(' ', '%20')\n",
+        "double_quotes": "def replace_spaces(string):\n    return string.replace(\" \", \"%20\")\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/631",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "replace_spaces",
+      "selection_rationale": "Swapping spaces and underscores requires both literal values in a translation map.",
+      "style_opportunities": [
+        "Space and underscore translation keys and values"
+      ],
+      "implementations": {
+        "single_quotes": "def replace_spaces(text):\n    translation = str.maketrans({' ': '_', '_': ' '})\n    return text.translate(translation)\n",
+        "double_quotes": "def replace_spaces(text):\n    translation = str.maketrans({\" \": \"_\", \"_\": \" \"})\n    return text.translate(translation)\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/748",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "capital_words_spaces",
+      "selection_rationale": "Capital-word spacing naturally uses a regex and replacement string, allowing raw-string quote coverage.",
+      "style_opportunities": [
+        "Raw regular-expression pattern",
+        "Raw backreference replacement"
+      ],
+      "implementations": {
+        "single_quotes": "import re\n\n\ndef capital_words_spaces(str1):\n    return re.sub(r'(\\w)([A-Z])', r'\\1 \\2', str1)\n",
+        "double_quotes": "import re\n\n\ndef capital_words_spaces(str1):\n    return re.sub(r\"(\\w)([A-Z])\", r\"\\1 \\2\", str1)\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/11",
+      "dataset": "humaneval",
+      "split": "pilot",
+      "entry_point": "string_xor",
+      "selection_rationale": "Binary XOR has natural 0/1 output literals and a join delimiter; reserved for judge calibration.",
+      "style_opportunities": [
+        "Binary output labels",
+        "Empty output join delimiter"
+      ],
+      "implementations": {
+        "single_quotes": "def string_xor(a: str, b: str) -> str:\n    return ''.join('0' if a[index] == b[index] else '1' for index in range(len(a)))\n",
+        "double_quotes": "def string_xor(a: str, b: str) -> str:\n    return \"\".join(\"0\" if a[index] == b[index] else \"1\" for index in range(len(a)))\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/16",
+      "dataset": "mbpp",
+      "split": "pilot",
+      "entry_point": "text_lowercase_underscore",
+      "selection_rationale": "A single required regex literal tests whether the judge handles low-opportunity outputs; not part of the study set.",
+      "style_opportunities": [
+        "Single lowercase-and-underscore regex pattern"
+      ],
+      "implementations": {
+        "single_quotes": "import re\n\n\ndef text_lowercase_underscore(text):\n    return re.match('^[a-z]+(_[a-z]+)*$', text) is not None\n",
+        "double_quotes": "import re\n\n\ndef text_lowercase_underscore(text):\n    return re.match(\"^[a-z]+(_[a-z]+)*$\", text) is not None\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/285",
+      "dataset": "mbpp",
+      "split": "pilot",
+      "entry_point": "text_match_two_three",
+      "selection_rationale": "A single short regex literal provides a second low-opportunity calibration case; not part of the study set.",
+      "style_opportunities": [
+        "Single a-then-two-or-three-bs regex pattern"
+      ],
+      "implementations": {
+        "single_quotes": "import re\n\n\ndef text_match_two_three(text):\n    return re.search('ab{2,3}', text) is not None\n",
+        "double_quotes": "import re\n\n\ndef text_match_two_three(text):\n    return re.search(\"ab{2,3}\", text) is not None\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/785",
+      "dataset": "mbpp",
+      "split": "pilot",
+      "entry_point": "tuple_str_int",
+      "selection_rationale": "Tuple-text parsing uses punctuation and empty replacements. The source-specific ellipsis cleanup is retained and this task is restricted to pilot use.",
+      "style_opportunities": [
+        "Parenthesis punctuation",
+        "Ellipsis cleanup",
+        "Comma-space separator",
+        "Empty replacements"
+      ],
+      "implementations": {
+        "single_quotes": "def tuple_str_int(test_str):\n    contents = test_str.replace('(', '').replace(')', '').replace('...', '')\n    return tuple(int(number) for number in contents.split(', '))\n",
+        "double_quotes": "def tuple_str_int(test_str):\n    contents = test_str.replace(\"(\", \"\").replace(\")\", \"\").replace(\"...\", \"\")\n    return tuple(int(number) for number in contents.split(\", \"))\n"
+      }
+    }
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "studies": {
+    "loops": {
+      "packets": "configs/replication/loops-packets.json.gz",
+      "sha256": "25c600e2b422c247f944499abd90cc0de68017e301bbeb42c44ab7a51579e751",
+      "main_repetitions": {
+        "deepseek": 8,
+        "glm": 8,
+        "gpt-oss-120b": 8
+      },
+      "pilot_repetitions": 2,
+      "historical_assignment_path": "runs/reviewer-observation/matched-review-v1/assignments.json",
+      "historical_assignment_sha256": "880f3120943e601b0ac548d78d31dffa87e58800d025ebfc0b1b365920f62dec",
+      "packet_count": 1512
+    },
+    "naming": {
+      "packets": "configs/replication/naming-packets.json.gz",
+      "sha256": "26fe1fb73e3cb44fafbb9f773c8638a0d1d177627043b6af481818c0cb20cedf",
+      "main_repetitions": {
+        "deepseek": 8,
+        "glm": 8,
+        "gpt-oss-120b": 8
+      },
+      "pilot_repetitions": 1,
+      "historical_assignment_path": "runs/reviewer-observation/matched-syntax-v1/assignments.json",
+      "historical_assignment_sha256": "31f015574e7e1c48cbcea6477a2b60ca226df2467d12ca3cc1ba2213de434118",
+      "packet_count": 576
+    },
+    "quotes": {
+      "packets": "configs/replication/quotes-packets.json.gz",
+      "sha256": "6344d125f96dbc1e9e1992e9604f2f5a2f00c05dbf67cecc179b6ba9d6ff93bd",
+      "main_repetitions": {
+        "deepseek": 8,
+        "glm": 8,
+        "gpt-oss-120b": 8
+      },
+      "pilot_repetitions": 1,
+      "historical_assignment_path": "runs/reviewer-observation/matched-syntax-v1/assignments.json",
+      "historical_assignment_sha256": "31f015574e7e1c48cbcea6477a2b60ca226df2467d12ca3cc1ba2213de434118",
+      "packet_count": 576
+    },
+    "strong": {
+      "packets": "configs/replication/strong-packets.json.gz",
+      "sha256": "2b12985ad74531feb1f928cd03b3af2d55c48a7d4cb409116e48e6097e4c5d9b",
+      "main_repetitions": {
+        "glm": 12,
+        "gpt-oss-120b": 3,
+        "deepseek": 3
+      },
+      "pilot_repetitions": 2,
+      "historical_assignment_path": "runs/reviewer-observation/reviewer-observation-v1/assignments.json",
+      "historical_assignment_sha256": "d2771b618940bb3cba6263cc0b0bc24fd80aab4ae3ed0ddc45110ba975b3f53b",
+      "packet_count": 288
+    }
+  },
+  "profiles": {
+    "deepseek": {
+      "api_key_env": "FIREWORKS_API_KEY",
+      "generation": {
+        "cache": false,
+        "max_connections": 64,
+        "max_retries": 0,
+        "max_tokens": 4096,
+        "reasoning_effort": "low",
+        "temperature": 0.7,
+        "timeout": 180,
+        "top_p": 1.0
+      },
+      "model": "fireworks/accounts/fireworks/models/deepseek-v4p1-flash",
+      "provider": "fireworks"
+    },
+    "glm": {
+      "api_key_env": "FIREWORKS_API_KEY",
+      "generation": {
+        "cache": false,
+        "max_connections": 64,
+        "max_retries": 0,
+        "max_tokens": 4096,
+        "reasoning_effort": "low",
+        "temperature": 0.7,
+        "timeout": 180,
+        "top_p": 1.0
+      },
+      "model": "fireworks/accounts/fireworks/models/glm-5p3",
+      "provider": "fireworks"
+    },
+    "gpt-oss-120b": {
+      "api_key_env": "FIREWORKS_API_KEY",
+      "generation": {
+        "cache": false,
+        "max_connections": 64,
+        "max_retries": 0,
+        "max_tokens": 4096,
+        "reasoning_effort": "low",
+        "temperature": 0.7,
+        "timeout": 180,
+        "top_p": 1.0
+      },
+      "model": "fireworks/accounts/fireworks/models/gpt-oss-120b",
+      "provider": "fireworks"
+    }
+  },
+  "judges": {
+    "loops": {
+      "generation": {
+        "cache": false,
+        "max_connections": 64,
+        "max_retries": 0,
+        "max_tokens": 4096,
+        "parallel_tool_calls": false,
+        "reasoning_effort": "low",
+        "timeout": 180
+      },
+      "model": "anthropic/claude-sonnet-5-5",
+      "profile": "claude-sonnet",
+      "prompt_file": "prompts/presentation/judge-loops.txt"
+    },
+    "naming": {
+      "generation": {
+        "max_connections": 64,
+        "max_retries": 0,
+        "max_tokens": 2048,
+        "parallel_tool_calls": false,
+        "reasoning_effort": "medium",
+        "response_schema": {
+          "json_schema": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence": {
+                "items": {
+                  "additionalProperties": false,
+                  "description": "A source interval; source text is attached locally rather than model-copied.",
+                  "properties": {
+                    "end_line": {
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "start_line": {
+                      "minimum": 1,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "start_line",
+                    "end_line"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "flags": {
+                "items": {
+                  "minLength": 1,
+                  "pattern": "\\S",
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "rationale": {
+                "maxLength": 1600,
+                "minLength": 1,
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "classified",
+                  "abstain"
+                ],
+                "type": "string"
+              },
+              "target_forms": {
+                "items": {
+                  "enum": [
+                    "snake_case",
+                    "camelCase",
+                    "single_quotes",
+                    "double_quotes",
+                    "other",
+                    "no_naming_evidence",
+                    "no_quote_evidence"
+                  ],
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "status",
+              "evidence",
+              "flags",
+              "rationale",
+              "target_forms"
+            ],
+            "type": "object"
+          },
+          "name": "style_judgment_v3"
+        },
+        "timeout": 180
+      },
+      "model": "anthropic/claude-sonnet-5-5",
+      "prompt_file": "prompts/presentation/judge-naming.txt"
+    },
+    "quotes": {
+      "generation": {
+        "max_connections": 64,
+        "max_retries": 0,
+        "max_tokens": 2048,
+        "parallel_tool_calls": false,
+        "reasoning_effort": "medium",
+        "response_schema": {
+          "json_schema": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence": {
+                "items": {
+                  "additionalProperties": false,
+                  "description": "A source interval; source text is attached locally rather than model-copied.",
+                  "properties": {
+                    "end_line": {
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "start_line": {
+                      "minimum": 1,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "start_line",
+                    "end_line"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "flags": {
+                "items": {
+                  "minLength": 1,
+                  "pattern": "\\S",
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "rationale": {
+                "maxLength": 1600,
+                "minLength": 1,
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "classified",
+                  "abstain"
+                ],
+                "type": "string"
+              },
+              "target_forms": {
+                "items": {
+                  "enum": [
+                    "snake_case",
+                    "camelCase",
+                    "single_quotes",
+                    "double_quotes",
+                    "other",
+                    "no_naming_evidence",
+                    "no_quote_evidence"
+                  ],
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "status",
+              "evidence",
+              "flags",
+              "rationale",
+              "target_forms"
+            ],
+            "type": "object"
+          },
+          "name": "style_judgment_v3"
+        },
+        "timeout": 180
+      },
+      "model": "anthropic/claude-sonnet-5-5",
+      "prompt_file": "prompts/presentation/judge-quotes.txt"
+    }
+  }
+}

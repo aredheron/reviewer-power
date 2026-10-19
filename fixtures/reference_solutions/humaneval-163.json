@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/163",
+  "entry_point": "generate_integers",
+  "transformation": "Filter the positive even decimal digits by inclusive unordered endpoints.",
+  "implementations": {
+    "comprehension": "def generate_integers(a, b):\n    \"\"\"Return the even decimal digits in the inclusive range between a and b.\"\"\"\n    lower, upper = min(a, b), max(a, b)\n    return [digit for digit in range(2, 10, 2) if lower <= digit <= upper]\n",
+    "loop": "def generate_integers(a, b):\n    \"\"\"Return the even decimal digits in the inclusive range between a and b.\"\"\"\n    lower, upper = min(a, b), max(a, b)\n    digits = []\n    for digit in range(2, 10, 2):\n        if lower <= digit <= upper:\n            digits.append(digit)\n    return digits\n"
+  },
+  "review_notes": [
+    "The unchanged input contract requires positive integers; zero is outside that domain. Reversed bounds, inclusive endpoints and intervals above nine need oracle coverage.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

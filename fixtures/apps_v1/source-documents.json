@@ -1,0 +1,14 @@
+[
+  {
+    "execution": "never executed; source material only",
+    "path": "data/apps/21e74ddf8de1a21436da12e3e653065c5213e9d1/README.md",
+    "sha256": "bc954bda94e94e9ce92d80ec16d69607444fcdff240cae89df6ca84ff497e846",
+    "url": "https://huggingface.co/datasets/codeparrot/apps/resolve/21e74ddf8de1a21436da12e3e653065c5213e9d1/README.md"
+  },
+  {
+    "execution": "never executed; source material only",
+    "path": "data/apps/21e74ddf8de1a21436da12e3e653065c5213e9d1/upstream-loader.txt",
+    "sha256": "e2483d6878a8c44c76721e77cc3f978320e135af152a7f83be4f3e713df1bf37",
+    "url": "https://huggingface.co/datasets/codeparrot/apps/resolve/21e74ddf8de1a21436da12e3e653065c5213e9d1/apps.py"
+  }
+]

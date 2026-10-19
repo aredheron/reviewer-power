@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/618",
+  "entry_point": "div_list",
+  "transformation": "Divide aligned numeric values using true division and retain pairing order.",
+  "implementations": {
+    "comprehension": "def div_list(nums1, nums2):\n    \"\"\"Compute a quotient for each aligned numerator and denominator.\"\"\"\n    return [numerator / denominator for numerator, denominator in zip(nums1, nums2)]\n",
+    "loop": "def div_list(nums1, nums2):\n    \"\"\"Compute a quotient for each aligned numerator and denominator.\"\"\"\n    result = []\n    for numerator, denominator in zip(nums1, nums2):\n        result.append(numerator / denominator)\n    return result\n"
+  },
+  "review_notes": [
+    "Keep true division, native rounding and exceptions; the auxiliary contract requires equal nonempty lengths and nonzero denominators.",
+    "No numeric coercion or zero-denominator fallback is added; full floating-point oracle behavior remains unverified."
+  ]
+}

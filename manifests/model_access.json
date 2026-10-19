@@ -1,0 +1,251 @@
+{
+  "format_version": 1,
+  "purpose": "model_access_smoke_not_research_data",
+  "recorded_at": "2026-10-10T08:53:39.144482+00:00",
+  "limitations": [
+    "One synthetic prompt per access check; no EvalPlus task was sent.",
+    "No generated solution was executed; functional correctness and pilot readiness are unverified.",
+    "Hosted revision IDs are provider-managed.",
+    "Sampling and thinking settings are access-test choices, not frozen research settings.",
+    "The GPU requirements pin direct dependencies; a private resolved package inventory is retained, not a full portable GPU lock."
+  ],
+  "client": {
+    "inspect_ai": "0.3.277",
+    "lockfile": "uv.lock",
+    "profiles": "configs/models.yaml"
+  },
+  "self_hosted_runtime": {
+    "platform": "Linux",
+    "architecture": "x86_64",
+    "python": "3.12.3",
+    "hardware": "NVIDIA A100-SXM4-80GB, 81920 MiB, 580.126.16",
+    "packages": {
+      "vllm": "0.11.0",
+      "transformers": "4.57.1",
+      "huggingface-hub": "0.35.3",
+      "torch": "2.8.0"
+    },
+    "resolved_packages_sha256": "e30d4f772942f214a76462558e1b45cae15358ccb305216616faf978a51cbada"
+  },
+  "checkpoints": {
+    "nemotron-final": {
+      "revision": "276a779fe0c1fe2d63a68fd573fec7b4b0a1907e",
+      "repository": "nvidia/Nemotron-Cascade-8B",
+      "tokenizer_config_sha256": "7d015362b4abf59ddd4d286fbc10f899b5ce7b1689ddc2fa8876120267d931d0",
+      "tokenizer_json_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "native_chat_template_sha256": "1d357aa3a95cc57d98140d0ecbff42761eb749ef73eb9766535878259887b4d8"
+    },
+    "nemotron-sft": {
+      "revision": "9b379bd8f8ecb1feb19825efefe319bd30d8a223",
+      "repository": "nvidia/Nemotron-Cascade-8B-Intermediate-ckpts",
+      "tokenizer_config_sha256": "253153d0738ceb4c668d2eff957714dd2bea0b56de772a9fdccd96cbf517e6a0",
+      "tokenizer_json_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "native_chat_template_sha256": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5",
+      "subfolder": "Nemotron-Cascade-8B-SFT"
+    }
+  },
+  "shared_chat_template": {
+    "source_repository": "nvidia/Nemotron-Cascade-8B",
+    "source_revision": "276a779fe0c1fe2d63a68fd573fec7b4b0a1907e",
+    "source_file": "tokenizer_config.json:chat_template",
+    "sha256": "1d357aa3a95cc57d98140d0ecbff42761eb749ef73eb9766535878259887b4d8",
+    "decision": "Use the final checkpoint template for both final and SFT; user approved 2026-10-10.",
+    "native_templates_identical": false,
+    "tokenizer_json_identical": true,
+    "synthetic_probe_token_ids_identical": true,
+    "synthetic_probe": {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Implement a function that doubles each input integer."
+        }
+      ],
+      "add_generation_prompt": true,
+      "enable_thinking": false,
+      "token_count": 34,
+      "token_ids_json_sha256": "e22a6ae3b231286f42b4c9941387766a439ff148a62b1c12241df159f5108746"
+    }
+  },
+  "serving": {
+    "dtype": "bfloat16",
+    "max_model_len": 8192,
+    "max_num_seqs": 4,
+    "gpu_memory_utilization": 0.5,
+    "generation_config": "vllm",
+    "enforce_eager": true,
+    "chat_template_override": "shared_chat_template",
+    "exposure": "localhost via SSH tunnel",
+    "authentication": "API key required",
+    "checkpoint_concurrency": "one at a time",
+    "unauthenticated_models_http_status": 401
+  },
+  "checks": [
+    {
+      "profile": "gpt-oss-120b",
+      "started_at": "2026-10-10T08:41:07.929421+00:00",
+      "configured_model": "together/openai/gpt-oss-120b",
+      "returned_model": "openai/gpt-oss-120b",
+      "configured_revision": "provider-managed",
+      "status": "generated",
+      "generation": {
+        "max_retries": 0,
+        "timeout": 180,
+        "max_tokens": 4096,
+        "reasoning_effort": "low"
+      },
+      "usage": {
+        "input_tokens": 50,
+        "output_tokens": 47,
+        "total_tokens": 163,
+        "input_tokens_cache_write": null,
+        "input_tokens_cache_read": 66,
+        "reasoning_tokens": 10,
+        "total_cost": null
+      },
+      "prompt_sha256": "2e4e4d74a2221a464b63b02a0710b4bbc04492ee7aa6a79e9b77a25eed93aa64",
+      "raw_record": "runs/access-checks/20261010T084109Z-gpt-oss-120b-3f232495.json",
+      "raw_record_sha256": "30c2364175ad06a0d743de755ab8def274664517f70d8baf37f76037784ae4db",
+      "extraction_status": "ok",
+      "compile_status": "valid",
+      "style_label": "comprehension_only",
+      "correctness": "not_evaluated",
+      "chat_template": "provider_managed"
+    },
+    {
+      "profile": "claude-sonnet",
+      "started_at": "2026-10-10T08:41:11.730770+00:00",
+      "configured_model": "anthropic/claude-sonnet-5-5",
+      "returned_model": "claude-sonnet-5-5",
+      "configured_revision": "provider-managed",
+      "status": "generated",
+      "generation": {
+        "max_retries": 0,
+        "timeout": 180,
+        "max_tokens": 4096,
+        "reasoning_effort": "low"
+      },
+      "usage": {
+        "input_tokens": 75,
+        "output_tokens": 40,
+        "total_tokens": 115,
+        "input_tokens_cache_write": 0,
+        "input_tokens_cache_read": 0,
+        "reasoning_tokens": null,
+        "total_cost": null
+      },
+      "prompt_sha256": "2e4e4d74a2221a464b63b02a0710b4bbc04492ee7aa6a79e9b77a25eed93aa64",
+      "raw_record": "runs/access-checks/20261010T084113Z-claude-sonnet-0383376b.json",
+      "raw_record_sha256": "fa069e046475c851c18a18816110ded138d644bba0d6caed0a94f545fadf01f4",
+      "extraction_status": "ok",
+      "compile_status": "valid",
+      "style_label": "comprehension_only",
+      "correctness": "not_evaluated",
+      "chat_template": "provider_managed"
+    },
+    {
+      "profile": "nemotron-final",
+      "started_at": "2026-10-10T08:46:48.837197+00:00",
+      "configured_model": "vllm/nemotron-final",
+      "returned_model": "nemotron-final",
+      "configured_revision": "276a779fe0c1fe2d63a68fd573fec7b4b0a1907e",
+      "status": "generated",
+      "generation": {
+        "max_retries": 0,
+        "timeout": 180,
+        "max_tokens": 2048,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 71,
+        "output_tokens": 28,
+        "total_tokens": 99,
+        "input_tokens_cache_write": null,
+        "input_tokens_cache_read": null,
+        "reasoning_tokens": null,
+        "total_cost": null
+      },
+      "prompt_sha256": "2e4e4d74a2221a464b63b02a0710b4bbc04492ee7aa6a79e9b77a25eed93aa64",
+      "raw_record": "runs/access-checks/20261010T084650Z-nemotron-final-5872ca28.json",
+      "raw_record_sha256": "63dee3c8e67e3376819e413ed0c929fc1b4c04870fdb04dd0fe71d7244143f12",
+      "extraction_status": "ok",
+      "compile_status": "valid",
+      "style_label": "comprehension_only",
+      "correctness": "not_evaluated",
+      "chat_template": "final_pinned_native"
+    },
+    {
+      "profile": "nemotron-sft",
+      "started_at": "2026-10-10T08:51:17.150670+00:00",
+      "configured_model": "vllm/nemotron-sft",
+      "returned_model": "nemotron-sft",
+      "configured_revision": "9b379bd8f8ecb1feb19825efefe319bd30d8a223",
+      "status": "generated",
+      "generation": {
+        "max_retries": 0,
+        "timeout": 180,
+        "max_tokens": 2048,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 71,
+        "output_tokens": 28,
+        "total_tokens": 99,
+        "input_tokens_cache_write": null,
+        "input_tokens_cache_read": null,
+        "reasoning_tokens": null,
+        "total_cost": null
+      },
+      "prompt_sha256": "2e4e4d74a2221a464b63b02a0710b4bbc04492ee7aa6a79e9b77a25eed93aa64",
+      "raw_record": "runs/access-checks/20261010T085118Z-nemotron-sft-70b05eb9.json",
+      "raw_record_sha256": "bbd373f422c5344200e12dca610749a78dfd7f0ac991ac346dde57c87ae6260a",
+      "extraction_status": "ok",
+      "compile_status": "valid",
+      "style_label": "comprehension_only",
+      "correctness": "not_evaluated",
+      "chat_template": "final_pinned_override"
+    },
+    {
+      "profile": "nemotron-final",
+      "started_at": "2026-10-10T08:53:26.180713+00:00",
+      "configured_model": "vllm/nemotron-final",
+      "returned_model": "nemotron-final",
+      "configured_revision": "276a779fe0c1fe2d63a68fd573fec7b4b0a1907e",
+      "status": "generated",
+      "generation": {
+        "max_retries": 0,
+        "timeout": 180,
+        "max_tokens": 2048,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 71,
+        "output_tokens": 28,
+        "total_tokens": 99,
+        "input_tokens_cache_write": null,
+        "input_tokens_cache_read": null,
+        "reasoning_tokens": null,
+        "total_cost": null
+      },
+      "prompt_sha256": "2e4e4d74a2221a464b63b02a0710b4bbc04492ee7aa6a79e9b77a25eed93aa64",
+      "raw_record": "runs/access-checks/20261010T085327Z-nemotron-final-d200234e.json",
+      "raw_record_sha256": "1050b4f0defa1223bdfd0cd52665d5590ed9377cf109370e53d3089ef47c77ed",
+      "extraction_status": "ok",
+      "compile_status": "valid",
+      "style_label": "comprehension_only",
+      "correctness": "not_evaluated",
+      "chat_template": "final_pinned_override"
+    }
+  ]
+}

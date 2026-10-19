@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "grader-power"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "evalplus==0.3.1",
+    "inspect-ai==0.3.277",
+    "pydantic==2.14.0",
+    "python-dotenv==1.2.4",
+    "pyyaml==6.0.3",
+]
+
+[dependency-groups]
+dev = [
+    "pyright==1.1.414",
+    "pytest==9.1.1",
+    "ruff==0.16.10",
+]
+
+[tool.pyright]
+# Persisted model outputs and experimental fixtures are inert data, not source.
+exclude = ["runs"]
+
+[tool.pytest.ini_options]
+# Never discover generated solution/fixture modules in ignored run/data storage.
+testpaths = ["tests"]
+# Historical entry points import the repository-local evals package.
+pythonpath = ["."]

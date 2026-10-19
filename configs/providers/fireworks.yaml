@@ -1,0 +1,8 @@
+# Separate provider amendment; do not rewrite the frozen Together profile.
+gpt-oss-120b:
+  model: fireworks/accounts/fireworks/models/gpt-oss-120b
+  base_url: https://api.fireworks.ai/inference/v1
+  api_key_env: FIREWORKS_API_KEY
+  revision: provider-managed
+  reasoning_effort: low
+  max_tokens: 4096

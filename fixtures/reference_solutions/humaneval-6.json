@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/6",
+  "entry_point": "parse_nested_parens",
+  "transformation": "Map each nonempty space-delimited parenthesis group to its maximum nesting depth.",
+  "implementations": {
+    "comprehension": "from typing import List\n\n\ndef _maximum_depth(group: str) -> int:\n    \"\"\"Track the greatest running balance of a single literal-space token.\"\"\"\n    balance = 0\n    deepest = 0\n    for character in group:\n        if character == \"(\":\n            balance += 1\n        elif character == \")\":\n            balance -= 1\n        deepest = max(deepest, balance)\n    return deepest\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\"Return the depth of each nonempty parenthesis group in input order.\"\"\"\n    return [_maximum_depth(group) for group in paren_string.split(\" \") if group]\n",
+    "loop": "from typing import List\n\n\ndef _maximum_depth(group: str) -> int:\n    \"\"\"Track the greatest running balance of a single literal-space token.\"\"\"\n    balance = 0\n    deepest = 0\n    for character in group:\n        if character == \"(\":\n            balance += 1\n        elif character == \")\":\n            balance -= 1\n        deepest = max(deepest, balance)\n    return deepest\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\"Return the depth of each nonempty parenthesis group in input order.\"\"\"\n    depths = []\n    for group in paren_string.split(\" \"):\n        if group:\n            depths.append(_maximum_depth(group))\n    return depths\n"
+  },
+  "review_notes": [
+    "The scalar helper uses a stateful scan; only the entry-point output mapping is the proposed scoring region.",
+    "Literal-space splitting and a fresh zero depth per token preserve the inspected behavior even when only the whole string, not each token, is balanced.",
+    "Full base/plus oracle execution and human review of the helper/mapping boundary remain pending."
+  ]
+}

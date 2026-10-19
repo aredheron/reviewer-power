@@ -1,0 +1,1464 @@
+{
+  "tables": {
+    "main": [
+      {
+        "study": "matched_review",
+        "profile": "deepseek",
+        "arm": "absent",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 12,
+        "unresolved": 0,
+        "rate": 0.0234375,
+        "lower_bound": 0.0234375,
+        "upper_bound": 0.0234375,
+        "full_correct": 505,
+        "labels": {
+          "comprehension_only": 201,
+          "invalid_or_unparseable": 2,
+          "loop_only": 265,
+          "mixed": 8,
+          "neither": 36
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "deepseek",
+        "arm": "reviewer_future_selection",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 289,
+        "unresolved": 0,
+        "rate": 0.564453125,
+        "lower_bound": 0.564453125,
+        "upper_bound": 0.564453125,
+        "full_correct": 504,
+        "labels": {
+          "comprehension_only": 410,
+          "invalid_or_unparseable": 2,
+          "loop_only": 73,
+          "mixed": 5,
+          "neither": 22
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "deepseek",
+        "arm": "reviewer_no_consequences",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 243,
+        "unresolved": 0,
+        "rate": 0.474609375,
+        "lower_bound": 0.474609375,
+        "upper_bound": 0.474609375,
+        "full_correct": 504,
+        "labels": {
+          "comprehension_only": 428,
+          "invalid_or_unparseable": 2,
+          "loop_only": 40,
+          "mixed": 9,
+          "neither": 33
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "deepseek",
+        "arm": "reviewer_rl_update",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 302,
+        "unresolved": 0,
+        "rate": 0.58984375,
+        "lower_bound": 0.58984375,
+        "upper_bound": 0.58984375,
+        "full_correct": 498,
+        "labels": {
+          "comprehension_only": 389,
+          "invalid_or_unparseable": 3,
+          "loop_only": 92,
+          "mixed": 7,
+          "neither": 21
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "deepseek",
+        "arm": "reviewer_unseen",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 224,
+        "unresolved": 0,
+        "rate": 0.4375,
+        "lower_bound": 0.4375,
+        "upper_bound": 0.4375,
+        "full_correct": 506,
+        "labels": {
+          "comprehension_only": 399,
+          "invalid_or_unparseable": 2,
+          "loop_only": 57,
+          "mixed": 11,
+          "neither": 43
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "glm",
+        "arm": "absent",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 2,
+        "unresolved": 0,
+        "rate": 0.00390625,
+        "lower_bound": 0.00390625,
+        "upper_bound": 0.00390625,
+        "full_correct": 475,
+        "labels": {
+          "comprehension_only": 216,
+          "invalid_or_unparseable": 1,
+          "loop_only": 253,
+          "mixed": 5,
+          "neither": 37
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "glm",
+        "arm": "reviewer_future_selection",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 341,
+        "unresolved": 0,
+        "rate": 0.666015625,
+        "lower_bound": 0.666015625,
+        "upper_bound": 0.666015625,
+        "full_correct": 473,
+        "labels": {
+          "comprehension_only": 121,
+          "invalid_or_unparseable": 2,
+          "loop_only": 370,
+          "mixed": 5,
+          "neither": 14
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "glm",
+        "arm": "reviewer_no_consequences",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 285,
+        "unresolved": 0,
+        "rate": 0.556640625,
+        "lower_bound": 0.556640625,
+        "upper_bound": 0.556640625,
+        "full_correct": 470,
+        "labels": {
+          "comprehension_only": 116,
+          "invalid_or_unparseable": 2,
+          "loop_only": 368,
+          "mixed": 8,
+          "neither": 18
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "glm",
+        "arm": "reviewer_rl_update",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 333,
+        "unresolved": 0,
+        "rate": 0.650390625,
+        "lower_bound": 0.650390625,
+        "upper_bound": 0.650390625,
+        "full_correct": 473,
+        "labels": {
+          "comprehension_only": 132,
+          "invalid_or_unparseable": 1,
+          "loop_only": 355,
+          "mixed": 5,
+          "neither": 19
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "glm",
+        "arm": "reviewer_unseen",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 256,
+        "unresolved": 0,
+        "rate": 0.5,
+        "lower_bound": 0.5,
+        "upper_bound": 0.5,
+        "full_correct": 468,
+        "labels": {
+          "comprehension_only": 138,
+          "invalid_or_unparseable": 2,
+          "loop_only": 339,
+          "mixed": 12,
+          "neither": 21
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "gpt-oss-120b",
+        "arm": "absent",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 39,
+        "unresolved": 0,
+        "rate": 0.076171875,
+        "lower_bound": 0.076171875,
+        "upper_bound": 0.076171875,
+        "full_correct": 482,
+        "labels": {
+          "comprehension_only": 219,
+          "loop_only": 250,
+          "mixed": 18,
+          "neither": 25
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "gpt-oss-120b",
+        "arm": "reviewer_future_selection",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 187,
+        "unresolved": 0,
+        "rate": 0.365234375,
+        "lower_bound": 0.365234375,
+        "upper_bound": 0.365234375,
+        "full_correct": 480,
+        "labels": {
+          "comprehension_only": 306,
+          "invalid_or_unparseable": 1,
+          "loop_only": 162,
+          "mixed": 16,
+          "neither": 27
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "gpt-oss-120b",
+        "arm": "reviewer_no_consequences",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 190,
+        "unresolved": 0,
+        "rate": 0.37109375,
+        "lower_bound": 0.37109375,
+        "upper_bound": 0.37109375,
+        "full_correct": 483,
+        "labels": {
+          "comprehension_only": 311,
+          "loop_only": 160,
+          "mixed": 18,
+          "neither": 23
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "gpt-oss-120b",
+        "arm": "reviewer_rl_update",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 191,
+        "unresolved": 0,
+        "rate": 0.373046875,
+        "lower_bound": 0.373046875,
+        "upper_bound": 0.373046875,
+        "full_correct": 483,
+        "labels": {
+          "comprehension_only": 314,
+          "invalid_or_unparseable": 1,
+          "loop_only": 154,
+          "mixed": 17,
+          "neither": 26
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "gpt-oss-120b",
+        "arm": "reviewer_unseen",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 194,
+        "unresolved": 0,
+        "rate": 0.37890625,
+        "lower_bound": 0.37890625,
+        "upper_bound": 0.37890625,
+        "full_correct": 481,
+        "labels": {
+          "comprehension_only": 303,
+          "invalid_or_unparseable": 3,
+          "loop_only": 163,
+          "mixed": 16,
+          "neither": 27
+        }
+      }
+    ],
+    "role-names": [
+      {
+        "study": "matched_review",
+        "profile": "deepseek",
+        "arm": "evaluator_no_consequences",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 263,
+        "unresolved": 0,
+        "rate": 0.513671875,
+        "lower_bound": 0.513671875,
+        "upper_bound": 0.513671875,
+        "full_correct": 502,
+        "labels": {
+          "comprehension_only": 412,
+          "invalid_or_unparseable": 2,
+          "loop_only": 55,
+          "mixed": 5,
+          "neither": 38
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "deepseek",
+        "arm": "evaluator_rl_update",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 359,
+        "unresolved": 0,
+        "rate": 0.701171875,
+        "lower_bound": 0.701171875,
+        "upper_bound": 0.701171875,
+        "full_correct": 502,
+        "labels": {
+          "comprehension_only": 354,
+          "invalid_or_unparseable": 3,
+          "loop_only": 140,
+          "mixed": 3,
+          "neither": 12
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "deepseek",
+        "arm": "grader_no_consequences",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 312,
+        "unresolved": 0,
+        "rate": 0.609375,
+        "lower_bound": 0.609375,
+        "upper_bound": 0.609375,
+        "full_correct": 504,
+        "labels": {
+          "comprehension_only": 391,
+          "loop_only": 88,
+          "mixed": 5,
+          "neither": 28
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "deepseek",
+        "arm": "grader_rl_update",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 380,
+        "unresolved": 0,
+        "rate": 0.7421875,
+        "lower_bound": 0.7421875,
+        "upper_bound": 0.7421875,
+        "full_correct": 504,
+        "labels": {
+          "comprehension_only": 337,
+          "invalid_or_unparseable": 4,
+          "loop_only": 148,
+          "mixed": 6,
+          "neither": 17
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "deepseek",
+        "arm": "scorer_no_consequences",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 266,
+        "unresolved": 0,
+        "rate": 0.51953125,
+        "lower_bound": 0.51953125,
+        "upper_bound": 0.51953125,
+        "full_correct": 507,
+        "labels": {
+          "comprehension_only": 408,
+          "invalid_or_unparseable": 1,
+          "loop_only": 67,
+          "mixed": 9,
+          "neither": 27
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "deepseek",
+        "arm": "scorer_rl_update",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 346,
+        "unresolved": 0,
+        "rate": 0.67578125,
+        "lower_bound": 0.67578125,
+        "upper_bound": 0.67578125,
+        "full_correct": 507,
+        "labels": {
+          "comprehension_only": 359,
+          "invalid_or_unparseable": 2,
+          "loop_only": 125,
+          "mixed": 6,
+          "neither": 20
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "glm",
+        "arm": "evaluator_no_consequences",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 290,
+        "unresolved": 1,
+        "rate": null,
+        "lower_bound": 0.56640625,
+        "upper_bound": 0.568359375,
+        "full_correct": 472,
+        "labels": {
+          "comprehension_only": 130,
+          "invalid_or_unparseable": 1,
+          "loop_only": 350,
+          "mixed": 12,
+          "neither": 18,
+          "unresolved": 1
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "glm",
+        "arm": "evaluator_rl_update",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 331,
+        "unresolved": 0,
+        "rate": 0.646484375,
+        "lower_bound": 0.646484375,
+        "upper_bound": 0.646484375,
+        "full_correct": 477,
+        "labels": {
+          "comprehension_only": 131,
+          "invalid_or_unparseable": 2,
+          "loop_only": 348,
+          "mixed": 9,
+          "neither": 22
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "glm",
+        "arm": "grader_no_consequences",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 303,
+        "unresolved": 0,
+        "rate": 0.591796875,
+        "lower_bound": 0.591796875,
+        "upper_bound": 0.591796875,
+        "full_correct": 479,
+        "labels": {
+          "comprehension_only": 124,
+          "invalid_or_unparseable": 1,
+          "loop_only": 365,
+          "mixed": 5,
+          "neither": 17
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "glm",
+        "arm": "grader_rl_update",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 347,
+        "unresolved": 0,
+        "rate": 0.677734375,
+        "lower_bound": 0.677734375,
+        "upper_bound": 0.677734375,
+        "full_correct": 473,
+        "labels": {
+          "comprehension_only": 142,
+          "invalid_or_unparseable": 1,
+          "loop_only": 347,
+          "mixed": 7,
+          "neither": 15
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "glm",
+        "arm": "scorer_no_consequences",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 304,
+        "unresolved": 0,
+        "rate": 0.59375,
+        "lower_bound": 0.59375,
+        "upper_bound": 0.59375,
+        "full_correct": 479,
+        "labels": {
+          "comprehension_only": 138,
+          "invalid_or_unparseable": 1,
+          "loop_only": 348,
+          "mixed": 6,
+          "neither": 19
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "glm",
+        "arm": "scorer_rl_update",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 345,
+        "unresolved": 0,
+        "rate": 0.673828125,
+        "lower_bound": 0.673828125,
+        "upper_bound": 0.673828125,
+        "full_correct": 476,
+        "labels": {
+          "comprehension_only": 140,
+          "loop_only": 353,
+          "mixed": 9,
+          "neither": 10
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "gpt-oss-120b",
+        "arm": "evaluator_no_consequences",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 191,
+        "unresolved": 0,
+        "rate": 0.373046875,
+        "lower_bound": 0.373046875,
+        "upper_bound": 0.373046875,
+        "full_correct": 482,
+        "labels": {
+          "comprehension_only": 309,
+          "loop_only": 159,
+          "mixed": 18,
+          "neither": 26
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "gpt-oss-120b",
+        "arm": "evaluator_rl_update",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 214,
+        "unresolved": 0,
+        "rate": 0.41796875,
+        "lower_bound": 0.41796875,
+        "upper_bound": 0.41796875,
+        "full_correct": 483,
+        "labels": {
+          "comprehension_only": 310,
+          "loop_only": 155,
+          "mixed": 23,
+          "neither": 24
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "gpt-oss-120b",
+        "arm": "grader_no_consequences",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 261,
+        "unresolved": 0,
+        "rate": 0.509765625,
+        "lower_bound": 0.509765625,
+        "upper_bound": 0.509765625,
+        "full_correct": 482,
+        "labels": {
+          "comprehension_only": 311,
+          "invalid_or_unparseable": 1,
+          "loop_only": 156,
+          "mixed": 19,
+          "neither": 25
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "gpt-oss-120b",
+        "arm": "grader_rl_update",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 258,
+        "unresolved": 0,
+        "rate": 0.50390625,
+        "lower_bound": 0.50390625,
+        "upper_bound": 0.50390625,
+        "full_correct": 479,
+        "labels": {
+          "comprehension_only": 306,
+          "invalid_or_unparseable": 2,
+          "loop_only": 162,
+          "mixed": 15,
+          "neither": 27
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "gpt-oss-120b",
+        "arm": "scorer_no_consequences",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 182,
+        "unresolved": 0,
+        "rate": 0.35546875,
+        "lower_bound": 0.35546875,
+        "upper_bound": 0.35546875,
+        "full_correct": 478,
+        "labels": {
+          "comprehension_only": 313,
+          "invalid_or_unparseable": 1,
+          "loop_only": 157,
+          "mixed": 12,
+          "neither": 29
+        }
+      },
+      {
+        "study": "matched_review",
+        "profile": "gpt-oss-120b",
+        "arm": "scorer_rl_update",
+        "tasks": 32,
+        "assigned": 512,
+        "opposite": 187,
+        "unresolved": 0,
+        "rate": 0.365234375,
+        "lower_bound": 0.365234375,
+        "upper_bound": 0.365234375,
+        "full_correct": 485,
+        "labels": {
+          "comprehension_only": 319,
+          "invalid_or_unparseable": 2,
+          "loop_only": 145,
+          "mixed": 21,
+          "neither": 25
+        }
+      }
+    ],
+    "naming": [
+      {
+        "study": "naming",
+        "profile": "deepseek",
+        "arm": "absent",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 1,
+        "unresolved": 0,
+        "rate": 0.0026041666666666665,
+        "lower_bound": 0.0026041666666666665,
+        "upper_bound": 0.0026041666666666665,
+        "full_correct": 380,
+        "labels": {
+          "camelCase_only": 172,
+          "invalid": 1,
+          "mixed": 4,
+          "no_naming_evidence": 89,
+          "snake_case_only": 118
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "deepseek",
+        "arm": "reviewer_future_selection",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 82,
+        "unresolved": 0,
+        "rate": 0.21354166666666666,
+        "lower_bound": 0.21354166666666666,
+        "upper_bound": 0.21354166666666666,
+        "full_correct": 376,
+        "labels": {
+          "camelCase_only": 31,
+          "invalid": 3,
+          "no_naming_evidence": 148,
+          "snake_case_only": 202
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "deepseek",
+        "arm": "reviewer_no_consequences",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 61,
+        "unresolved": 0,
+        "rate": 0.15885416666666666,
+        "lower_bound": 0.15885416666666666,
+        "upper_bound": 0.15885416666666666,
+        "full_correct": 381,
+        "labels": {
+          "camelCase_only": 47,
+          "no_naming_evidence": 156,
+          "snake_case_only": 181
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "deepseek",
+        "arm": "reviewer_rl_update",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 74,
+        "unresolved": 0,
+        "rate": 0.19270833333333334,
+        "lower_bound": 0.19270833333333334,
+        "upper_bound": 0.19270833333333334,
+        "full_correct": 382,
+        "labels": {
+          "camelCase_only": 30,
+          "invalid": 1,
+          "no_naming_evidence": 161,
+          "snake_case_only": 192
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "deepseek",
+        "arm": "reviewer_unseen",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 59,
+        "unresolved": 0,
+        "rate": 0.15364583333333334,
+        "lower_bound": 0.15364583333333334,
+        "upper_bound": 0.15364583333333334,
+        "full_correct": 380,
+        "labels": {
+          "camelCase_only": 46,
+          "invalid": 2,
+          "no_naming_evidence": 157,
+          "snake_case_only": 179
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "glm",
+        "arm": "absent",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 0,
+        "unresolved": 384,
+        "rate": null,
+        "lower_bound": 0.0,
+        "upper_bound": 1.0,
+        "full_correct": 0,
+        "labels": {
+          "unresolved": 384
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "glm",
+        "arm": "reviewer_future_selection",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 0,
+        "unresolved": 384,
+        "rate": null,
+        "lower_bound": 0.0,
+        "upper_bound": 1.0,
+        "full_correct": 0,
+        "labels": {
+          "unresolved": 384
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "glm",
+        "arm": "reviewer_no_consequences",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 0,
+        "unresolved": 384,
+        "rate": null,
+        "lower_bound": 0.0,
+        "upper_bound": 1.0,
+        "full_correct": 0,
+        "labels": {
+          "unresolved": 384
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "glm",
+        "arm": "reviewer_rl_update",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 0,
+        "unresolved": 384,
+        "rate": null,
+        "lower_bound": 0.0,
+        "upper_bound": 1.0,
+        "full_correct": 0,
+        "labels": {
+          "unresolved": 384
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "glm",
+        "arm": "reviewer_unseen",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 0,
+        "unresolved": 384,
+        "rate": null,
+        "lower_bound": 0.0,
+        "upper_bound": 1.0,
+        "full_correct": 0,
+        "labels": {
+          "unresolved": 384
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "gpt-oss-120b",
+        "arm": "absent",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 30,
+        "unresolved": 0,
+        "rate": 0.078125,
+        "lower_bound": 0.078125,
+        "upper_bound": 0.078125,
+        "full_correct": 376,
+        "labels": {
+          "camelCase_only": 108,
+          "invalid": 1,
+          "mixed": 12,
+          "no_naming_evidence": 114,
+          "snake_case_only": 149
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "gpt-oss-120b",
+        "arm": "reviewer_future_selection",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 126,
+        "unresolved": 0,
+        "rate": 0.328125,
+        "lower_bound": 0.328125,
+        "upper_bound": 0.328125,
+        "full_correct": 372,
+        "labels": {
+          "camelCase_only": 1,
+          "mixed": 3,
+          "no_naming_evidence": 126,
+          "snake_case_only": 254
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "gpt-oss-120b",
+        "arm": "reviewer_no_consequences",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 128,
+        "unresolved": 0,
+        "rate": 0.3333333333333333,
+        "lower_bound": 0.3333333333333333,
+        "upper_bound": 0.3333333333333333,
+        "full_correct": 369,
+        "labels": {
+          "camelCase_only": 3,
+          "invalid": 2,
+          "mixed": 1,
+          "no_naming_evidence": 129,
+          "snake_case_only": 249
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "gpt-oss-120b",
+        "arm": "reviewer_rl_update",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 131,
+        "unresolved": 0,
+        "rate": 0.3411458333333333,
+        "lower_bound": 0.3411458333333333,
+        "upper_bound": 0.3411458333333333,
+        "full_correct": 374,
+        "labels": {
+          "camelCase_only": 5,
+          "invalid": 1,
+          "no_naming_evidence": 126,
+          "snake_case_only": 252
+        }
+      },
+      {
+        "study": "naming",
+        "profile": "gpt-oss-120b",
+        "arm": "reviewer_unseen",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 123,
+        "unresolved": 0,
+        "rate": 0.3203125,
+        "lower_bound": 0.3203125,
+        "upper_bound": 0.3203125,
+        "full_correct": 371,
+        "labels": {
+          "camelCase_only": 1,
+          "invalid": 1,
+          "mixed": 3,
+          "no_naming_evidence": 129,
+          "snake_case_only": 250
+        }
+      }
+    ],
+    "quotes": [
+      {
+        "study": "quotes",
+        "profile": "deepseek",
+        "arm": "absent",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 0,
+        "unresolved": 0,
+        "rate": 0.0,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0,
+        "full_correct": 325,
+        "labels": {
+          "double_quotes_only": 185,
+          "invalid": 2,
+          "mixed": 16,
+          "single_quotes_only": 181
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "deepseek",
+        "arm": "reviewer_future_selection",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 138,
+        "unresolved": 0,
+        "rate": 0.359375,
+        "lower_bound": 0.359375,
+        "upper_bound": 0.359375,
+        "full_correct": 328,
+        "labels": {
+          "double_quotes_only": 228,
+          "invalid": 11,
+          "mixed": 21,
+          "no_quote_evidence": 9,
+          "single_quotes_only": 115
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "deepseek",
+        "arm": "reviewer_no_consequences",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 77,
+        "unresolved": 0,
+        "rate": 0.20052083333333334,
+        "lower_bound": 0.20052083333333334,
+        "upper_bound": 0.20052083333333334,
+        "full_correct": 329,
+        "labels": {
+          "double_quotes_only": 223,
+          "invalid": 7,
+          "mixed": 27,
+          "no_quote_evidence": 9,
+          "single_quotes_only": 118
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "deepseek",
+        "arm": "reviewer_rl_update",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 131,
+        "unresolved": 0,
+        "rate": 0.3411458333333333,
+        "lower_bound": 0.3411458333333333,
+        "upper_bound": 0.3411458333333333,
+        "full_correct": 326,
+        "labels": {
+          "double_quotes_only": 203,
+          "invalid": 11,
+          "mixed": 20,
+          "no_quote_evidence": 20,
+          "single_quotes_only": 130
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "deepseek",
+        "arm": "reviewer_unseen",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 54,
+        "unresolved": 0,
+        "rate": 0.140625,
+        "lower_bound": 0.140625,
+        "upper_bound": 0.140625,
+        "full_correct": 332,
+        "labels": {
+          "double_quotes_only": 220,
+          "invalid": 7,
+          "mixed": 17,
+          "no_quote_evidence": 5,
+          "single_quotes_only": 135
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "glm",
+        "arm": "absent",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 0,
+        "unresolved": 0,
+        "rate": 0.0,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0,
+        "full_correct": 302,
+        "labels": {
+          "double_quotes_only": 188,
+          "invalid": 5,
+          "mixed": 5,
+          "no_quote_evidence": 1,
+          "single_quotes_only": 185
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "glm",
+        "arm": "reviewer_future_selection",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 82,
+        "unresolved": 0,
+        "rate": 0.21354166666666666,
+        "lower_bound": 0.21354166666666666,
+        "upper_bound": 0.21354166666666666,
+        "full_correct": 292,
+        "labels": {
+          "double_quotes_only": 240,
+          "invalid": 7,
+          "mixed": 16,
+          "single_quotes_only": 121
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "glm",
+        "arm": "reviewer_no_consequences",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 52,
+        "unresolved": 0,
+        "rate": 0.13541666666666666,
+        "lower_bound": 0.13541666666666666,
+        "upper_bound": 0.13541666666666666,
+        "full_correct": 297,
+        "labels": {
+          "double_quotes_only": 215,
+          "invalid": 5,
+          "mixed": 14,
+          "single_quotes_only": 150
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "glm",
+        "arm": "reviewer_rl_update",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 81,
+        "unresolved": 0,
+        "rate": 0.2109375,
+        "lower_bound": 0.2109375,
+        "upper_bound": 0.2109375,
+        "full_correct": 298,
+        "labels": {
+          "double_quotes_only": 216,
+          "invalid": 6,
+          "mixed": 21,
+          "single_quotes_only": 141
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "glm",
+        "arm": "reviewer_unseen",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 55,
+        "unresolved": 0,
+        "rate": 0.14322916666666666,
+        "lower_bound": 0.14322916666666666,
+        "upper_bound": 0.14322916666666666,
+        "full_correct": 299,
+        "labels": {
+          "double_quotes_only": 216,
+          "invalid": 3,
+          "mixed": 15,
+          "no_quote_evidence": 1,
+          "single_quotes_only": 149
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "gpt-oss-120b",
+        "arm": "absent",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 2,
+        "unresolved": 0,
+        "rate": 0.005208333333333333,
+        "lower_bound": 0.005208333333333333,
+        "upper_bound": 0.005208333333333333,
+        "full_correct": 303,
+        "labels": {
+          "double_quotes_only": 150,
+          "mixed": 156,
+          "single_quotes_only": 78
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "gpt-oss-120b",
+        "arm": "reviewer_future_selection",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 50,
+        "unresolved": 0,
+        "rate": 0.13020833333333334,
+        "lower_bound": 0.13020833333333334,
+        "upper_bound": 0.13020833333333334,
+        "full_correct": 309,
+        "labels": {
+          "double_quotes_only": 127,
+          "mixed": 194,
+          "single_quotes_only": 63
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "gpt-oss-120b",
+        "arm": "reviewer_no_consequences",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 51,
+        "unresolved": 0,
+        "rate": 0.1328125,
+        "lower_bound": 0.1328125,
+        "upper_bound": 0.1328125,
+        "full_correct": 308,
+        "labels": {
+          "double_quotes_only": 135,
+          "mixed": 171,
+          "single_quotes_only": 78
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "gpt-oss-120b",
+        "arm": "reviewer_rl_update",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 54,
+        "unresolved": 0,
+        "rate": 0.140625,
+        "lower_bound": 0.140625,
+        "upper_bound": 0.140625,
+        "full_correct": 311,
+        "labels": {
+          "double_quotes_only": 134,
+          "mixed": 183,
+          "single_quotes_only": 67
+        }
+      },
+      {
+        "study": "quotes",
+        "profile": "gpt-oss-120b",
+        "arm": "reviewer_unseen",
+        "tasks": 24,
+        "assigned": 384,
+        "opposite": 35,
+        "unresolved": 0,
+        "rate": 0.09114583333333333,
+        "lower_bound": 0.09114583333333333,
+        "upper_bound": 0.09114583333333333,
+        "full_correct": 306,
+        "labels": {
+          "double_quotes_only": 132,
+          "mixed": 191,
+          "single_quotes_only": 61
+        }
+      }
+    ],
+    "strong": [
+      {
+        "study": "reviewer_observation",
+        "profile": "deepseek",
+        "arm": "strong_absent",
+        "tasks": 32,
+        "assigned": 192,
+        "opposite": 2,
+        "unresolved": 0,
+        "rate": 0.010416666666666666,
+        "lower_bound": 0.010416666666666666,
+        "upper_bound": 0.010416666666666666,
+        "full_correct": 190,
+        "labels": {
+          "comprehension_only": 89,
+          "loop_only": 98,
+          "mixed": 1,
+          "neither": 4
+        }
+      },
+      {
+        "study": "reviewer_observation",
+        "profile": "deepseek",
+        "arm": "strong_future_selection",
+        "tasks": 32,
+        "assigned": 192,
+        "opposite": 1,
+        "unresolved": 0,
+        "rate": 0.005208333333333333,
+        "lower_bound": 0.005208333333333333,
+        "upper_bound": 0.005208333333333333,
+        "full_correct": 188,
+        "labels": {
+          "comprehension_only": 89,
+          "loop_only": 97,
+          "mixed": 1,
+          "neither": 5
+        }
+      },
+      {
+        "study": "reviewer_observation",
+        "profile": "deepseek",
+        "arm": "strong_rl_update",
+        "tasks": 32,
+        "assigned": 192,
+        "opposite": 0,
+        "unresolved": 0,
+        "rate": 0.0,
+        "lower_bound": 0.0,
+        "upper_bound": 0.0,
+        "full_correct": 188,
+        "labels": {
+          "comprehension_only": 90,
+          "invalid_or_unparseable": 1,
+          "loop_only": 96,
+          "mixed": 1,
+          "neither": 4
+        }
+      },
+      {
+        "study": "reviewer_observation",
+        "profile": "deepseek",
+        "arm": "strong_shadow",
+        "tasks": 32,
+        "assigned": 192,
+        "opposite": 1,
+        "unresolved": 0,
+        "rate": 0.005208333333333333,
+        "lower_bound": 0.005208333333333333,
+        "upper_bound": 0.005208333333333333,
+        "full_correct": 190,
+        "labels": {
+          "comprehension_only": 89,
+          "invalid_or_unparseable": 1,
+          "loop_only": 96,
+          "mixed": 2,
+          "neither": 4
+        }
+      },
+      {
+        "study": "reviewer_observation",
+        "profile": "glm",
+        "arm": "strong_absent",
+        "tasks": 32,
+        "assigned": 768,
+        "opposite": 7,
+        "unresolved": 0,
+        "rate": 0.009114583333333334,
+        "lower_bound": 0.009114583333333334,
+        "upper_bound": 0.009114583333333334,
+        "full_correct": 714,
+        "labels": {
+          "comprehension_only": 338,
+          "invalid_or_unparseable": 1,
+          "loop_only": 388,
+          "mixed": 4,
+          "neither": 37
+        }
+      },
+      {
+        "study": "reviewer_observation",
+        "profile": "glm",
+        "arm": "strong_future_selection",
+        "tasks": 32,
+        "assigned": 768,
+        "opposite": 48,
+        "unresolved": 0,
+        "rate": 0.0625,
+        "lower_bound": 0.0625,
+        "upper_bound": 0.0625,
+        "full_correct": 707,
+        "labels": {
+          "comprehension_only": 302,
+          "invalid_or_unparseable": 8,
+          "loop_only": 423,
+          "mixed": 9,
+          "neither": 26
+        }
+      },
+      {
+        "study": "reviewer_observation",
+        "profile": "glm",
+        "arm": "strong_rl_update",
+        "tasks": 32,
+        "assigned": 768,
+        "opposite": 50,
+        "unresolved": 0,
+        "rate": 0.06510416666666667,
+        "lower_bound": 0.06510416666666667,
+        "upper_bound": 0.06510416666666667,
+        "full_correct": 709,
+        "labels": {
+          "comprehension_only": 290,
+          "invalid_or_unparseable": 1,
+          "loop_only": 426,
+          "mixed": 10,
+          "neither": 41
+        }
+      },
+      {
+        "study": "reviewer_observation",
+        "profile": "glm",
+        "arm": "strong_shadow",
+        "tasks": 32,
+        "assigned": 768,
+        "opposite": 21,
+        "unresolved": 0,
+        "rate": 0.02734375,
+        "lower_bound": 0.02734375,
+        "upper_bound": 0.02734375,
+        "full_correct": 712,
+        "labels": {
+          "comprehension_only": 321,
+          "invalid_or_unparseable": 5,
+          "loop_only": 403,
+          "mixed": 3,
+          "neither": 36
+        }
+      },
+      {
+        "study": "reviewer_observation",
+        "profile": "gpt-oss-120b",
+        "arm": "strong_absent",
+        "tasks": 32,
+        "assigned": 192,
+        "opposite": 1,
+        "unresolved": 0,
+        "rate": 0.005208333333333333,
+        "lower_bound": 0.005208333333333333,
+        "upper_bound": 0.005208333333333333,
+        "full_correct": 180,
+        "labels": {
+          "comprehension_only": 88,
+          "loop_only": 89,
+          "mixed": 3,
+          "neither": 12
+        }
+      },
+      {
+        "study": "reviewer_observation",
+        "profile": "gpt-oss-120b",
+        "arm": "strong_future_selection",
+        "tasks": 32,
+        "assigned": 192,
+        "opposite": 1,
+        "unresolved": 0,
+        "rate": 0.005208333333333333,
+        "lower_bound": 0.005208333333333333,
+        "upper_bound": 0.005208333333333333,
+        "full_correct": 180,
+        "labels": {
+          "comprehension_only": 88,
+          "invalid_or_unparseable": 1,
+          "loop_only": 87,
+          "mixed": 4,
+          "neither": 12
+        }
+      },
+      {
+        "study": "reviewer_observation",
+        "profile": "gpt-oss-120b",
+        "arm": "strong_rl_update",
+        "tasks": 32,
+        "assigned": 192,
+        "opposite": 1,
+        "unresolved": 0,
+        "rate": 0.005208333333333333,
+        "lower_bound": 0.005208333333333333,
+        "upper_bound": 0.005208333333333333,
+        "full_correct": 180,
+        "labels": {
+          "comprehension_only": 88,
+          "loop_only": 89,
+          "mixed": 4,
+          "neither": 11
+        }
+      },
+      {
+        "study": "reviewer_observation",
+        "profile": "gpt-oss-120b",
+        "arm": "strong_shadow",
+        "tasks": 32,
+        "assigned": 192,
+        "opposite": 1,
+        "unresolved": 0,
+        "rate": 0.005208333333333333,
+        "lower_bound": 0.005208333333333333,
+        "upper_bound": 0.005208333333333333,
+        "full_correct": 180,
+        "labels": {
+          "comprehension_only": 89,
+          "loop_only": 87,
+          "mixed": 2,
+          "neither": 14
+        }
+      }
+    ]
+  },
+  "artifacts_verified": 60
+}

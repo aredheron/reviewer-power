@@ -1,0 +1,477 @@
+{
+  "family": "naming",
+  "styles": [
+    "snake_case",
+    "camelCase"
+  ],
+  "tasks": [
+    {
+      "task_id": "HumanEval/0",
+      "dataset": "humaneval",
+      "split": "pilot",
+      "entry_point": "has_close_elements",
+      "selection_rationale": "Adjacent-distance search naturally names a sorted copy and neighboring positions.",
+      "style_opportunities": [
+        "sorted copy of input numbers",
+        "index of each adjacent pair"
+      ],
+      "implementations": {
+        "snake_case": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\"Check adjacent distances after sorting a copy of the numbers.\"\"\"\n    sorted_numbers = sorted(numbers)\n    for left_index in range(len(sorted_numbers) - 1):\n        if sorted_numbers[left_index + 1] - sorted_numbers[left_index] < threshold:\n            return True\n    return False\n",
+        "camelCase": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\"Check adjacent distances after sorting a copy of the numbers.\"\"\"\n    sortedNumbers = sorted(numbers)\n    for leftIndex in range(len(sortedNumbers) - 1):\n        if sortedNumbers[leftIndex + 1] - sortedNumbers[leftIndex] < threshold:\n            return True\n    return False\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/1",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "separate_paren_groups",
+      "selection_rationale": "Balanced-group parsing naturally tracks nesting depth, current characters, and completed groups.",
+      "style_opportunities": [
+        "nesting depth",
+        "current group characters",
+        "completed groups",
+        "current character"
+      ],
+      "implementations": {
+        "snake_case": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\"Collect complete parenthesis groups while ignoring spaces.\"\"\"\n    nesting_depth = 0\n    group_characters = []\n    completed_groups = []\n    for current_character in paren_string:\n        if current_character == ' ':\n            continue\n        group_characters.append(current_character)\n        nesting_depth += 1 if current_character == '(' else -1\n        if nesting_depth == 0:\n            completed_groups.append(''.join(group_characters))\n            group_characters = []\n    return completed_groups\n",
+        "camelCase": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\"Collect complete parenthesis groups while ignoring spaces.\"\"\"\n    nestingDepth = 0\n    groupCharacters = []\n    completedGroups = []\n    for currentCharacter in paren_string:\n        if currentCharacter == ' ':\n            continue\n        groupCharacters.append(currentCharacter)\n        nestingDepth += 1 if currentCharacter == '(' else -1\n        if nestingDepth == 0:\n            completedGroups.append(''.join(groupCharacters))\n            groupCharacters = []\n    return completedGroups\n"
+      },
+      "notes": [
+        "The original parameter paren_string is fixed and excluded from style scoring."
+      ]
+    },
+    {
+      "task_id": "HumanEval/4",
+      "dataset": "humaneval",
+      "split": "pilot",
+      "entry_point": "mean_absolute_deviation",
+      "selection_rationale": "Mean absolute deviation has separate mean and deviation calculations with meaningful local names.",
+      "style_opportunities": [
+        "mean value",
+        "individual input value",
+        "absolute-deviation total"
+      ],
+      "implementations": {
+        "snake_case": "from typing import List\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"Compute the average distance from the arithmetic mean.\"\"\"\n    mean_value = sum(numbers) / len(numbers)\n    deviation_total = sum(abs(current_number - mean_value) for current_number in numbers)\n    return deviation_total / len(numbers)\n",
+        "camelCase": "from typing import List\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"Compute the average distance from the arithmetic mean.\"\"\"\n    meanValue = sum(numbers) / len(numbers)\n    deviationTotal = sum(abs(currentNumber - meanValue) for currentNumber in numbers)\n    return deviationTotal / len(numbers)\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/8",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "sum_product",
+      "selection_rationale": "Independent sum and product accumulators provide natural multiword names.",
+      "style_opportunities": [
+        "running sum",
+        "running product",
+        "current input number"
+      ],
+      "implementations": {
+        "snake_case": "from typing import List, Tuple\n\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\"Accumulate both operations, including their empty-input identities.\"\"\"\n    running_sum = 0\n    running_product = 1\n    for current_number in numbers:\n        running_sum += current_number\n        running_product *= current_number\n    return running_sum, running_product\n",
+        "camelCase": "from typing import List, Tuple\n\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\"Accumulate both operations, including their empty-input identities.\"\"\"\n    runningSum = 0\n    runningProduct = 1\n    for currentNumber in numbers:\n        runningSum += currentNumber\n        runningProduct *= currentNumber\n    return runningSum, runningProduct\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/9",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "rolling_max",
+      "selection_rationale": "Rolling maxima require a running maximum and an output sequence.",
+      "style_opportunities": [
+        "current maximum",
+        "sequence of rolling maxima",
+        "current input number"
+      ],
+      "implementations": {
+        "snake_case": "from typing import List\n\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    \"\"\"Record the maximum of each nonempty input prefix.\"\"\"\n    if not numbers:\n        return []\n    current_maximum = numbers[0]\n    rolling_maxima = []\n    for current_number in numbers:\n        current_maximum = max(current_maximum, current_number)\n        rolling_maxima.append(current_maximum)\n    return rolling_maxima\n",
+        "camelCase": "from typing import List\n\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    \"\"\"Record the maximum of each nonempty input prefix.\"\"\"\n    if not numbers:\n        return []\n    currentMaximum = numbers[0]\n    rollingMaxima = []\n    for currentNumber in numbers:\n        currentMaximum = max(currentMaximum, currentNumber)\n        rollingMaxima.append(currentMaximum)\n    return rollingMaxima\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/18",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "how_many_times",
+      "selection_rationale": "Overlapping substring counting naturally separates scan position and match count.",
+      "style_opportunities": [
+        "match count",
+        "candidate starting index"
+      ],
+      "implementations": {
+        "snake_case": "def how_many_times(string: str, substring: str) -> int:\n    \"\"\"Count matching suffix starts, including overlapping occurrences.\"\"\"\n    match_count = 0\n    for start_index in range(len(string)):\n        if string.startswith(substring, start_index):\n            match_count += 1\n    return match_count\n",
+        "camelCase": "def how_many_times(string: str, substring: str) -> int:\n    \"\"\"Count matching suffix starts, including overlapping occurrences.\"\"\"\n    matchCount = 0\n    for startIndex in range(len(string)):\n        if string.startswith(substring, startIndex):\n            matchCount += 1\n    return matchCount\n"
+      },
+      "notes": [
+        "Matches the source convention for an empty substring: one match per existing character position."
+      ]
+    },
+    {
+      "task_id": "HumanEval/20",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "find_closest_elements",
+      "selection_rationale": "Closest-pair search naturally names sorted data, adjacent values, gaps, and the current best pair.",
+      "style_opportunities": [
+        "sorted numbers",
+        "best pair and gap",
+        "adjacent left and right values",
+        "current gap"
+      ],
+      "implementations": {
+        "snake_case": "from typing import List, Tuple\n\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\"Return the first minimum-gap adjacent pair in sorted order.\"\"\"\n    sorted_numbers = sorted(numbers)\n    best_pair = (sorted_numbers[0], sorted_numbers[1])\n    best_gap = best_pair[1] - best_pair[0]\n    for left_number, right_number in zip(sorted_numbers[:-1], sorted_numbers[1:]):\n        current_gap = right_number - left_number\n        if current_gap < best_gap:\n            best_gap = current_gap\n            best_pair = (left_number, right_number)\n    return best_pair\n",
+        "camelCase": "from typing import List, Tuple\n\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\"Return the first minimum-gap adjacent pair in sorted order.\"\"\"\n    sortedNumbers = sorted(numbers)\n    bestPair = (sortedNumbers[0], sortedNumbers[1])\n    bestGap = bestPair[1] - bestPair[0]\n    for leftNumber, rightNumber in zip(sortedNumbers[:-1], sortedNumbers[1:]):\n        currentGap = rightNumber - leftNumber\n        if currentGap < bestGap:\n            bestGap = currentGap\n            bestPair = (leftNumber, rightNumber)\n    return bestPair\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/25",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "factorize",
+      "selection_rationale": "Trial division requires a remaining quotient, candidate factor, and factor sequence.",
+      "style_opportunities": [
+        "remaining factorization value",
+        "candidate factor",
+        "prime-factor sequence"
+      ],
+      "implementations": {
+        "snake_case": "from typing import List\n\n\ndef factorize(n: int) -> List[int]:\n    \"\"\"Extract prime factors in ascending order by trial division.\"\"\"\n    remaining_value = n\n    candidate_factor = 2\n    prime_factors = []\n    while candidate_factor * candidate_factor <= remaining_value:\n        if remaining_value % candidate_factor == 0:\n            prime_factors.append(candidate_factor)\n            remaining_value //= candidate_factor\n        else:\n            candidate_factor += 1\n    if remaining_value > 1:\n        prime_factors.append(remaining_value)\n    return prime_factors\n",
+        "camelCase": "from typing import List\n\n\ndef factorize(n: int) -> List[int]:\n    \"\"\"Extract prime factors in ascending order by trial division.\"\"\"\n    remainingValue = n\n    candidateFactor = 2\n    primeFactors = []\n    while candidateFactor * candidateFactor <= remainingValue:\n        if remainingValue % candidateFactor == 0:\n            primeFactors.append(candidateFactor)\n            remainingValue //= candidateFactor\n        else:\n            candidateFactor += 1\n    if remainingValue > 1:\n        primeFactors.append(remainingValue)\n    return primeFactors\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/40",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "triples_sum_to_zero",
+      "selection_rationale": "A sorted two-pointer search has distinct fixed, left, and right positions and a running triple sum.",
+      "style_opportunities": [
+        "sorted values",
+        "fixed, left, and right indices",
+        "triple sum"
+      ],
+      "implementations": {
+        "snake_case": "def triples_sum_to_zero(l: list):\n    \"\"\"Search triples of distinct indices with sorted two-pointer scans.\"\"\"\n    sorted_values = sorted(l)\n    for fixed_index in range(len(sorted_values) - 2):\n        left_index = fixed_index + 1\n        right_index = len(sorted_values) - 1\n        while left_index < right_index:\n            triple_sum = sorted_values[fixed_index] + sorted_values[left_index] + sorted_values[right_index]\n            if triple_sum == 0:\n                return True\n            if triple_sum < 0:\n                left_index += 1\n            else:\n                right_index -= 1\n    return False\n",
+        "camelCase": "def triples_sum_to_zero(l: list):\n    \"\"\"Search triples of distinct indices with sorted two-pointer scans.\"\"\"\n    sortedValues = sorted(l)\n    for fixedIndex in range(len(sortedValues) - 2):\n        leftIndex = fixedIndex + 1\n        rightIndex = len(sortedValues) - 1\n        while leftIndex < rightIndex:\n            tripleSum = sortedValues[fixedIndex] + sortedValues[leftIndex] + sortedValues[rightIndex]\n            if tripleSum == 0:\n                return True\n            if tripleSum < 0:\n                leftIndex += 1\n            else:\n                rightIndex -= 1\n    return False\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/46",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "fib4",
+      "selection_rationale": "An iterative four-term recurrence has a rolling state and a newly computed term.",
+      "style_opportunities": [
+        "four previous values",
+        "next sequence value"
+      ],
+      "implementations": {
+        "snake_case": "def fib4(n: int):\n    \"\"\"Advance a fixed-size window through the four-term recurrence.\"\"\"\n    recent_values = [0, 0, 2, 0]\n    if n < 4:\n        return recent_values[n]\n    for _ in range(4, n + 1):\n        next_value = sum(recent_values)\n        recent_values = recent_values[1:] + [next_value]\n    return recent_values[-1]\n",
+        "camelCase": "def fib4(n: int):\n    \"\"\"Advance a fixed-size window through the four-term recurrence.\"\"\"\n    recentValues = [0, 0, 2, 0]\n    if n < 4:\n        return recentValues[n]\n    for _ in range(4, n + 1):\n        nextValue = sum(recentValues)\n        recentValues = recentValues[1:] + [nextValue]\n    return recentValues[-1]\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/55",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "fib",
+      "selection_rationale": "Iterative Fibonacci evaluation naturally distinguishes successive recurrence values.",
+      "style_opportunities": [
+        "previous Fibonacci value",
+        "current Fibonacci value"
+      ],
+      "implementations": {
+        "snake_case": "def fib(n: int):\n    \"\"\"Advance two successive Fibonacci values without recursion.\"\"\"\n    if n == 0:\n        return 0\n    if n <= 2:\n        return 1\n    previous_value = 1\n    current_value = 1\n    for _ in range(3, n + 1):\n        previous_value, current_value = current_value, previous_value + current_value\n    return current_value\n",
+        "camelCase": "def fib(n: int):\n    \"\"\"Advance two successive Fibonacci values without recursion.\"\"\"\n    if n == 0:\n        return 0\n    if n <= 2:\n        return 1\n    previousValue = 1\n    currentValue = 1\n    for _ in range(3, n + 1):\n        previousValue, currentValue = currentValue, previousValue + currentValue\n    return currentValue\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/114",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "minSubArraySum",
+      "selection_rationale": "Minimum-subarray dynamic programming distinguishes the current ending sum and best sum.",
+      "style_opportunities": [
+        "minimum sum ending here",
+        "best subarray sum",
+        "current input value"
+      ],
+      "implementations": {
+        "snake_case": "def minSubArraySum(nums):\n    \"\"\"Track minimum sums for nonempty subarrays ending at each position.\"\"\"\n    ending_sum = nums[0]\n    best_sum = nums[0]\n    for current_value in nums[1:]:\n        ending_sum = min(current_value, ending_sum + current_value)\n        best_sum = min(best_sum, ending_sum)\n    return best_sum\n",
+        "camelCase": "def minSubArraySum(nums):\n    \"\"\"Track minimum sums for nonempty subarrays ending at each position.\"\"\"\n    endingSum = nums[0]\n    bestSum = nums[0]\n    for currentValue in nums[1:]:\n        endingSum = min(currentValue, endingSum + currentValue)\n        bestSum = min(bestSum, endingSum)\n    return bestSum\n"
+      },
+      "notes": [
+        "The required camelCase entry point minSubArraySum is unchanged and excluded from naming scoring."
+      ]
+    },
+    {
+      "task_id": "HumanEval/139",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "special_factorial",
+      "selection_rationale": "The factorial product requires distinct factorial and product accumulators.",
+      "style_opportunities": [
+        "running factorial",
+        "product of factorials",
+        "current multiplicative factor"
+      ],
+      "implementations": {
+        "snake_case": "def special_factorial(n):\n    \"\"\"Multiply successive factorials from one through n.\"\"\"\n    running_factorial = 1\n    factorial_product = 1\n    for current_factor in range(2, n + 1):\n        running_factorial *= current_factor\n        factorial_product *= running_factorial\n    return factorial_product\n",
+        "camelCase": "def special_factorial(n):\n    \"\"\"Multiply successive factorials from one through n.\"\"\"\n    runningFactorial = 1\n    factorialProduct = 1\n    for currentFactor in range(2, n + 1):\n        runningFactorial *= currentFactor\n        factorialProduct *= runningFactorial\n    return factorialProduct\n"
+      }
+    },
+    {
+      "task_id": "HumanEval/155",
+      "dataset": "humaneval",
+      "split": "study",
+      "entry_point": "even_odd_count",
+      "selection_rationale": "Digit parity counting naturally has separate even and odd counts.",
+      "style_opportunities": [
+        "even-digit count",
+        "odd-digit count",
+        "current digit"
+      ],
+      "implementations": {
+        "snake_case": "def even_odd_count(num):\n    \"\"\"Count even and odd digits, ignoring a negative sign.\"\"\"\n    even_count = 0\n    odd_count = 0\n    for digit_character in str(abs(num)):\n        if int(digit_character) % 2 == 0:\n            even_count += 1\n        else:\n            odd_count += 1\n    return even_count, odd_count\n",
+        "camelCase": "def even_odd_count(num):\n    \"\"\"Count even and odd digits, ignoring a negative sign.\"\"\"\n    evenCount = 0\n    oddCount = 0\n    for digitCharacter in str(abs(num)):\n        if int(digitCharacter) % 2 == 0:\n            evenCount += 1\n        else:\n            oddCount += 1\n    return evenCount, oddCount\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/88",
+      "dataset": "mbpp",
+      "split": "pilot",
+      "entry_point": "freq_count",
+      "selection_rationale": "Frequency counting naturally uses a frequency mapping and current element.",
+      "style_opportunities": [
+        "frequency mapping",
+        "current element"
+      ],
+      "implementations": {
+        "snake_case": "def freq_count(list1):\n    \"\"\"Count each hashable list element in insertion order.\"\"\"\n    element_counts = {}\n    for current_element in list1:\n        element_counts[current_element] = element_counts.get(current_element, 0) + 1\n    return element_counts\n",
+        "camelCase": "def freq_count(list1):\n    \"\"\"Count each hashable list element in insertion order.\"\"\"\n    elementCounts = {}\n    for currentElement in list1:\n        elementCounts[currentElement] = elementCounts.get(currentElement, 0) + 1\n    return elementCounts\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/296",
+      "dataset": "mbpp",
+      "split": "pilot",
+      "entry_point": "get_Inv_Count",
+      "selection_rationale": "Inversion counting requires a count and two distinct index roles.",
+      "style_opportunities": [
+        "inversion count",
+        "left and right indices"
+      ],
+      "implementations": {
+        "snake_case": "def get_Inv_Count(arr):\n    \"\"\"Count ordered index pairs whose values are inverted.\"\"\"\n    inversion_count = 0\n    for left_index in range(len(arr)):\n        for right_index in range(left_index + 1, len(arr)):\n            if arr[left_index] > arr[right_index]:\n                inversion_count += 1\n    return inversion_count\n",
+        "camelCase": "def get_Inv_Count(arr):\n    \"\"\"Count ordered index pairs whose values are inverted.\"\"\"\n    inversionCount = 0\n    for leftIndex in range(len(arr)):\n        for rightIndex in range(leftIndex + 1, len(arr)):\n            if arr[leftIndex] > arr[rightIndex]:\n                inversionCount += 1\n    return inversionCount\n"
+      },
+      "notes": [
+        "The required entry point has mixed casing and is excluded from naming scoring."
+      ]
+    },
+    {
+      "task_id": "Mbpp/9",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "find_Rotations",
+      "selection_rationale": "Rotation-period search uses string length, doubled text, and candidate rotation.",
+      "style_opportunities": [
+        "string length",
+        "doubled string",
+        "rotation count"
+      ],
+      "implementations": {
+        "snake_case": "def find_Rotations(s):\n    \"\"\"Find the first positive cyclic shift that reproduces the string.\"\"\"\n    string_length = len(s)\n    doubled_string = s + s\n    for rotation_count in range(1, string_length + 1):\n        if doubled_string[rotation_count:rotation_count + string_length] == s:\n            return rotation_count\n    return string_length\n",
+        "camelCase": "def find_Rotations(s):\n    \"\"\"Find the first positive cyclic shift that reproduces the string.\"\"\"\n    stringLength = len(s)\n    doubledString = s + s\n    for rotationCount in range(1, stringLength + 1):\n        if doubledString[rotationCount:rotationCount + stringLength] == s:\n            return rotationCount\n    return stringLength\n"
+      },
+      "notes": [
+        "The required entry point find_Rotations is fixed and excluded from naming scoring."
+      ]
+    },
+    {
+      "task_id": "Mbpp/11",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "remove_Occ",
+      "selection_rationale": "Sequential first/last removal has natural intermediate representations.",
+      "style_opportunities": [
+        "string after first removal",
+        "reversed remaining string"
+      ],
+      "implementations": {
+        "snake_case": "def remove_Occ(s, ch):\n    \"\"\"Remove the first occurrence, then the last remaining occurrence.\"\"\"\n    first_removed = s.replace(ch, '', 1)\n    reversed_remaining = first_removed[::-1]\n    return reversed_remaining.replace(ch, '', 1)[::-1]\n",
+        "camelCase": "def remove_Occ(s, ch):\n    \"\"\"Remove the first occurrence, then the last remaining occurrence.\"\"\"\n    firstRemoved = s.replace(ch, '', 1)\n    reversedRemaining = firstRemoved[::-1]\n    return reversedRemaining.replace(ch, '', 1)[::-1]\n"
+      },
+      "notes": [
+        "The required entry point remove_Occ is fixed and excluded from naming scoring."
+      ]
+    },
+    {
+      "task_id": "Mbpp/61",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "count_Substrings",
+      "selection_rationale": "Prefix-state counting gives natural names to a transformed prefix sum, count map, and total.",
+      "style_opportunities": [
+        "adjusted prefix sum",
+        "prefix frequency mapping",
+        "substring count",
+        "digit character"
+      ],
+      "implementations": {
+        "snake_case": "def count_Substrings(s):\n    \"\"\"Count equal adjusted prefix sums, where each digit contributes digit minus one.\"\"\"\n    prefix_counts = {0: 1}\n    adjusted_sum = 0\n    substring_count = 0\n    for digit_character in s:\n        adjusted_sum += ord(digit_character) - ord('0') - 1\n        substring_count += prefix_counts.get(adjusted_sum, 0)\n        prefix_counts[adjusted_sum] = prefix_counts.get(adjusted_sum, 0) + 1\n    return substring_count\n",
+        "camelCase": "def count_Substrings(s):\n    \"\"\"Count equal adjusted prefix sums, where each digit contributes digit minus one.\"\"\"\n    prefixCounts = {0: 1}\n    adjustedSum = 0\n    substringCount = 0\n    for digitCharacter in s:\n        adjustedSum += ord(digitCharacter) - ord('0') - 1\n        substringCount += prefixCounts.get(adjustedSum, 0)\n        prefixCounts[adjustedSum] = prefixCounts.get(adjustedSum, 0) + 1\n    return substringCount\n"
+      },
+      "notes": [
+        "The required entry point count_Substrings is fixed and excluded from naming scoring."
+      ]
+    },
+    {
+      "task_id": "Mbpp/67",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "bell_number",
+      "selection_rationale": "Bell triangle construction naturally distinguishes previous and current rows.",
+      "style_opportunities": [
+        "previous Bell triangle row",
+        "current Bell triangle row",
+        "row and column positions"
+      ],
+      "implementations": {
+        "snake_case": "def bell_number(n):\n    \"\"\"Build Bell triangle rows, retaining only the preceding row.\"\"\"\n    previous_row = [1]\n    for row_index in range(1, n + 1):\n        current_row = [previous_row[-1]]\n        for column_index in range(row_index):\n            current_row.append(current_row[-1] + previous_row[column_index])\n        previous_row = current_row\n    return previous_row[0]\n",
+        "camelCase": "def bell_number(n):\n    \"\"\"Build Bell triangle rows, retaining only the preceding row.\"\"\"\n    previousRow = [1]\n    for rowIndex in range(1, n + 1):\n        currentRow = [previousRow[-1]]\n        for columnIndex in range(rowIndex):\n            currentRow.append(currentRow[-1] + previousRow[columnIndex])\n        previousRow = currentRow\n    return previousRow[0]\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/84",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "sequence",
+      "selection_rationale": "The Newman-Conway recurrence needs stored terms, term position, and previous value.",
+      "style_opportunities": [
+        "stored sequence values",
+        "current term index",
+        "previous term value"
+      ],
+      "implementations": {
+        "snake_case": "def sequence(n):\n    \"\"\"Build the Newman-Conway sequence from its two initial ones.\"\"\"\n    if n == 1 or n == 2:\n        return 1\n    sequence_values = [0] * (n + 1)\n    sequence_values[1] = sequence_values[2] = 1\n    for term_index in range(3, n + 1):\n        previous_value = sequence_values[term_index - 1]\n        sequence_values[term_index] = sequence_values[previous_value] + sequence_values[term_index - previous_value]\n    return sequence_values[n]\n",
+        "camelCase": "def sequence(n):\n    \"\"\"Build the Newman-Conway sequence from its two initial ones.\"\"\"\n    if n == 1 or n == 2:\n        return 1\n    sequenceValues = [0] * (n + 1)\n    sequenceValues[1] = sequenceValues[2] = 1\n    for termIndex in range(3, n + 1):\n        previousValue = sequenceValues[termIndex - 1]\n        sequenceValues[termIndex] = sequenceValues[previousValue] + sequenceValues[termIndex - previousValue]\n    return sequenceValues[n]\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/96",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "divisor",
+      "selection_rationale": "Paired divisor counting has distinct candidate and total roles.",
+      "style_opportunities": [
+        "candidate divisor",
+        "divisor count"
+      ],
+      "implementations": {
+        "snake_case": "def divisor(n):\n    \"\"\"Count divisor pairs up to the square root, counting square roots once.\"\"\"\n    divisor_count = 0\n    candidate_divisor = 1\n    while candidate_divisor * candidate_divisor <= n:\n        if n % candidate_divisor == 0:\n            divisor_count += 1 if candidate_divisor * candidate_divisor == n else 2\n        candidate_divisor += 1\n    return divisor_count\n",
+        "camelCase": "def divisor(n):\n    \"\"\"Count divisor pairs up to the square root, counting square roots once.\"\"\"\n    divisorCount = 0\n    candidateDivisor = 1\n    while candidateDivisor * candidateDivisor <= n:\n        if n % candidateDivisor == 0:\n            divisorCount += 1 if candidateDivisor * candidateDivisor == n else 2\n        candidateDivisor += 1\n    return divisorCount\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/97",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "frequency_lists",
+      "selection_rationale": "Nested frequency counting adds an explicit row role to an accumulator.",
+      "style_opportunities": [
+        "frequency mapping",
+        "current nested list",
+        "current element"
+      ],
+      "implementations": {
+        "snake_case": "def frequency_lists(list1):\n    \"\"\"Count elements across all inner lists.\"\"\"\n    element_counts = {}\n    for current_list in list1:\n        for current_element in current_list:\n            element_counts[current_element] = element_counts.get(current_element, 0) + 1\n    return element_counts\n",
+        "camelCase": "def frequency_lists(list1):\n    \"\"\"Count elements across all inner lists.\"\"\"\n    elementCounts = {}\n    for currentList in list1:\n        for currentElement in currentList:\n            elementCounts[currentElement] = elementCounts.get(currentElement, 0) + 1\n    return elementCounts\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/125",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "find_length",
+      "selection_rationale": "Maximum-substring dynamic programming separates the current and best differences.",
+      "style_opportunities": [
+        "current zero-minus-one difference",
+        "best difference",
+        "current bit"
+      ],
+      "implementations": {
+        "snake_case": "def find_length(string):\n    \"\"\"Find the maximum nonnegative zero-minus-one substring difference.\"\"\"\n    current_difference = 0\n    best_difference = 0\n    for current_bit in string:\n        current_difference = max(0, current_difference + (1 if current_bit == '0' else -1))\n        best_difference = max(best_difference, current_difference)\n    return best_difference\n",
+        "camelCase": "def find_length(string):\n    \"\"\"Find the maximum nonnegative zero-minus-one substring difference.\"\"\"\n    currentDifference = 0\n    bestDifference = 0\n    for currentBit in string:\n        currentDifference = max(0, currentDifference + (1 if currentBit == '0' else -1))\n        bestDifference = max(bestDifference, currentDifference)\n    return bestDifference\n"
+      },
+      "notes": [
+        "Matches the source convention of zero when no substring has a positive difference."
+      ]
+    },
+    {
+      "task_id": "Mbpp/131",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "reverse_vowels",
+      "selection_rationale": "Two-pointer vowel reversal naturally names the character buffer and left/right indices.",
+      "style_opportunities": [
+        "mutable character list",
+        "left and right indices"
+      ],
+      "implementations": {
+        "snake_case": "def reverse_vowels(str1):\n    \"\"\"Swap vowels from the two ends inward while preserving other characters.\"\"\"\n    character_list = list(str1)\n    left_index = 0\n    right_index = len(character_list) - 1\n    while left_index < right_index:\n        if character_list[left_index] not in 'aeiouAEIOU':\n            left_index += 1\n        elif character_list[right_index] not in 'aeiouAEIOU':\n            right_index -= 1\n        else:\n            character_list[left_index], character_list[right_index] = character_list[right_index], character_list[left_index]\n            left_index += 1\n            right_index -= 1\n    return ''.join(character_list)\n",
+        "camelCase": "def reverse_vowels(str1):\n    \"\"\"Swap vowels from the two ends inward while preserving other characters.\"\"\"\n    characterList = list(str1)\n    leftIndex = 0\n    rightIndex = len(characterList) - 1\n    while leftIndex < rightIndex:\n        if characterList[leftIndex] not in 'aeiouAEIOU':\n            leftIndex += 1\n        elif characterList[rightIndex] not in 'aeiouAEIOU':\n            rightIndex -= 1\n        else:\n            characterList[leftIndex], characterList[rightIndex] = characterList[rightIndex], characterList[leftIndex]\n            leftIndex += 1\n            rightIndex -= 1\n    return ''.join(characterList)\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/166",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "find_even_pair",
+      "selection_rationale": "Even-XOR pairs can be counted using natural even and odd accumulators.",
+      "style_opportunities": [
+        "even-element count",
+        "odd-element count",
+        "current value"
+      ],
+      "implementations": {
+        "snake_case": "def find_even_pair(A):\n    \"\"\"Count pairs of the same parity, whose XOR is even.\"\"\"\n    even_count = 0\n    odd_count = 0\n    for current_value in A:\n        if current_value % 2 == 0:\n            even_count += 1\n        else:\n            odd_count += 1\n    return even_count * (even_count - 1) // 2 + odd_count * (odd_count - 1) // 2\n",
+        "camelCase": "def find_even_pair(A):\n    \"\"\"Count pairs of the same parity, whose XOR is even.\"\"\"\n    evenCount = 0\n    oddCount = 0\n    for currentValue in A:\n        if currentValue % 2 == 0:\n            evenCount += 1\n        else:\n            oddCount += 1\n    return evenCount * (evenCount - 1) // 2 + oddCount * (oddCount - 1) // 2\n"
+      },
+      "notes": [
+        "The original uppercase parameter A is fixed and excluded from naming scoring."
+      ]
+    },
+    {
+      "task_id": "Mbpp/247",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "lps",
+      "selection_rationale": "Subsequence dynamic programming uses a length table and left/right interval boundaries.",
+      "style_opportunities": [
+        "input length",
+        "subsequence-length table",
+        "left and right indices"
+      ],
+      "implementations": {
+        "snake_case": "def lps(str1):\n    \"\"\"Fill interval lengths for the longest palindromic subsequence.\"\"\"\n    string_length = len(str1)\n    if string_length == 0:\n        return 0\n    length_table = [[0] * string_length for _ in range(string_length)]\n    for left_index in range(string_length - 1, -1, -1):\n        length_table[left_index][left_index] = 1\n        for right_index in range(left_index + 1, string_length):\n            if str1[left_index] == str1[right_index]:\n                length_table[left_index][right_index] = length_table[left_index + 1][right_index - 1] + 2\n            else:\n                length_table[left_index][right_index] = max(length_table[left_index + 1][right_index], length_table[left_index][right_index - 1])\n    return length_table[0][-1]\n",
+        "camelCase": "def lps(str1):\n    \"\"\"Fill interval lengths for the longest palindromic subsequence.\"\"\"\n    stringLength = len(str1)\n    if stringLength == 0:\n        return 0\n    lengthTable = [[0] * stringLength for _ in range(stringLength)]\n    for leftIndex in range(stringLength - 1, -1, -1):\n        lengthTable[leftIndex][leftIndex] = 1\n        for rightIndex in range(leftIndex + 1, stringLength):\n            if str1[leftIndex] == str1[rightIndex]:\n                lengthTable[leftIndex][rightIndex] = lengthTable[leftIndex + 1][rightIndex - 1] + 2\n            else:\n                lengthTable[leftIndex][rightIndex] = max(lengthTable[leftIndex + 1][rightIndex], lengthTable[leftIndex][rightIndex - 1])\n    return lengthTable[0][-1]\n"
+      }
+    },
+    {
+      "task_id": "Mbpp/395",
+      "dataset": "mbpp",
+      "split": "study",
+      "entry_point": "first_non_repeating_character",
+      "selection_rationale": "First-unique-character search naturally uses counts followed by an ordered scan.",
+      "style_opportunities": [
+        "character-count mapping",
+        "current character"
+      ],
+      "implementations": {
+        "snake_case": "def first_non_repeating_character(str1):\n    \"\"\"Return the earliest character whose total frequency is one.\"\"\"\n    character_counts = {}\n    for current_character in str1:\n        character_counts[current_character] = character_counts.get(current_character, 0) + 1\n    for current_character in str1:\n        if character_counts[current_character] == 1:\n            return current_character\n    return None\n",
+        "camelCase": "def first_non_repeating_character(str1):\n    \"\"\"Return the earliest character whose total frequency is one.\"\"\"\n    characterCounts = {}\n    for currentCharacter in str1:\n        characterCounts[currentCharacter] = characterCounts.get(currentCharacter, 0) + 1\n    for currentCharacter in str1:\n        if characterCounts[currentCharacter] == 1:\n            return currentCharacter\n    return None\n"
+      }
+    }
+  ]
+}

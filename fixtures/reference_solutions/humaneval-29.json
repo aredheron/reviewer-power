@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/29",
+  "entry_point": "filter_by_prefix",
+  "transformation": "Filter strings by prefix membership, preserving input order and duplicates.",
+  "implementations": {
+    "comprehension": "from typing import List\n\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    \"\"\"Retain strings beginning with the supplied prefix.\"\"\"\n    return [text for text in strings if text.startswith(prefix)]\n",
+    "loop": "from typing import List\n\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    \"\"\"Retain strings beginning with the supplied prefix.\"\"\"\n    matches = []\n    for text in strings:\n        if text.startswith(prefix):\n            matches.append(text)\n    return matches\n"
+  },
+  "review_notes": [
+    "Use startswith rather than substring membership; an empty prefix keeps every string.",
+    "Unicode, duplicate strings and empty inputs remain unverified against the full base/plus oracle."
+  ]
+}

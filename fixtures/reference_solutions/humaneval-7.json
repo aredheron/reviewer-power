@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "HumanEval/7",
+  "entry_point": "filter_by_substring",
+  "transformation": "Filter strings by substring membership, preserving input order and duplicates.",
+  "implementations": {
+    "comprehension": "from typing import List\n\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    \"\"\"Retain strings containing substring, without changing their order.\"\"\"\n    return [text for text in strings if substring in text]\n",
+    "loop": "from typing import List\n\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    \"\"\"Retain strings containing substring, without changing their order.\"\"\"\n    matches = []\n    for text in strings:\n        if substring in text:\n            matches.append(text)\n    return matches\n"
+  },
+  "review_notes": [
+    "An empty substring retains every input string; empty strings, Unicode and repeated values require oracle checks.",
+    "Both forms retain original values and do not write to the input list; runtime equivalence remains unverified."
+  ]
+}

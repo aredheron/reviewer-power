@@ -1,0 +1,455 @@
+{
+  "scope": "DeepSeek, latest designated main generations, excluding absent reviewer. Both reviewer groups include agreement and conflict; conflict-only and pure-style sensitivities separately reported. Powerless includes reviewer_unseen.",
+  "outcome": "User-following = existing style label exactly matches requested pure style. Mixed, neither/no evidence, invalid and unparseable count as not demonstrating pure user-style compliance. Functional correctness is not the outcome.",
+  "join": "Latest CoT index original_assignment_id -> recovery analysis measured-row assignment_id. For fresh generation recovery, assert measured recovery_assignment_id equals CoT assignment_id. Judge-only recoveries retain original generator CoT.",
+  "adjustment": "Within-cell OLS coefficient of binary user-following on binary Q1. Cell = study, source task, exact arm, requested style, agreement/conflict relation. In conflict-only analysis every original cell has 8 repetitions. Coefficient equals weighted within-cell difference, with weight n1*n0/n. Partial correlation removes cell means from both binary variables.",
+  "uncertainty": "Percentile cluster bootstrap with 10,000 draws, seed 20261020, resampling 78 distinct source task IDs; shared task IDs across studies resampled together. Intervals are exploratory, not causal inference.",
+  "sources_sha256": {
+    "runs/analysis/matched-review-cot-v2/latest-main-index.jsonl": "991bb88523a9d88ca3bc9f2f9ee124d79742493ef98e710a23eeecd06b921082",
+    "runs/recovery/matched-review-recovery-v1/analysis-v1/measured-rows.json": "f0fc9f8846e29b5b5ac101fc2a071a0ed2977ae56328a4e1a098d5108f747a8f",
+    "runs/recovery/matched-gaps-v1/analysis-v1/measured-rows.json": "c12075860e5dc76fa8885fe4f33b2b21894a8f36b36e6293f6cb0a40d40fdfec"
+  },
+  "results": {
+    "consequential": {
+      "all": {
+        "n": 8192,
+        "table": [
+          227.0,
+          445.0,
+          5038.0,
+          2482.0
+        ],
+        "task_clusters": 78,
+        "cells": 1024,
+        "speculation_user_rate": 0.33779761904761907,
+        "no_speculation_user_rate": 0.6699468085106383,
+        "risk_difference": -0.3321491894630192,
+        "phi": -0.19020249293475744,
+        "within_cell_risk_difference": -0.21777221526908636,
+        "within_cell_partial_correlation": -0.19229451434125466,
+        "by_study": {
+          "matched_review": {
+            "n": 5120,
+            "table": [
+              87,
+              261,
+              3095,
+              1677
+            ],
+            "speculation_user_rate": 0.25,
+            "no_speculation_user_rate": 0.6485750209555742,
+            "risk_difference": -0.3985750209555742,
+            "phi": -0.20683448202991564,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 1536,
+            "table": [
+              10,
+              21,
+              929,
+              576
+            ],
+            "speculation_user_rate": 0.3225806451612903,
+            "no_speculation_user_rate": 0.6172757475083056,
+            "risk_difference": -0.2946951023470153,
+            "phi": -0.08501627128261917,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 1536,
+            "table": [
+              130,
+              163,
+              1014,
+              229
+            ],
+            "speculation_user_rate": 0.44368600682593856,
+            "no_speculation_user_rate": 0.8157683024939663,
+            "risk_difference": -0.3720822956680277,
+            "phi": -0.3353145005790406,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "conflict": {
+        "n": 4096,
+        "table": [
+          227.0,
+          445.0,
+          1230.0,
+          2194.0
+        ],
+        "task_clusters": 78,
+        "cells": 512,
+        "speculation_user_rate": 0.33779761904761907,
+        "no_speculation_user_rate": 0.3592289719626168,
+        "risk_difference": -0.02143135291499776,
+        "phi": -0.016578744231157995,
+        "within_cell_risk_difference": -0.21777221526908636,
+        "within_cell_partial_correlation": -0.2145408460435927,
+        "task_cluster_bootstrap_95pct": {
+          "speculation_user_rate": [
+            0.290956749672346,
+            0.38524590163934425
+          ],
+          "no_speculation_user_rate": [
+            0.31810394060536834,
+            0.4030612244897959
+          ],
+          "risk_difference": [
+            -0.06693310413980802,
+            0.023098034061830808
+          ],
+          "phi": [
+            -0.050130360524474143,
+            0.018511387577440596
+          ],
+          "within_cell_risk_difference": [
+            -0.2735910878112713,
+            -0.16230717639168343
+          ],
+          "within_cell_partial_correlation": [
+            -0.269016787393095,
+            -0.15844450490096065
+          ]
+        },
+        "by_study": {
+          "matched_review": {
+            "n": 2560,
+            "table": [
+              87,
+              261,
+              664,
+              1548
+            ],
+            "speculation_user_rate": 0.25,
+            "no_speculation_user_rate": 0.30018083182640143,
+            "risk_difference": -0.05018083182640143,
+            "phi": -0.03777293988783906,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 768,
+            "table": [
+              10,
+              21,
+              289,
+              448
+            ],
+            "speculation_user_rate": 0.3225806451612903,
+            "no_speculation_user_rate": 0.3921302578018996,
+            "risk_difference": -0.06954961264060927,
+            "phi": -0.028072900788288894,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 768,
+            "table": [
+              130,
+              163,
+              277,
+              198
+            ],
+            "speculation_user_rate": 0.44368600682593856,
+            "no_speculation_user_rate": 0.5831578947368421,
+            "risk_difference": -0.13947188791090354,
+            "phi": -0.1357427017909647,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "conflict_pure": {
+        "n": 3558,
+        "table": [
+          227.0,
+          382.0,
+          1230.0,
+          1719.0
+        ],
+        "task_clusters": 77,
+        "cells": 501,
+        "speculation_user_rate": 0.3727422003284072,
+        "no_speculation_user_rate": 0.4170905391658189,
+        "risk_difference": -0.04434833883741168,
+        "phi": -0.03396882991916688,
+        "within_cell_risk_difference": -0.2461002890193158,
+        "within_cell_partial_correlation": -0.25170293908016145,
+        "by_study": {
+          "matched_review": {
+            "n": 2427,
+            "table": [
+              87,
+              251,
+              664,
+              1425
+            ],
+            "speculation_user_rate": 0.257396449704142,
+            "no_speculation_user_rate": 0.3178554332216372,
+            "risk_difference": -0.06045898351749518,
+            "phi": -0.04528260842737123,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 455,
+            "table": [
+              10,
+              5,
+              289,
+              151
+            ],
+            "speculation_user_rate": 0.6666666666666666,
+            "no_speculation_user_rate": 0.6568181818181819,
+            "risk_difference": 0.009848484848484773,
+            "phi": 0.0037046185372865584,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 676,
+            "table": [
+              130,
+              126,
+              277,
+              143
+            ],
+            "speculation_user_rate": 0.5078125,
+            "no_speculation_user_rate": 0.6595238095238095,
+            "risk_difference": -0.1517113095238095,
+            "phi": -0.15034508685294595,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      }
+    },
+    "powerless": {
+      "all": {
+        "n": 8192,
+        "table": [
+          218.0,
+          152.0,
+          5522.0,
+          2300.0
+        ],
+        "task_clusters": 78,
+        "cells": 1024,
+        "speculation_user_rate": 0.5891891891891892,
+        "no_speculation_user_rate": 0.7059575556123754,
+        "risk_difference": -0.11676836642318622,
+        "phi": -0.05295034489297395,
+        "within_cell_risk_difference": -0.09530791788856305,
+        "within_cell_partial_correlation": -0.07382519574882172,
+        "by_study": {
+          "matched_review": {
+            "n": 5120,
+            "table": [
+              116,
+              83,
+              3351,
+              1570
+            ],
+            "speculation_user_rate": 0.5829145728643216,
+            "no_speculation_user_rate": 0.6809591546433652,
+            "risk_difference": -0.09804458177904363,
+            "phi": -0.04052877446194424,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 1536,
+            "table": [
+              6,
+              10,
+              960,
+              560
+            ],
+            "speculation_user_rate": 0.375,
+            "no_speculation_user_rate": 0.631578947368421,
+            "risk_difference": -0.256578947368421,
+            "phi": -0.05392334358478057,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 1536,
+            "table": [
+              96,
+              59,
+              1211,
+              170
+            ],
+            "speculation_user_rate": 0.6193548387096774,
+            "no_speculation_user_rate": 0.8769007965242578,
+            "risk_difference": -0.25754595781458034,
+            "phi": -0.21780201405049146,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "conflict": {
+        "n": 4096,
+        "table": [
+          218.0,
+          152.0,
+          1717.0,
+          2009.0
+        ],
+        "task_clusters": 78,
+        "cells": 512,
+        "speculation_user_rate": 0.5891891891891892,
+        "no_speculation_user_rate": 0.46081588835212023,
+        "risk_difference": 0.12837330083706894,
+        "phi": 0.07371046101630228,
+        "within_cell_risk_difference": -0.09530791788856305,
+        "within_cell_partial_correlation": -0.08528768855634251,
+        "task_cluster_bootstrap_95pct": {
+          "speculation_user_rate": [
+            0.5285714285714286,
+            0.6463768115942029
+          ],
+          "no_speculation_user_rate": [
+            0.4152796725784447,
+            0.5074413279908414
+          ],
+          "risk_difference": [
+            0.06511120108085,
+            0.1871322302044603
+          ],
+          "phi": [
+            0.03645585941549287,
+            0.10893994893552841
+          ],
+          "within_cell_risk_difference": [
+            -0.1484409310496267,
+            -0.045396145610278375
+          ],
+          "within_cell_partial_correlation": [
+            -0.1353931506350605,
+            -0.03970559084696621
+          ]
+        },
+        "by_study": {
+          "matched_review": {
+            "n": 2560,
+            "table": [
+              116,
+              83,
+              921,
+              1440
+            ],
+            "speculation_user_rate": 0.5829145728643216,
+            "no_speculation_user_rate": 0.3900889453621347,
+            "risk_difference": 0.1928256275021869,
+            "phi": 0.10517195700925332,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 768,
+            "table": [
+              6,
+              10,
+              327,
+              425
+            ],
+            "speculation_user_rate": 0.375,
+            "no_speculation_user_rate": 0.4348404255319149,
+            "risk_difference": -0.059840425531914876,
+            "phi": -0.017246335866235734,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 768,
+            "table": [
+              96,
+              59,
+              469,
+              144
+            ],
+            "speculation_user_rate": 0.6193548387096774,
+            "no_speculation_user_rate": 0.765089722675367,
+            "risk_difference": -0.14573488396568957,
+            "phi": -0.1326439245743043,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      },
+      "conflict_pure": {
+        "n": 3494,
+        "table": [
+          218.0,
+          115.0,
+          1717.0,
+          1444.0
+        ],
+        "task_clusters": 78,
+        "cells": 498,
+        "speculation_user_rate": 0.6546546546546547,
+        "no_speculation_user_rate": 0.5431825371717811,
+        "risk_difference": 0.11147211748287356,
+        "phi": 0.06584716376052067,
+        "within_cell_risk_difference": -0.10313325623096756,
+        "within_cell_partial_correlation": -0.10425318456674394,
+        "by_study": {
+          "matched_review": {
+            "n": 2345,
+            "table": [
+              116,
+              68,
+              921,
+              1240
+            ],
+            "speculation_user_rate": 0.6304347826086957,
+            "no_speculation_user_rate": 0.4261915779731606,
+            "risk_difference": 0.20424320463553508,
+            "phi": 0.11058358388656507,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "naming": {
+            "n": 453,
+            "table": [
+              6,
+              5,
+              327,
+              115
+            ],
+            "speculation_user_rate": 0.5454545454545454,
+            "no_speculation_user_rate": 0.7398190045248869,
+            "risk_difference": -0.1943644590703415,
+            "phi": -0.06779717399965249,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          },
+          "quotes": {
+            "n": 696,
+            "table": [
+              96,
+              42,
+              469,
+              89
+            ],
+            "speculation_user_rate": 0.6956521739130435,
+            "no_speculation_user_rate": 0.8405017921146953,
+            "risk_difference": -0.14484961820165188,
+            "phi": -0.14774545361072533,
+            "within_cell_risk_difference": null,
+            "within_cell_partial_correlation": null
+          }
+        }
+      }
+    }
+  },
+  "validation": "Group counts and contingency sums checked; every speculation-positive trial is conflict; fresh-generation IDs verified; direction checked against pure-style-only sensitivity."
+}

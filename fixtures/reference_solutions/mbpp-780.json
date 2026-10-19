@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/780",
+  "entry_point": "find_combinations",
+  "transformation": "Construct a coordinate-sum tuple for each unordered pair of input positions.",
+  "implementations": {
+    "comprehension": "from itertools import combinations\n\n\ndef find_combinations(test_list):\n    \"\"\"Collect coordinate-wise sums in input-position combinations order.\"\"\"\n    return [\n        tuple(sum(coordinate_pair) for coordinate_pair in zip(first, second))\n        for first, second in combinations(test_list, 2)\n    ]\n",
+    "loop": "from itertools import combinations\n\n\ndef find_combinations(test_list):\n    \"\"\"Collect coordinate-wise sums in input-position combinations order.\"\"\"\n    result = []\n    for first, second in combinations(test_list, 2):\n        summed_tuple = tuple(\n            sum(coordinate_pair) for coordinate_pair in zip(first, second)\n        )\n        result.append(summed_tuple)\n    return result\n"
+  },
+  "review_notes": [
+    "Use native sum for each aligned coordinate pair, matching its initial zero and Python-version-specific float summation behavior rather than replacing it with direct addition.",
+    "Preserve combinations order, repeated value pairs, tuple outputs and empty tuples; output size is quadratic in the input count and must be resource-checked.",
+    "The designated region is the outer list of tuple records; inner tuple materialization is identical shared scalar computation using a generator expression."
+  ]
+}

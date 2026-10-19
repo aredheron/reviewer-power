@@ -1,0 +1,552 @@
+{
+  "schema_version": 1,
+  "artifact_note": "Compact exports of saved study outcomes. Original raw responses and execution logs are external archival artifacts, not included. Hashes identify source bytes and packaged bytes; they do not independently authenticate collection.",
+  "artifacts": [
+    {
+      "name": "extension-lineage",
+      "kind": "lineage",
+      "path": "reports/data/extension-lineage.json.gz",
+      "sha256": "f92c6f62b94eb81e58e8e62d836abf45ad140b969217f37e79342a047bf88eb9",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final-v2/extension/lineage.json",
+      "source_sha256": "b828af2cd38ed2e1bda059ee4928ea63b42b14ccc37aed4e79cbd1f83b32ba78",
+      "records": 42
+    },
+    {
+      "name": "framing-names-lineage",
+      "kind": "lineage",
+      "path": "reports/data/framing-names-lineage.json.gz",
+      "sha256": "abc129be8d26e8d4afe9ce45f9d5a73c8ed9aa62810ca24ee789fe4581dc4a80",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/framing_names/lineage.json",
+      "source_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "records": 0
+    },
+    {
+      "name": "original-main-lineage",
+      "kind": "lineage",
+      "path": "reports/data/original-main-lineage.json.gz",
+      "sha256": "abc129be8d26e8d4afe9ce45f9d5a73c8ed9aa62810ca24ee789fe4581dc4a80",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/original_main/lineage.json",
+      "source_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "records": 0
+    },
+    {
+      "name": "compact-replication-lineage",
+      "kind": "lineage",
+      "path": "reports/data/compact-replication-lineage.json.gz",
+      "sha256": "dec01362edb340e0826ded73abf43f3cb45deb35a2eab25b68837185ed14b975",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final-v3/compact_replication/lineage.json",
+      "source_sha256": "00f1277b2336f3f0ecfbd56c0ffa2539feb244e0ed0b49a0eebc92ad5d68d1a1",
+      "records": 40
+    },
+    {
+      "name": "simple-replication-lineage",
+      "kind": "lineage",
+      "path": "reports/data/simple-replication-lineage.json.gz",
+      "sha256": "f2f40835f6e33aeb5727b3c4d7a82a00c3865fd6f18e2cd6d3d70ca29ec83a23",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/simple_replication/lineage.json",
+      "source_sha256": "f029732c1a5d5a98b19e03416ed824befe099c1d9baf64d8dfc457615ade95b7",
+      "records": 19
+    },
+    {
+      "name": "reversal-lineage",
+      "kind": "lineage",
+      "path": "reports/data/reversal-lineage.json.gz",
+      "sha256": "abc129be8d26e8d4afe9ce45f9d5a73c8ed9aa62810ca24ee789fe4581dc4a80",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/reversal/lineage.json",
+      "source_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "records": 0
+    },
+    {
+      "name": "observation-lineage",
+      "kind": "lineage",
+      "path": "reports/data/observation-lineage.json.gz",
+      "sha256": "da259175cd55e3fdbbbc4c730e227d72ba07c7be2fec2ba791966cd8df596afa",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/observation/lineage.json",
+      "source_sha256": "5262e25c0cc84c8dfbe69a17ae5da9a7b59f8ebea662702a28992e5e454a4b88",
+      "records": 44
+    },
+    {
+      "name": "strong-lineage",
+      "kind": "lineage",
+      "path": "reports/data/strong-lineage.json.gz",
+      "sha256": "7cc568c8c8c240b757339e0b785ddaeda5205edfe1595a325d8ff09dee3707fd",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/strong/lineage.json",
+      "source_sha256": "d84442b42c93c4a53641b4afd16810b6542ac03a61b6e794ae298567cea932e1",
+      "records": 34
+    },
+    {
+      "name": "reward-conflict-lineage",
+      "kind": "lineage",
+      "path": "reports/data/reward-conflict-lineage.json.gz",
+      "sha256": "abc129be8d26e8d4afe9ce45f9d5a73c8ed9aa62810ca24ee789fe4581dc4a80",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/reward_conflict/lineage.json",
+      "source_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "records": 0
+    },
+    {
+      "name": "syntax-lineage",
+      "kind": "lineage",
+      "path": "reports/data/syntax-lineage.json.gz",
+      "sha256": "67aaf9ab0c8b86ef836d622515a9dd5469d2b61646f605950a7c9ca6f96f9fb9",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final-v3/syntax/lineage.json",
+      "source_sha256": "7cd9f052fd5c00a32e97edb8a3c9df1ea918791072f0f9392cce6d31df2d68f0",
+      "records": 150
+    },
+    {
+      "name": "three-style-lineage",
+      "kind": "lineage",
+      "path": "reports/data/three-style-lineage.json.gz",
+      "sha256": "d0dd70f7b2cab21051966107e0592a230df8fe4f95bd062c63b9085b646df094",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/three_style/lineage.json",
+      "source_sha256": "2c5801ec128aab427922ddb166e395f42ea034d8dc781f3e92cea5493db32e54",
+      "records": 1
+    },
+    {
+      "name": "matched-review-original",
+      "kind": "rows",
+      "path": "reports/data/matched-review-original.json.gz",
+      "sha256": "22e8abd3723ffab731b60ba05066a2265a2db082b1dc796fc4346993a7f59c00",
+      "source_path": "runs/reviewer-observation/matched-review-v1/analysis-v1/measured-rows.json",
+      "source_sha256": "d21f2d23f9ad042f447e14fd4fef7d35a293705e504095577dff58951e81642f",
+      "records": 32256
+    },
+    {
+      "name": "matched-review",
+      "kind": "rows",
+      "path": "reports/data/matched-review.json.gz",
+      "sha256": "98a4291fc88f1d1c006332159f0a0d92ff8f05b1e984ae5b78047d7a68a31085",
+      "source_path": "runs/recovery/matched-review-recovery-v1/analysis-v1/measured-rows.json",
+      "source_sha256": "f0fc9f8846e29b5b5ac101fc2a071a0ed2977ae56328a4e1a098d5108f747a8f",
+      "records": 32256
+    },
+    {
+      "name": "matched-syntax-original",
+      "kind": "rows",
+      "path": "reports/data/matched-syntax-original.json.gz",
+      "sha256": "ad87faf4242fc152674d2341adafe3ee79d25c60178d05e66ae6185f981256a6",
+      "source_path": "runs/reviewer-observation/matched-syntax-v1/analysis-v1/measured-rows.json",
+      "source_sha256": "dd31f2c68d336b399eae7d303c7eff773bcc0bd82a7df796172eef1d6f23b39d",
+      "records": 20736
+    },
+    {
+      "name": "matched-syntax",
+      "kind": "rows",
+      "path": "reports/data/matched-syntax.json.gz",
+      "sha256": "32702f90004f17e06342cc10eed9188cbd70243ace3dd9f707764b3dab765169",
+      "source_path": "runs/recovery/matched-gaps-v1/analysis-v1/measured-rows.json",
+      "source_sha256": "c12075860e5dc76fa8885fe4f33b2b21894a8f36b36e6293f6cb0a40d40fdfec",
+      "records": 20736
+    },
+    {
+      "name": "observation-original",
+      "kind": "rows",
+      "path": "reports/data/observation-original.json.gz",
+      "sha256": "3252d8f7770c9e9a86d762d2010c9bfc8b5aeba8cec75622cba14ed6985b3a37",
+      "source_path": "runs/reviewer-observation/reviewer-observation-v1/analysis-v1/measured-rows.json",
+      "source_sha256": "37a6cb77c4fa9c3de421f933e8c4b378b9ec064b147aac32b4c87586ee072b4a",
+      "records": 9600
+    },
+    {
+      "name": "strong-original",
+      "kind": "rows",
+      "path": "reports/data/strong-original.json.gz",
+      "sha256": "7a2542ce9c2f31569e8d5317d5e93735272920b22eed8dbb353f01a2a16cf2b0",
+      "source_path": "runs/reviewer-observation/strong-preferences-v1/analysis-v1/measured-rows.json",
+      "source_sha256": "9c4a90313fc60551c54faf1cc20ba09ec6b6f2894245139bb644f1e14d2f1d02",
+      "records": 3840
+    },
+    {
+      "name": "expanded",
+      "kind": "rows",
+      "path": "reports/data/expanded.json.gz",
+      "sha256": "11ed569412abcd78eddb2659b0324999fb7490a89b44537a36503daa1e8aa798",
+      "source_path": "runs/reviewer-observation/expanded-preferences-v1/analysis-v2/new72/measured-rows.json",
+      "source_sha256": "6f0a493cf36e28dd3e2e2f483f9dc9ef245bc7d5130779db777a40060e94cbcd",
+      "records": 7776
+    },
+    {
+      "name": "extension",
+      "kind": "rows",
+      "path": "reports/data/extension.json.gz",
+      "sha256": "d993c097434e2f0837b821a23ef3d4e6821e529146f99464a60e2d14cfc7f214",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final-v2/extension/measured-rows.json",
+      "source_sha256": "385de46dd9e7ce4e98f6eb0d967e67f740f7884b633da10581fc59ae5c8ce063",
+      "records": 12288
+    },
+    {
+      "name": "framing-names",
+      "kind": "rows",
+      "path": "reports/data/framing-names.json.gz",
+      "sha256": "fbedf4cf04ff90780495bdd8ea23f159cf9ee04f16ff9856cefeee72192d23de",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/framing_names/measured-rows.json",
+      "source_sha256": "4739dab1cc7b45669036145bdd65a22c7da85e182259523a51e2e917d0ea3056",
+      "records": 9216
+    },
+    {
+      "name": "original-main",
+      "kind": "rows",
+      "path": "reports/data/original-main.json.gz",
+      "sha256": "eaf58f71306cf3c6263cd0e8cb9659446ff9b2f62f51de2373c7dbc971228e70",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/original_main/measured-rows.json",
+      "source_sha256": "dceefce3db30ce3e6222641cb9a93a2cfff7e5c4975dda9cf8ffaa02c31e48a2",
+      "records": 9216
+    },
+    {
+      "name": "compact-replication",
+      "kind": "rows",
+      "path": "reports/data/compact-replication.json.gz",
+      "sha256": "aa27c7334b1bf2079b2e389d8018233bc6af159fc0dd6a736638608f136452ff",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final-v3/compact_replication/measured-rows.json",
+      "source_sha256": "7baa8eeaac9d9306a8a549948b234ee498ada19fadcbb20935aee6316b25047c",
+      "records": 10240
+    },
+    {
+      "name": "simple-replication",
+      "kind": "rows",
+      "path": "reports/data/simple-replication.json.gz",
+      "sha256": "cf530214175f886f18a6a6989ae2e531b6c2f5f53668b2795885ab4e7f3dd033",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/simple_replication/measured-rows.json",
+      "source_sha256": "ef1c9c18b7a4916d5bddde1f95ece19fe97557e8df8237c5ccf43e838d38c6e7",
+      "records": 4608
+    },
+    {
+      "name": "reversal",
+      "kind": "rows",
+      "path": "reports/data/reversal.json.gz",
+      "sha256": "c3a18b3db8328c2a81c98826871edec4e13a179d873d593b3f6c937798d28eb8",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/reversal/measured-rows.json",
+      "source_sha256": "f97bae267933a58ad86b325414ed11bebc7dd5147e736449bd650cd265b28902",
+      "records": 1024
+    },
+    {
+      "name": "observation",
+      "kind": "rows",
+      "path": "reports/data/observation.json.gz",
+      "sha256": "734df1cc805c8dd3140988a6cc2d29f7f5080665a4298b430ca5899dfc7595f4",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/observation/measured-rows.json",
+      "source_sha256": "329dbdd30877e8275f54975c5775b17b5e8f1794bbb8dfadec9c1395b16eca86",
+      "records": 9600
+    },
+    {
+      "name": "strong",
+      "kind": "rows",
+      "path": "reports/data/strong.json.gz",
+      "sha256": "d0271e380f8c4d1e0a7fec5d2064cfed02e3673a947a7af596c72faa3d9d2dca",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/strong/measured-rows.json",
+      "source_sha256": "5260399714d9da60d6919f5718610928b5e02752ee3183e88cd98eeaaed12f6a",
+      "records": 3840
+    },
+    {
+      "name": "reward-conflict",
+      "kind": "rows",
+      "path": "reports/data/reward-conflict.json.gz",
+      "sha256": "f02fd5091582893b20d37f3d94013d5318b3061a8fc2fdde853eaad7242ec0ef",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/reward_conflict/measured-rows.json",
+      "source_sha256": "efc1591f3cd40090807f7d5bcc01336c953e4183b317a302cf703b141e07ff39",
+      "records": 7168
+    },
+    {
+      "name": "syntax",
+      "kind": "rows",
+      "path": "reports/data/syntax.json.gz",
+      "sha256": "ef821ff82fb616bb392ddfbb3aa8991649662b4a0034f610a06a83a482ad24d1",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final-v3/syntax/measured-rows.json",
+      "source_sha256": "2c0bb0e3d0655be9c852b6251be41bd644c4c117564e24d15be952ae44dc0812",
+      "records": 10080
+    },
+    {
+      "name": "three-style",
+      "kind": "rows",
+      "path": "reports/data/three-style.json.gz",
+      "sha256": "01aac589a115e026a7327c92246b449a8a57513e39d8e2e00fb5a6b442e61bde",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/three_style/measured-rows.json",
+      "source_sha256": "1e41b30b6c83df3e16a0597757bd63ef1eb6d048117d27aef9ee24f9a407e3b7",
+      "records": 6912
+    },
+    {
+      "name": "matched-review-original-analysis",
+      "kind": "analysis",
+      "path": "reports/data/matched-review-original-analysis.json.gz",
+      "sha256": "2ad782efa341e00c3a1a12d1937710555e59981cd325e805ce612e3c2742f9c0",
+      "source_path": "runs/reviewer-observation/matched-review-v1/analysis-v1/analysis.json",
+      "source_sha256": "ca961abd9f395b7e646fe505a4cbfd0eae676383855060aedba4e4b1112c6eba",
+      "records": null
+    },
+    {
+      "name": "matched-review-analysis",
+      "kind": "analysis",
+      "path": "reports/data/matched-review-analysis.json.gz",
+      "sha256": "f33492bbb3a9f41beadaf59ac2dd9629b2f5b86d2e61fca3f94ce2c15f4826f4",
+      "source_path": "runs/recovery/matched-review-recovery-v1/analysis-v1/analysis.json",
+      "source_sha256": "08d8cb323274bc098ff5de210550b4162e78087469aeb1b0d92e54c8636a3559",
+      "records": null
+    },
+    {
+      "name": "matched-syntax-original-analysis",
+      "kind": "analysis",
+      "path": "reports/data/matched-syntax-original-analysis.json.gz",
+      "sha256": "f1dc3f58635d512b407d9012ba6ad4de4b0e6f197c80b0b21ed41ee88cf0cfeb",
+      "source_path": "runs/reviewer-observation/matched-syntax-v1/analysis-v1/analysis.json",
+      "source_sha256": "27b2fc3ac18d9011dc4d075622c7dd6ccfb671c2954fe78dbaa4e176393a7358",
+      "records": null
+    },
+    {
+      "name": "matched-syntax-analysis",
+      "kind": "analysis",
+      "path": "reports/data/matched-syntax-analysis.json.gz",
+      "sha256": "44e0b7010f1f0d35e052e22a22009157282a2dd031215cd598242f12928e6c3c",
+      "source_path": "runs/recovery/matched-gaps-v1/analysis-v1/analysis.json",
+      "source_sha256": "12400adab773ae0f3ef08a0b5659aac1a5205f45dd71a0ee1aea04e6ad1d580c",
+      "records": null
+    },
+    {
+      "name": "observation-original-analysis",
+      "kind": "analysis",
+      "path": "reports/data/observation-original-analysis.json.gz",
+      "sha256": "312ff799ec1e2fc437d976307c105d580d8762b68911c34cdca63462f095aa3c",
+      "source_path": "runs/reviewer-observation/reviewer-observation-v1/analysis-v1/analysis.json",
+      "source_sha256": "5a0cd22b0c371b082651ee16b9bc51c7c21269e762b050553412be3d9ebed9f4",
+      "records": null
+    },
+    {
+      "name": "strong-original-analysis",
+      "kind": "analysis",
+      "path": "reports/data/strong-original-analysis.json.gz",
+      "sha256": "2b72515723c70b0266f24e41c4cdc5809e1919d737b44505ab6f26277540ac09",
+      "source_path": "runs/reviewer-observation/strong-preferences-v1/analysis-v1/analysis.json",
+      "source_sha256": "dd85fb3b0c0211102905983a6a11a8c01e68d59624c8b31622f8d2e6279ea3a1",
+      "records": null
+    },
+    {
+      "name": "expanded-analysis",
+      "kind": "analysis",
+      "path": "reports/data/expanded-analysis.json.gz",
+      "sha256": "4014faf116a5493e3a9093d7b7286afa19606f10bd799017ac7d25479976470b",
+      "source_path": "runs/reviewer-observation/expanded-preferences-v1/analysis-v2/new72/analysis.json",
+      "source_sha256": "b08461fe33678c16b5ca161ef617c8bb7cedd0e7a46cc97f8062ccea40104644",
+      "records": null
+    },
+    {
+      "name": "extension-analysis",
+      "kind": "analysis",
+      "path": "reports/data/extension-analysis.json.gz",
+      "sha256": "fe82e414b19ab1b40a829587328fbe509d59b160c5e1e7f3fb0ca102f6289cb1",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final-v2/extension/analysis.json",
+      "source_sha256": "748ebe18ec0ecc24f5046ad42d3d1242caba250572090fc6a889f85f7fca2d47",
+      "records": null
+    },
+    {
+      "name": "framing-names-analysis",
+      "kind": "analysis",
+      "path": "reports/data/framing-names-analysis.json.gz",
+      "sha256": "c07df239021c37db4f25ed8608df477991625fb40af52dd2931541ae0a946512",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/framing_names/analysis.json",
+      "source_sha256": "cd4cd1d03df7232dcd999345fa392c339d5ce9f343e500efeb0211e413e68bf4",
+      "records": null
+    },
+    {
+      "name": "original-main-analysis",
+      "kind": "analysis",
+      "path": "reports/data/original-main-analysis.json.gz",
+      "sha256": "3401de7e65b0028081863e802a51e9ad4c73d1c7fd5ddec28626c20c9c3b2aed",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/original_main/analysis.json",
+      "source_sha256": "7d68967fd2902239d250ae159cdf3b53f34ac2de7d3e62de36a534e3bbeac7fc",
+      "records": null
+    },
+    {
+      "name": "compact-replication-analysis",
+      "kind": "analysis",
+      "path": "reports/data/compact-replication-analysis.json.gz",
+      "sha256": "e9cd4b88e80be435d212a8b030e25b6d9a280d497fe209beaf15353f5447c382",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final-v3/compact_replication/analysis.json",
+      "source_sha256": "0eb1aed95252ea7a9ca7a16a3376848c1df55908df3de54e2eac8c748d0f328b",
+      "records": null
+    },
+    {
+      "name": "simple-replication-analysis",
+      "kind": "analysis",
+      "path": "reports/data/simple-replication-analysis.json.gz",
+      "sha256": "89d0a70cca14ed0447409bf0210cb51e35d542ba81cb84eb6a5e9bf340b74431",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/simple_replication/analysis.json",
+      "source_sha256": "dcbc195882b464c3bfd3d01829cfef731749e29b7225a71fbd01546a0ccbfca6",
+      "records": null
+    },
+    {
+      "name": "reversal-analysis",
+      "kind": "analysis",
+      "path": "reports/data/reversal-analysis.json.gz",
+      "sha256": "32ec401ee3c4c2c174369b1049d7323819d1202c175a6ce1589fe907a83f335c",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/reversal/analysis.json",
+      "source_sha256": "d3c5306ab0e4d40716536a053d1f3c0844de7ccb9994a81da938f81267a6bac3",
+      "records": null
+    },
+    {
+      "name": "observation-analysis",
+      "kind": "analysis",
+      "path": "reports/data/observation-analysis.json.gz",
+      "sha256": "0913637778f23829f21838f7640f81f56029596430dd757890cbd10d2c1c613d",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/observation/analysis.json",
+      "source_sha256": "fe3a4ab810bdba1dd871978a4c1ddf8a8d5900e2cccd40bb7f371e8ea66479ec",
+      "records": null
+    },
+    {
+      "name": "strong-analysis",
+      "kind": "analysis",
+      "path": "reports/data/strong-analysis.json.gz",
+      "sha256": "1582461a88cb55b2a9e92979c75c6b4d0a05c615fcb6c113bad68856b246af39",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/strong/analysis.json",
+      "source_sha256": "a9fea46d82f41ea4e435fd68463228284f215b4d3d68e194ddaf4b318645d265",
+      "records": null
+    },
+    {
+      "name": "reward-conflict-analysis",
+      "kind": "analysis",
+      "path": "reports/data/reward-conflict-analysis.json.gz",
+      "sha256": "a1750b646b48fe0a9cd001cbea6935167e7225abca93418631246d3e26c5b0d3",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/reward_conflict/analysis.json",
+      "source_sha256": "733122363d908edd30f63680a9af1817634f9b3a0d3994e5fa33eb9c0429ba58",
+      "records": null
+    },
+    {
+      "name": "syntax-analysis",
+      "kind": "analysis",
+      "path": "reports/data/syntax-analysis.json.gz",
+      "sha256": "520feef12d88580e78505c60214bc22a512ccd0e1497058759d178ee6a824510",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final-v3/syntax/analysis.json",
+      "source_sha256": "9fd6225b8983e3d3e8015dac3ffd21d59cf96c093a05d5bf8c676b6e1922bd5b",
+      "records": null
+    },
+    {
+      "name": "three-style-analysis",
+      "kind": "analysis",
+      "path": "reports/data/three-style-analysis.json.gz",
+      "sha256": "034a6223c148ed3752e887c263a74302dfb58e8a81e0cc849983266dd0bd4ad4",
+      "source_path": "runs/recovery/all-experiments-v1/analysis/final/three_style/analysis.json",
+      "source_sha256": "a08cd49ce05e7f013cbc3312089b9c23a76b076e51b7bdaad80309a46d64d15e",
+      "records": null
+    },
+    {
+      "name": "matched-review-pilot-gate",
+      "kind": "readiness",
+      "path": "reports/data/matched-review-pilot-gate.json.gz",
+      "sha256": "4521e06a54a05d59ff4845aa5991afbbcd3054530e558dc787e1ec49e8365e31",
+      "source_path": "runs/reviewer-observation/matched-review-v1/pilot-gate.json",
+      "source_sha256": "559320b21e6172edee9937c87bf1342945ae8ffffc2660f1457ee58221d5d886",
+      "records": null
+    },
+    {
+      "name": "matched-syntax-pilot-gate",
+      "kind": "readiness",
+      "path": "reports/data/matched-syntax-pilot-gate.json.gz",
+      "sha256": "45d04d80e126b55bba9a7e3271913a722746b7044b3b9c2615a694aa65192c08",
+      "source_path": "runs/reviewer-observation/matched-syntax-v1/pilot-gate.json",
+      "source_sha256": "88d05bf2fe28101fbae3d1ccc7fe73a0c905cda763062a63d0b09dbe54d37602",
+      "records": null
+    },
+    {
+      "name": "matched-syntax-qualified-pilot-gate",
+      "kind": "readiness",
+      "path": "reports/data/matched-syntax-qualified-pilot-gate.json.gz",
+      "sha256": "baaf0a5fff06028bf2617900694911728e598464aa63f4076cbb850641a63cf6",
+      "source_path": "runs/reviewer-observation/matched-syntax-v1/qualified-pilot-gate.json",
+      "source_sha256": "d02f29f7d8a052a4afba1461ae4a073befc48697935922a03d1e82ff03fc40fc",
+      "records": null
+    },
+    {
+      "name": "observation-pilot-gate",
+      "kind": "readiness",
+      "path": "reports/data/observation-pilot-gate.json.gz",
+      "sha256": "6127305d25e986be8500abcefed4d2f72b50fcc0e0030c2ff016b9c437b97559",
+      "source_path": "runs/reviewer-observation/reviewer-observation-v1/pilot-gate.json",
+      "source_sha256": "c15bb97c099a8cef563bf60654b627494b1f99a615d969bf7587b7541a02c2d3",
+      "records": null
+    },
+    {
+      "name": "strong-pilot-gate",
+      "kind": "readiness",
+      "path": "reports/data/strong-pilot-gate.json.gz",
+      "sha256": "bea7faefddd8da814c33a52e082cfa53422d76950e790580c11ca263fafa5eb8",
+      "source_path": "runs/reviewer-observation/strong-preferences-v1/pilot-gate.json",
+      "source_sha256": "07ff80f620ba8a59b2f76b8da0ad46dee6f5f8d5a56886c0c8aaf0bd2a3f9f68",
+      "records": null
+    },
+    {
+      "name": "expanded-pilot-gate",
+      "kind": "readiness",
+      "path": "reports/data/expanded-pilot-gate.json.gz",
+      "sha256": "41baf3e1330cd037a7f80d53b81c68575e8e72a48b8e09c8fe8717deb4e4aebf",
+      "source_path": "runs/reviewer-observation/expanded-preferences-v1/pilot-gate.json",
+      "source_sha256": "d0f940a6baa349719d4d428256a21e0987572adfddd703aeb2171ae971379ed5",
+      "records": null
+    },
+    {
+      "name": "matched-review-followup-qualified-pilot-gate",
+      "kind": "readiness",
+      "path": "reports/data/matched-review-followup-qualified-pilot-gate.json.gz",
+      "sha256": "d2abc100678b476c1a6984ac679627f8db3cdf190c0afc1b99e620616e730334",
+      "source_path": "runs/reviewer-observation/matched-review-v1/operations/recoveries/factual-followup-v1/qualified-pilot-gate.json",
+      "source_sha256": "47314bdbc288313b9b597ee15d44404b464dcf4e76ba85c2391f5578ed754c8d",
+      "records": null
+    },
+    {
+      "name": "matched-review-followup-probe2-gate",
+      "kind": "readiness",
+      "path": "reports/data/matched-review-followup-probe2-gate.json.gz",
+      "sha256": "d2abc100678b476c1a6984ac679627f8db3cdf190c0afc1b99e620616e730334",
+      "source_path": "runs/reviewer-observation/matched-review-v1/operations/recoveries/factual-followup-v1/probe2-gate.json",
+      "source_sha256": "47314bdbc288313b9b597ee15d44404b464dcf4e76ba85c2391f5578ed754c8d",
+      "records": null
+    },
+    {
+      "name": "matched-review-followup-format-overlay",
+      "kind": "readiness",
+      "path": "reports/data/matched-review-followup-format-overlay.json.gz",
+      "sha256": "6ead3a6a124ce43beab7838da2aa19f0a8e81d92a7602c6d1bb42d3404276a64",
+      "source_path": "runs/reviewer-observation/matched-review-v1/operations/recoveries/factual-followup-v1/format-overlay.json",
+      "source_sha256": "dca5c2f889f0a918fadd877ba1fb4b9a20b03e044be4d9955e93434f6eaedbe5",
+      "records": null
+    },
+    {
+      "name": "matched-review-designated-records",
+      "kind": "lineage",
+      "path": "reports/data/matched-review-designated-records.json.gz",
+      "sha256": "d22a7d9c1f1f70fce3690f3975209b047cd51bac048c5c73bb09855b8073659c",
+      "source_path": "runs/recovery/matched-review-recovery-v1/designated-records.json",
+      "source_sha256": "7633c34ff4ff62be7a28ec55c642814297d67a094592fc322814721d4a07884e",
+      "records": 147
+    },
+    {
+      "name": "matched-review-free-repairs-v1",
+      "kind": "lineage",
+      "path": "reports/data/matched-review-free-repairs-v1.json.gz",
+      "sha256": "15891be1a27bb42646a6d56c9986e852b656c3bf64a28b4b47d668b62a0b2345",
+      "source_path": "runs/recovery/matched-review-recovery-v1/free-repairs-v1.json",
+      "source_sha256": "46b2f9e989b0df8cbc64b75a17a9c7f23201df0788da080de74948326807ddc5",
+      "records": null
+    },
+    {
+      "name": "matched-syntax-designated-records",
+      "kind": "lineage",
+      "path": "reports/data/matched-syntax-designated-records.json.gz",
+      "sha256": "40fe4a6ad272d420457f3245ec0b350dc282773d089486be464f74d9ea401efa",
+      "source_path": "runs/recovery/matched-gaps-v1/designated-records.json",
+      "source_sha256": "18681af1d0e4c5baa722ef4612c9dee85ee5a482793dd0c48a05d79626a469d9",
+      "records": 311
+    },
+    {
+      "name": "matched-syntax-free-repairs-v1",
+      "kind": "lineage",
+      "path": "reports/data/matched-syntax-free-repairs-v1.json.gz",
+      "sha256": "d19d35d82c32444691413e1adad5d650919cc2bd313ff181e797dade31cbc303",
+      "source_path": "runs/recovery/matched-gaps-v1/free-repairs-v1.json",
+      "source_sha256": "96dc9360c09df3a7b004c22a9d7b1585589fa2bb8aa8267afe2940770d76598e",
+      "records": null
+    }
+  ],
+  "prompt_packets": {
+    "loops": 1512,
+    "naming": 576,
+    "quotes": 576,
+    "strong": 288
+  }
+}

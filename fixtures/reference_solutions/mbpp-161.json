@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/161",
+  "entry_point": "remove_elements",
+  "transformation": "Filter first-list elements by absence from the second list.",
+  "implementations": {
+    "comprehension": "def remove_elements(list1, list2):\n    \"\"\"Keep first-list elements absent from the second list, preserving order.\"\"\"\n    return [element for element in list1 if element not in list2]\n",
+    "loop": "def remove_elements(list1, list2):\n    \"\"\"Keep first-list elements absent from the second list, preserving order.\"\"\"\n    remaining = []\n    for element in list1:\n        if element not in list2:\n            remaining.append(element)\n    return remaining\n"
+  },
+  "review_notes": [
+    "Uses list membership without converting to a set, preserving unhashable-element support, identity/equality rules and source-order duplicates.",
+    "The broad element domain can include unusual equality behavior; references do not coerce elements or suppress comparison exceptions.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}

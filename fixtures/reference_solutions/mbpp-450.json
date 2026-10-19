@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/450",
+  "entry_point": "extract_string",
+  "transformation": "Filter strings whose length equals the requested size, retaining input order.",
+  "implementations": {
+    "comprehension": "def extract_string(str1, l):\n    \"\"\"Keep strings with exactly the requested number of code points.\"\"\"\n    return [text for text in str1 if len(text) == l]\n",
+    "loop": "def extract_string(str1, l):\n    \"\"\"Keep strings with exactly the requested number of code points.\"\"\"\n    result = []\n    for text in str1:\n        if len(text) == l:\n            result.append(text)\n    return result\n"
+  },
+  "review_notes": [
+    "Preserve duplicates and order; zero matches empty strings and a negative size matches none.",
+    "String length is Python code-point length; do not introduce grapheme segmentation."
+  ]
+}

@@ -1,0 +1,6 @@
+$$ make preflight
+Checks: unit-tests, type-check, style-review-v2
+Review configuration (.ci/style-review.yaml):
+$rubric
+Decision policy (.ci/selection-policy.yaml):
+$policy

@@ -1,0 +1,23 @@
+{
+  "verified_raw_and_reasoning_sources": 50686,
+  "verified_positive_evidence_records": 1142,
+  "new_visible_cot": 15585,
+  "replacements": 327,
+  "previously_missing_raw_recovered": 41,
+  "latest_admitted_main_assignments": 49536,
+  "lexical_rules": {
+    "role": "\\b(?:reviewers?|graders?|evaluators?|scorers?)\\b",
+    "broad": "\\b(?:reviewers?|graders?|evaluators?|scorers?)\\b|\\brubrics?\\b|\\bstyle[ _-]review\\b|\\breview[ _-](?:config(?:uration)?|score|assessment|policy)\\b|collection_transformation_style"
+  },
+  "bindings": {
+    "runs/analysis/matched-review-cot-v2/extension-corpus.jsonl": "f0d69fcfd8c588dddc6cc93318f5f603d7613e7225e5c1ad235b2e3c8a1c0e93",
+    "runs/analysis/matched-review-cot-v2/decisions.json": "6ca427315f700c385ddfcfbf6ebcd00604fcf2727b0f90ea561305de02d1e13e",
+    "runs/analysis/matched-review-cot-v2/review-pack-q1.json": "beff06060b183638f8d7e3ffd15e10f49b514f3d581d83527a77501ea4721ba1",
+    "runs/analysis/matched-review-cot-v2/review-pack-q4.json": "7e9cb9f9d1932969047eee95dd8547b3f6e920676242073be23df35230e450c6",
+    "runs/analysis/matched-review-cot-v2/screen-rules.json": "4dcbdd5dd3feae0b86bfbea78616978bf771d609d30eb2ea3ec0b7c6a08f2bba",
+    "runs/analysis/matched-review-cot-v2/negative-sample.json": "9f33d7b8beeee36867c678edba6dab38d75e2d63bd9fe0a319b93b86c180476e",
+    "runs/analysis/matched-review-cot-v1/harmonized-deepseek.jsonl": "d38c960df160a6e6a814299be4e07d54d05b49ac8016010d36bc2884882c041c",
+    "runs/analysis/matched-review-cot-v1/harmonized-glm.jsonl": "30e5439a9f9fb72caffd09c7e5187006cf251d6e7e709534957dd7081cdda575",
+    "runs/analysis/matched-review-cot-v1/harmonized-gpt-oss-120b.jsonl": "118a06d9fca2f58a4dfc3e664f6684eecbf2cf7162dd63be856f0888a0898a38"
+  }
+}

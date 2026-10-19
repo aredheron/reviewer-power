@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task_id": "Mbpp/265",
+  "entry_point": "list_split",
+  "transformation": "Map each offset below step to its strided input slice.",
+  "implementations": {
+    "comprehension": "def list_split(S, step):\n    \"\"\"Partition list positions by their remainder modulo the positive step.\"\"\"\n    return [S[offset::step] for offset in range(step)]\n",
+    "loop": "def list_split(S, step):\n    \"\"\"Partition list positions by their remainder modulo the positive step.\"\"\"\n    groups = []\n    for offset in range(step):\n        groups.append(S[offset::step])\n    return groups\n"
+  },
+  "review_notes": [
+    "Produces exactly step fresh sublists, including empty trailing groups when step exceeds the input length.",
+    "Preserves strided order and element references; O(len(S) plus step) work and output size may still require resource checks for very large step.",
+    "Provisional agent-authored references; neither implementation has been executed against the original base/plus oracle or human approved."
+  ]
+}
